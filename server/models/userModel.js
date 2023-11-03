@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isEmail, "Enter valid email address"],
       required: [true, "Please Enter email address"],
     },
+    profileImg: {
+      type: String,
+      trim: true,
+      required: [true, "Please Enter profile image url"],
+    },
     phone: {
       type: String,
       trim: true,

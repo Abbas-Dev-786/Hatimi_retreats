@@ -53,6 +53,14 @@ const courtSchema = new mongoose.Schema(
       trim: true,
       required: [true, "Court must have a description"],
     },
+    openingTime: {
+      type: Date,
+      required: [true, "Court must have a opening time"],
+    },
+    closingTime: {
+      type: Date,
+      required: [true, "Court must have a closing time"],
+    },
     location: {
       type: { type: String, default: "Point", enum: ["Point"] },
       coordinates: {
