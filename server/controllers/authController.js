@@ -22,17 +22,17 @@ const createAndSendToken = (res, user) => {
 
 //==================== REGISTER handler ===============
 module.exports.register = catchAsync(async (req, res, next) => {
-  const { password, confirmPassword } = req.body;
-
-  if (password.length < 8) {
-    return next(
-      new AppError("Password length should be more than 8 characters", 400)
-    );
-  }
+  const { password, confirmPassword } = req?.body;
 
   if (!password || !confirmPassword) {
     return next(
       new AppError("Please Enter password and confirm your password", 400)
+    );
+  }
+
+  if (password.length < 8) {
+    return next(
+      new AppError("Password length should be more than 8 characters", 400)
     );
   }
 
