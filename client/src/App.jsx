@@ -13,6 +13,9 @@ import "aos/dist/aos.css";
 import ContactUs from "./pages/ContactUs";
 import Events from "./pages/Events";
 import SingleEvent from "./pages/SingleEvent";
+import Venues from "./pages/Venues";
+import SingleVenue from "./pages/SingleVenue";
+import UserBookings from "./pages/UserBookings";
 
 const App = () => {
   useEffect(() => {
@@ -24,13 +27,23 @@ const App = () => {
     <div className="main-wrapper">
       <Navbar />
       <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/events">
-          <Route index element={<Events />} />
-          <Route path=":id" element={<SingleEvent />} />
+        <Route path="/">
+          <Route index element={<Home />} />
+
+          <Route path="events">
+            <Route index element={<Events />} />
+            <Route path=":id" element={<SingleEvent />} />
+          </Route>
+
+          <Route path="venues">
+            <Route index element={<Venues />} />
+            <Route path=":id" element={<SingleVenue />} />
+          </Route>
+
+          <Route path="bookings" element={<UserBookings />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="contactus" element={<ContactUs />} />
         </Route>
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
     </div>
   );

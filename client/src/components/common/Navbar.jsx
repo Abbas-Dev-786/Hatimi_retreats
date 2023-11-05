@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Crosshair, Users } from "react-feather";
+import { Users, X } from "react-feather";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 const navItems = [
@@ -36,76 +36,84 @@ const Navbar = () => {
   }, []);
 
   return (
-    <>
-      <header
-        className={`header header-${pathname === "/" ? "trans" : "sticky"}`}
-        style={{ background: isScrolled ? changedColor : "transparent" }}
-      >
-        <div className="container-fluid">
-          <nav className="navbar navbar-expand-lg header-nav">
-            <div className="navbar-header">
-              <div id="mobile_btn" onClick={() => setShowNav(true)}>
-                <span className="bar-icon">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-              </div>
-              <Link to="/" className="navbar-brand logo">
+    // <div className={showNav ? "menu-opened" : ""}>
+    <header
+      className={`header header-${pathname === "/" ? "trans" : "sticky"} ${
+        pathname === "/" ? "" : "fixed-top"
+      } ${showNav ? "menu-opened" : ""}`}
+      style={{ background: isScrolled ? changedColor : "transparent" }}
+    >
+      <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg header-nav">
+          <div className="navbar-header">
+            <div id="mobile_btn" onClick={() => setShowNav(true)}>
+              <span className="bar-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <Link to="/" className="navbar-brand logo">
+              <img
+                src={`/img/logo${pathname === "/" ? "" : "-black"}.png`}
+                className=""
+                alt="Logo"
+              />
+            </Link>
+          </div>
+          <div className="main-menu-wrapper">
+            <div className="menu-header">
+              <NavLink to="/" className="menu-logo">
                 <img
-                  src={`/img/logo${pathname === "/" ? "" : "-black"}.png`}
-                  className=""
+                  src="/img/logo-black.png"
+                  className="img-fluid"
                   alt="Logo"
                 />
-              </Link>
+              </NavLink>
+              <a
+                id="menu_close"
+                className="menu-close"
+                onClick={() => setShowNav(false)}
+              >
+                <X />
+              </a>
             </div>
-            <div className="main-menu-wrapper">
-              <div className="menu-header">
-                <NavLink to="/" className="menu-logo">
-                  <img
-                    src="/img/logo-black.png"
-                    className="img-fluid"
-                    alt="Logo"
-                  />
-                </NavLink>
-                <a id="menu_close" className="menu-close">
-                  <Crosshair />
-                  {/* <i className="fas fa-times"></i> */}
-                </a>
-              </div>
-              <ul className="main-nav">
-                {navItems.map((item, i) => (
-                  <li
-                    className={activeLink === item.link ? "active" : ""}
-                    key={i}
-                  >
-                    <NavLink
-                      to={item.link}
-                      onClick={() => setActiveLink(item.link)}
-                    >
-                      {item.text}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <ul className="nav header-navbar-rht">
-              <li className="nav-item">
-                <a
-                  className="nav-link btn btn-secondary"
-                  href="https://www.its52.com/"
+            <ul className="main-nav">
+              {navItems.map((item, i) => (
+                <li
+                  className={activeLink === item.link ? "active" : ""}
+                  key={i}
                 >
-                  <span>
-                    <Users size="15px" />
-                  </span>
-                  Login with ITS
-                </a>
-              </li>
+                  <NavLink
+                    to={item.link}
+                    onClick={() => {
+                      setActiveLink(item.link);
+                      setShowNav(false);
+                    }}
+                  >
+                    {item.text}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
-          </nav>
-        </div>
-      </header>
-    </>
+          </div>
+          <ul className="nav header-navbar-rht">
+            <li className="nav-item">
+              <a
+                className="nav-link btn btn-secondary"
+                href="https://www.its52.com/"
+              >
+                <span>
+                  <Users size="15px" />
+                </span>
+                Login with ITS
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    // {/* </div> */}
   );
 };
 

@@ -73,7 +73,7 @@ const HeroSection = () => {
                       </div>
                     </div>
                     <div className="search-btn">
-                      <NavLink to="/" className="btn">
+                      <NavLink to="/venues" className="btn">
                         <Search />
                         <span className="search-text">Search</span>
                       </NavLink>
