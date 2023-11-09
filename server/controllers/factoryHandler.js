@@ -6,7 +6,7 @@ const catchAsync = require("../utils/catchAsync");
 module.exports.getAllDocs = (Model) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
-    if (req.params.propertyId) filter = { property: req.params.propertyId };
+    if (req.params.courtId) filter = { property: req.params.courtId };
 
     const features = new ApiFeatures(Model.find(filter), req.query)
       .filter()
@@ -62,7 +62,7 @@ module.exports.updateDoc = (Model) =>
 // delete a doc
 module.exports.deleteDoc = (Model) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findOneAndDelete(req.params.id);
+    const doc = await Model.findByIdAndDelete(req.params.id);
 
     if (!doc) {
       return next(new AppError("Document does not exists", 404));

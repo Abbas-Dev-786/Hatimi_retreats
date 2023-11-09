@@ -36,14 +36,14 @@ reviewSchema.plugin(mongoosePaginate);
 
 reviewSchema.index({ court: 1, user: 1 }, { unique: true });
 
-// reviewSchema.pre(/^find/, function (next) {
-//   this.populate({
-//     path: "user",
-//     select: "name photo",
-//   });
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "firstName lastName profileImg",
+  });
 
-//   next();
-// });
+  next();
+});
 
 reviewSchema.statics.calcAverageRatings = async function (courtId) {
   const stats = await this.aggregate([
