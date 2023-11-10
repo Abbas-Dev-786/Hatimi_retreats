@@ -115,11 +115,53 @@ const courtSchema = new mongoose.Schema(
 
 courtSchema.plugin(mongoosePaginate);
 
+// Virtual populate
+courtSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "court",
+  localField: "_id",
+  options: { sort: { createdAt: -1 }, limit: 3 },
+  // limit: 3,
+});
+
+courtSchema.methods.getAvailableSlots = function () {
+  const allTimeSlots = [];
+  const startTime = new Date();
+  const endTime = new Date();
+  startTime.setHours(
+    this.openingTime.getHours(),
+    this.openingTime.getMinutes(),
+    0,
+    0
+  );
+  endTime.setHours(
+    this.closingTime.getHours(),
+    this.closingTime.getMinutes(),
+    59,
+    999
+  );
+
+  for (
+    let time = startTime.getTime();
+    time <= endTime.getTime();
+    time += 60 * 60 * 1000
+  ) {
+    allTimeSlots.push({
+      startTime: new Date(time),
+      endTime: new Date(time + 60 * 60 * 1000),
+    });
+  }
+
+  return allTimeSlots;
+};
+
 courtSchema.pre("findOne", function (next) {
-  this.populate({ path: "amenities", select: "name" }).populate({
-    path: "rules",
-    select: "text",
-  });
+  this.populate({ path: "amenities", select: "name" })
+    .populate({
+      path: "rules",
+      select: "text",
+    })
+    .populate({ path: "reviews" });
 
   next();
 });

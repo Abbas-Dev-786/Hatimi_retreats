@@ -6,7 +6,7 @@ const catchAsync = require("../utils/catchAsync");
 module.exports.getAllDocs = (Model) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
-    if (req.params.courtId) filter = { property: req.params.courtId };
+    if (req.params.courtId) filter = { court: req.params.courtId };
 
     const features = new ApiFeatures(Model.find(filter), req.query)
       .filter()

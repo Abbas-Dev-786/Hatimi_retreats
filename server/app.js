@@ -13,6 +13,7 @@ const courtRouter = require("./routes/courtRoute");
 const amenityRouter = require("./routes/amenityRoute");
 const ruleRouter = require("./routes/rulesRoute");
 const reviewRouter = require("./routes/reviewRoute");
+const bookingRouter = require("./routes/bookingRoute");
 
 // custom util modules
 const AppError = require("./utils/AppError");
@@ -35,6 +36,7 @@ app.use(`${BASE_URL}/courts`, courtRouter);
 app.use(`${BASE_URL}/amenities`, amenityRouter);
 app.use(`${BASE_URL}/rules`, ruleRouter);
 app.use(`${BASE_URL}/reviews`, reviewRouter);
+app.use(`${BASE_URL}/bookings`, bookingRouter);
 
 // invalid route handler
 app.all("*", (req, _, next) =>

@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const moment = require("moment");
 const Court = require("../models/CourtModel");
 const upload = require("../utils/fileUploads");
 const factory = require("./factoryHandler");
@@ -72,6 +73,18 @@ module.exports.setImages = (req, res, next) => {
 
   next();
 };
+
+module.exports.getAvailableTimeSlots = catchAsync(async (req, res, next) => {
+  const court = await Court.findById(req.params.id);
+
+  if (!court) {
+    return next(new AppError("Court does not exists", 404));
+  }
+
+  const allTimeSlots = court.getAvailableSlots();
+
+  res.status(200).json({ status: "success", data: allTimeSlots });
+});
 
 module.exports.getAllCities = catchAsync(async (req, res, next) => {
   const cities = await Court.aggregate([
