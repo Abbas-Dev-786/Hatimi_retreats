@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const data = [
   "Overview",
-  "Includes",
+  // "Includes",
   "Rules",
   "Amenities",
   //   "Gallery",

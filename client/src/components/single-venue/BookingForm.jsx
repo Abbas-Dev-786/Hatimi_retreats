@@ -31,7 +31,7 @@ const BookingForm = () => {
       </ul>
       <div className="d-grid btn-block mt-3">
         <Link
-          to="/book"
+          to="/booking"
           className="btn btn-secondary d-inline-flex justify-content-center align-items-center"
         >
           <i>

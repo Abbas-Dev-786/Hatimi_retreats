@@ -1,7 +1,9 @@
-import moment from "moment";
 import PropTypes from "prop-types";
-import { Calendar, Heart, MapPin } from "react-feather";
+import { Heart, MapPin } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addBookmark, removeBookmark } from "../../state/slices/bookmarkSlice";
+import { toast } from "react-toastify";
 
 const FeatureSlide = ({
   image,
@@ -13,9 +15,27 @@ const FeatureSlide = ({
   title,
   desc,
   address,
-  availabilityDate,
-  isBookmarked,
+  // availabilityDate,
 }) => {
+  const { user } = useSelector((state) => state.user);
+  const { bookmarks } = useSelector((state) => state.bookmarks);
+  const dipatch = useDispatch();
+
+  const isBookmarked = bookmarks.includes(link);
+
+  const handleBookmarkClicks = () => {
+    if (!user?.firstName) {
+      toast.error("Please Login to Access Bookmarks Functionality");
+      return;
+    }
+
+    if (isBookmarked) {
+      dipatch(removeBookmark(link));
+    } else {
+      dipatch(addBookmark(link));
+    }
+  };
+
   return (
     <div className="featured-venues-item aos" data-aos="fade-up">
       <div className="listing-item mb-0">
@@ -39,6 +59,7 @@ const FeatureSlide = ({
             </div>
             <div
               className={`fav-icon ${isBookmarked ? "selected" : ""}`}
+              onClick={handleBookmarkClicks}
               style={{ cursor: "pointer" }}
             >
               <Heart size={"18px"} />
@@ -56,7 +77,7 @@ const FeatureSlide = ({
                   {address}
                 </span>
               </li>
-              <li>
+              {/* <li>
                 <span>
                   <Calendar size={"15px"} className="me-1" />
                   Next availablity :
@@ -64,17 +85,17 @@ const FeatureSlide = ({
                     {moment(availabilityDate).format("DD MMMM YYYY")}
                   </span>
                 </span>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="listing-button">
             <div className="listing-venue-owner"></div>
-            <a href="venue-details.html" className="user-book-now">
+            <Link to={`venues/${link}`} className="user-book-now">
               <span>
                 <i className="feather-calendar me-2"></i>
               </span>
               Book Now
-            </a>
+            </Link>
           </div>
         </div>
       </div>

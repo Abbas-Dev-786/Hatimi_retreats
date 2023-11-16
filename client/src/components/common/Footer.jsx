@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Twitter, Users } from "react-feather";
+import {
+  InstagramHandle,
+  customerCareNumber,
+  email,
+  facebookHandle,
+  linkedinHandle,
+  twitterHandle,
+} from "../../constants";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const { user } = useSelector((state) => state.user);
+
   return (
     <footer className="footer">
       <div className="container">
@@ -10,12 +21,14 @@ const Footer = () => {
           <p className="sub-title">
             Join our empowering sports community today and grow with us.
           </p>
-          <Link href="register.html" className="btn btn-primary">
-            <i className="me-2">
-              <Users size="18px" />
-            </i>
-            Login With ITS
-          </Link>
+          {!user?.firstName && (
+            <Link to="https://www.its52.com/" className="btn btn-primary">
+              <i className="me-2">
+                <Users size="18px" />
+              </i>
+              Login With ITS
+            </Link>
+          )}
         </div>
 
         <div className="footer-top">
@@ -36,18 +49,14 @@ const Footer = () => {
                 <div className="footer-address-blk">
                   <div className="footer-call">
                     <span>Toll free Customer Care</span>
-                    <p>+017 123 456 78</p>
+                    <p>{customerCareNumber}</p>
                   </div>
                   <div className="footer-call">
                     <span>Need Live Support</span>
                     <p>
-                      <Link
-                        href="https://Hatimi Retreats.dreamguystech.com/cdn-cgi/l/email-protection"
-                        className="__cf_email__"
-                        data-cfemail="04607661656977746b76707744617c65697468612a676b69"
-                      >
-                        [email&#160;protected]
-                      </Link>
+                      <a href={`mailto:${email}`} className="__cf_email__">
+                        {email}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -62,28 +71,28 @@ const Footer = () => {
                 <div className="social-icon">
                   <ul>
                     <li>
-                      <Link className="facebook">
+                      <Link className="facebook" to={facebookHandle}>
                         <i>
                           <Facebook size="18px" />
                         </i>
                       </Link>
                     </li>
                     <li>
-                      <Link className="twitter">
+                      <Link className="twitter" to={twitterHandle}>
                         <i>
                           <Twitter size="18px" />
                         </i>
                       </Link>
                     </li>
                     <li>
-                      <Link className="instagram">
+                      <Link className="instagram" to={InstagramHandle}>
                         <i>
                           <Instagram size="18px" />
                         </i>
                       </Link>
                     </li>
                     <li>
-                      <Link className="linked-in">
+                      <Link className="linked-in" to={linkedinHandle}>
                         <i>
                           <Linkedin size="18px" />
                         </i>
@@ -101,23 +110,11 @@ const Footer = () => {
         <div className="container">
           <div className="copyright">
             <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-12">
                 <div className="copyright-text">
-                  <p className="mb-0">
+                  <p className="mb-0 text-center">
                     &copy; 2023 Hatimi Retreats - All rights reserved.
                   </p>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="dropdown-blk">
-                  <ul className="navbar-nav selection-list">
-                    <li className="nav-item dropdown">
-                      <div className="lang-select"></div>
-                    </li>
-                    <li className="nav-item dropdown">
-                      <div className="lang-select"></div>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>

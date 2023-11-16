@@ -7917,6 +7917,10 @@ span.icon-bg-40 img {
   .sortby-section .sorting-info {
     padding: 20px;
   }
+
+  .count-search {
+    margin-bottom: 10px;
+  }
 }
 .sortby-section .sorting-info .count-search p {
   font-weight: 500;

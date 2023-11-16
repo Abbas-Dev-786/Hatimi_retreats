@@ -24,9 +24,7 @@ const TestimonialSlide = ({
         <p>{comments}</p>
       </div>
       <div className="listing-venue-owner">
-        <a className="navigation">
-          <img src={image} alt="User" />
-        </a>
+        <img src={image} alt="User" />
         <div className="testimonial-content">
           <h5>{name}</h5>
           <Link to="/venues/7878788" className="btn btn-primary">

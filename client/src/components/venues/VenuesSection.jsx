@@ -4,7 +4,6 @@ const data = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "3457873578",
-    features: ["featured"],
     price: 450,
     rating: 4.2,
     ratingQuantity: 300,
@@ -17,7 +16,6 @@ const data = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "6875678767",
-    features: ["top rated"],
     price: 200,
     rating: 5.0,
     ratingQuantity: 150,
@@ -30,7 +28,6 @@ const data = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "8475685767",
-    // features: [],
     price: 350,
     rating: 4.7,
     ratingQuantity: 120,

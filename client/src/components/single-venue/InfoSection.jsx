@@ -65,12 +65,8 @@ const InfoSection = () => {
                     <i className="fas fa-star filled"></i>
                     <i className="fas fa-star filled"></i>
                   </div>
-                  <p className="mb-0">
-                    15 Reviews
-                    {/* <p>15 Reviews</p> */}
-                  </p>
+                  <p className="mb-0">15 Reviews</p>
                 </div>
-                <i className="fa-regular fa-comments"></i>
               </li>
             </ul>
           </div>
@@ -91,7 +87,7 @@ const InfoSection = () => {
                 </div>
                 <div className="ms-2">
                   <p>Venue Type</p>
-                  <h6 className="mb-0">Indoor</h6>
+                  <h6 className="mb-0">Box Cricket</h6>
                 </div>
               </li>
               <li>

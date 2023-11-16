@@ -21,46 +21,6 @@ const AddNewReviewModel = () => {
             <form>
               <div className="row">
                 <div className="col-lg-12">
-                  <div className="input-space">
-                    <label className="form-label">
-                      Your Name <span>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="reviewer-name"
-                      placeholder="Enter Your Name"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="input-space">
-                    <label className="form-label">Title of your review</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="If you could say it in one sentence, what would you say?"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="input-space">
-                    <label className="form-label">
-                      Your Review <span>*</span>
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="review"
-                      rows="3"
-                      placeholder="Enter Your Review"
-                    ></textarea>
-                    <small className="text-muted">
-                      <span id="chars">100</span> characters remaining
-                    </small>
-                  </div>
-                </div>
-                <div className="col-lg-12">
                   <div className="input-space review">
                     <label className="form-label">
                       Rating <span>*</span>
@@ -114,22 +74,17 @@ const AddNewReviewModel = () => {
                     </div>
                   </div>
                 </div>
-                <div className="form-group">
-                  <div className="terms-accept">
-                    <div className="d-flex align-items-center form-check">
-                      <input
-                        type="checkbox"
-                        id="terms_accept"
-                        defaultChecked
-                        className="form-check-input"
-                      />
-                      <label htmlFor="terms_accept">
-                        I have read and accept
-                        <a href="terms-condition.html">
-                          Terms &amp; Conditions
-                        </a>
-                      </label>
-                    </div>
+                <div className="col-lg-12">
+                  <div className="input-space">
+                    <label className="form-label">
+                      Your Review <span>*</span>
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="review"
+                      rows="3"
+                      placeholder="Enter Your Review"
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -137,9 +92,9 @@ const AddNewReviewModel = () => {
           </div>
           <div className="modal-footer">
             <div className="table-accept-btn">
-              <a href="#" className="btn btn-primary">
+              <button href="#" className="btn btn-primary">
                 Add Review
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -1,11 +1,11 @@
 import BookingDataTable from "./BookingDataTable";
-import FiltersList from "./FiltersList";
+// import FiltersList from "./FiltersList";
 
 const BookingsContainer = () => {
   return (
     <div className="content court-bg">
       <div className="container">
-        <FiltersList />
+        {/* <FiltersList /> */}
         <BookingDataTable />
       </div>
     </div>

@@ -1,5 +1,50 @@
 import { Eye } from "react-feather";
 
+import BookingTableItem from "./BookingTableItem";
+
+const data = [
+  {
+    image: "/img/booking/booking-01.jpg",
+    courtName: "Leap Sports Academy",
+    dateTime: "Mon, Jul 11 06:00 PM - 08:00 PM",
+    amount: "120",
+    status: "Accepted",
+    link: "78587",
+  },
+  {
+    image: "/img/booking/booking-02.jpg",
+    courtName: "Feather Badminton",
+    dateTime: "Mon, Jul 12 02:00 PM - 05:00 PM",
+    amount: "90",
+    status: "Awaiting",
+    link: "842515",
+  },
+  {
+    image: "/img/booking/booking-03.jpg",
+    courtName: "Bwing Sports Academy",
+    dateTime: "Mon, Jul 11 06:00 PM - 08:00 PM",
+    amount: "130",
+    status: "Accepted",
+    link: "212120123",
+  },
+  {
+    image: "/img/booking/booking-04.jpg",
+    courtName: "Marsh Academy",
+    dateTime: "Mon, Jul 12 02:00 PM - 05:00 PM",
+    amount: "100",
+    status: "Awaiting",
+    link: "21454154",
+  },
+  {
+    image: "/img/booking/booking-05.jpg",
+    courtName: "Wing Sports Academy",
+    dateTime: "Mon, Jul 11 06:00 PM - 08:00 PM",
+    amount: "140",
+    status: "Accepted",
+    link: "7821521",
+  },
+];
+
 const BookingDataTable = () => {
   return (
     <div className="row">
@@ -9,35 +54,10 @@ const BookingDataTable = () => {
             <div className="card-body">
               <div className="coache-head-blk">
                 <div className="row align-items-center">
-                  <div className="col-md-5">
+                  <div className="col-12">
                     <div className="court-table-head">
                       <h4>My Bookings</h4>
                       <p>Manage and track all your upcoming court bookings.</p>
-                    </div>
-                  </div>
-                  <div className="col-md-7">
-                    <div className="table-search-top">
-                      <div id="tablefilter"></div>
-                      <div className="request-coach-list">
-                        <div className="card-header-btns">
-                          <nav>
-                            <div className="nav nav-tabs" role="tablist">
-                              <button
-                                className="nav-link active"
-                                id="nav-Recent-tab"
-                                data-bs-toggle="tab"
-                                data-bs-target="#nav-Recent"
-                                type="button"
-                                role="tab"
-                                aria-controls="nav-Recent"
-                                aria-selected="true"
-                              >
-                                Courts
-                              </button>
-                            </div>
-                          </nav>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -64,442 +84,9 @@ const BookingDataTable = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <h2 className="table-avatar">
-                              <a
-                                href="#"
-                                className="avatar avatar-sm flex-shrink-0"
-                              >
-                                <img
-                                  className="avatar-img"
-                                  src="/img/booking/booking-01.jpg"
-                                  alt="User"
-                                />
-                              </a>
-                              <span className="table-head-name flex-grow-1">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#profile-court"
-                                >
-                                  Leap Sports Academy
-                                </a>
-                                <span>Court 1 </span>
-                              </span>
-                            </h2>
-                          </td>
-                          <td className="table-date-time">
-                            <h4>
-                              Mon, Jul 11<span>06:00 PM - 08:00 PM</span>
-                            </h4>
-                          </td>
-                          <td>
-                            <span className="pay-dark fs-16">₹120</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-success">
-                              <i className="feather-check-square me-1"></i>
-                              Accepted
-                            </span>
-                          </td>
-                          <td className="text-pink view-detail-pink">
-                            <a
-                              href="javascript:;"
-                              data-bs-toggle="modal"
-                              data-bs-target="#upcoming-court"
-                            >
-                              <i>
-                                <Eye size={"15px"} />
-                              </i>
-                              View Details
-                            </a>
-                          </td>
-
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action table-drop-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="fas fa-ellipsis-h"></i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#cancel-court"
-                                >
-                                  <i className="feather-corner-down-left"></i>
-                                  Cancel Booking
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-edit"></i>Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-trash"></i>Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <h2 className="table-avatar">
-                              <a
-                                href="#"
-                                className="avatar avatar-sm flex-shrink-0"
-                              >
-                                <img
-                                  className="avatar-img"
-                                  src="/img/booking/booking-02.jpg"
-                                  alt="User"
-                                />
-                              </a>
-                              <span className="table-head-name flex-grow-1">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#profile-court"
-                                >
-                                  Feather Badminton
-                                </a>
-                                <span>Court 1 </span>
-                              </span>
-                            </h2>
-                          </td>
-                          <td className="table-date-time">
-                            <h4>
-                              Mon, Jul 12<span>02:00 PM - 05:00 PM</span>
-                            </h4>
-                          </td>
-                          <td>
-                            <span className="pay-dark fs-16">₹90</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-info">
-                              <i className="feather-clock me-1"></i>Awaiting
-                            </span>
-                          </td>
-                          <td className="text-pink view-detail-pink">
-                            <a
-                              href="javascript:;"
-                              data-bs-toggle="modal"
-                              data-bs-target="#upcoming-court"
-                            >
-                              <i>
-                                <Eye size={"15px"} />
-                              </i>
-                              View Details
-                            </a>
-                          </td>
-
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action table-drop-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="fas fa-ellipsis-h"></i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#cancel-court"
-                                >
-                                  <i className="feather-corner-down-left"></i>
-                                  Cancel Booking
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-edit"></i>Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-trash"></i>Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <h2 className="table-avatar">
-                              <a
-                                href="#"
-                                className="avatar avatar-sm flex-shrink-0"
-                              >
-                                <img
-                                  className="avatar-img"
-                                  src="/img/booking/booking-03.jpg"
-                                  alt="User"
-                                />
-                              </a>
-                              <span className="table-head-name flex-grow-1">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#profile-court"
-                                >
-                                  Bwing Sports Academy
-                                </a>
-                                <span>Court 1 </span>
-                              </span>
-                            </h2>
-                          </td>
-                          <td className="table-date-time">
-                            <h4>
-                              Mon, Jul 15<span>03:00 PM - 05:00 PM</span>
-                            </h4>
-                          </td>
-                          <td>
-                            <span className="pay-dark fs-16">₹130</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-info">
-                              <i className="feather-clock me-1"></i>Awaiting
-                            </span>
-                          </td>
-                          <td className="text-pink view-detail-pink">
-                            <a
-                              href="javascript:;"
-                              data-bs-toggle="modal"
-                              data-bs-target="#upcoming-court"
-                            >
-                              <i>
-                                <Eye size={"15px"} />
-                              </i>
-                              View Details
-                            </a>
-                          </td>
-
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action table-drop-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="fas fa-ellipsis-h"></i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#cancel-court"
-                                >
-                                  <i className="feather-corner-down-left"></i>
-                                  Cancel Booking
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-edit"></i>Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-trash"></i>Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <h2 className="table-avatar">
-                              <a
-                                href="#"
-                                className="avatar avatar-sm flex-shrink-0"
-                              >
-                                <img
-                                  className="avatar-img"
-                                  src="/img/booking/booking-04.jpg"
-                                  alt="User"
-                                />
-                              </a>
-                              <span className="table-head-name flex-grow-1">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#profile-court"
-                                >
-                                  Marsh Academy
-                                </a>
-                                <span>Court 1 </span>
-                              </span>
-                            </h2>
-                          </td>
-                          <td className="table-date-time">
-                            <h4>
-                              Mon, Jul 16<span>05:00 PM - 07:00 PM</span>
-                            </h4>
-                          </td>
-                          <td>
-                            <span className="pay-dark fs-16">₹100</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-info">
-                              <i className="feather-clock me-1"></i>Awaiting
-                            </span>
-                          </td>
-                          <td className="text-pink view-detail-pink">
-                            <a
-                              href="javascript:;"
-                              data-bs-toggle="modal"
-                              data-bs-target="#upcoming-court"
-                            >
-                              <i>
-                                <Eye size={"15px"} />
-                              </i>
-                              View Details
-                            </a>
-                          </td>
-
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action table-drop-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="fas fa-ellipsis-h"></i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#cancel-court"
-                                >
-                                  <i className="feather-corner-down-left"></i>
-                                  Cancel Booking
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-edit"></i>Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-trash"></i>Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <h2 className="table-avatar">
-                              <a
-                                href="#"
-                                className="avatar avatar-sm flex-shrink-0"
-                              >
-                                <img
-                                  className="avatar-img"
-                                  src="/img/booking/booking-05.jpg"
-                                  alt="User"
-                                />
-                              </a>
-                              <span className="table-head-name flex-grow-1">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#profile-court"
-                                >
-                                  Wing Sports Academy
-                                </a>
-                                <span>Court 1 </span>
-                              </span>
-                            </h2>
-                          </td>
-                          <td className="table-date-time">
-                            <h4>
-                              Mon, Jul 16<span>05:00 PM - 08:00 PM</span>
-                            </h4>
-                          </td>
-                          <td>
-                            <span className="pay-dark fs-16">₹140</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-info">
-                              <i className="feather-clock me-1"></i>Awaiting
-                            </span>
-                          </td>
-                          <td className="text-pink view-detail-pink">
-                            <a
-                              href="javascript:;"
-                              data-bs-toggle="modal"
-                              data-bs-target="#upcoming-court"
-                            >
-                              <i>
-                                <Eye size={"15px"} />
-                              </i>
-                              View Details
-                            </a>
-                          </td>
-
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action table-drop-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="fas fa-ellipsis-h"></i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#cancel-court"
-                                >
-                                  <i className="feather-corner-down-left"></i>
-                                  Cancel Booking
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-edit"></i>Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="javascript:void(0);"
-                                >
-                                  <i className="feather-trash"></i>Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
+                        {data?.map((item) => (
+                          <BookingTableItem key={item.link} {...item} />
+                        ))}
                       </tbody>
                     </table>
                   </div>

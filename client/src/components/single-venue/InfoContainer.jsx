@@ -1,5 +1,5 @@
 import Amenities from "./Amenities";
-import Includes from "./Includes";
+// import Includes from "./Includes";
 import Location from "./Location";
 import OptionsList from "./OptionsList";
 import Overview from "./Overview";
@@ -13,7 +13,7 @@ const InfoContainer = () => {
 
       <div className="accordion" id="accordionPanel">
         <Overview />
-        <Includes />
+        {/* <Includes /> */}
         <Rules />
         <Amenities />
         <Reviews />

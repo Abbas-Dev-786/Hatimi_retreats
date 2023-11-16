@@ -64,7 +64,7 @@ const BookingModal = () => {
                 </div>
                 <div className="card dashboard-card court-information">
                   <div className="card-header">
-                    <h4>Appointment Information</h4>
+                    <h4>Booking Information</h4>
                   </div>
                   <div className="appointment-info appoin-border">
                     <ul className="appointmentset">
@@ -134,11 +134,7 @@ const BookingModal = () => {
           </div>
           <div className="modal-footer">
             <div className="table-accept-btn">
-              <a
-                href="javascript:;"
-                data-bs-dismiss="modal"
-                className="btn cancel-table-btn"
-              >
+              <a data-bs-dismiss="modal" className="btn cancel-table-btn">
                 Cancel
               </a>
             </div>

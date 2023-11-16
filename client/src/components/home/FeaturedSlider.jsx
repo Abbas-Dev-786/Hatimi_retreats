@@ -6,8 +6,10 @@ import { Navigation, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import FeatureSlide from "./FeatureSlide";
+import { useQuery } from "@tanstack/react-query";
+import { getTop10Courts } from "../../state/api";
 
-const data = [
+const tempData = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "3457873578",
@@ -63,6 +65,8 @@ const data = [
 ];
 
 const FeaturedSlider = () => {
+  const { data } = useQuery({ queryKey: ["top10"], queryFn: getTop10Courts });
+
   return (
     <Swiper
       slidesPerView={1}
@@ -76,13 +80,13 @@ const FeaturedSlider = () => {
         },
       }}
       spaceBetween={30}
-      loop={true}
+      loop={data?.length > 3}
       navigation={true}
       keyboard={true}
       modules={[Navigation, Keyboard]}
       className="owl-carousel featured-venues-slider owl-theme"
     >
-      {data.map((item) => (
+      {tempData?.map((item) => (
         <SwiperSlide key={item.link}>
           <FeatureSlide {...item} />
         </SwiperSlide>

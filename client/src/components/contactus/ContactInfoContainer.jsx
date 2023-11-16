@@ -1,21 +1,22 @@
 import { Mail, MapPin, PhoneCall } from "react-feather";
 import GoogleMap from "./GoogleMap";
+import { address, email, phoneNumber } from "../../constants";
 
 const contactData = [
   {
     icon: <Mail size={"35px"} />,
     title: "Email Address",
-    text: "[email protected]",
+    text: email,
   },
   {
     icon: <PhoneCall size={"35px"} />,
     title: "Phone Number",
-    text: "+1 8164 164654",
+    text: phoneNumber,
   },
   {
     icon: <MapPin size={"35px"} />,
     title: "Location",
-    text: "3365 Central AvenueTeterboro, NJ 07608",
+    text: address,
   },
 ];
 

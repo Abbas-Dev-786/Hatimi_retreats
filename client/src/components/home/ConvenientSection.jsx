@@ -25,7 +25,7 @@ const ConvenientSection = () => {
         </div>
         <div className="convenient-btns aos" data-aos="fade-up">
           <Link
-            to="listing-list.html"
+            to="/venues"
             className="btn btn-primary d-inline-flex align-items-center"
           >
             Book a Venue

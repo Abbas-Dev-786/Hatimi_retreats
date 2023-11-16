@@ -1,6 +1,6 @@
 import Banner from "../components/common/Banner";
 import Footer from "../components/common/Footer";
-import ContactForm from "../components/contactus/ContactForm";
+// import ContactForm from "../components/contactus/ContactForm";
 import ContactInfoContainer from "../components/contactus/ContactInfoContainer";
 
 const ContactUs = () => {
@@ -9,7 +9,7 @@ const ContactUs = () => {
       <Banner text="Contact us" linkText="Home" link="/" />
       <div className="content blog-details contact-group">
         <ContactInfoContainer />
-        <ContactForm />
+        {/* <ContactForm /> */}
       </div>
       <Footer />
     </div>

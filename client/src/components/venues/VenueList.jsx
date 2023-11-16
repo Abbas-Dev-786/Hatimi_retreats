@@ -1,22 +1,38 @@
-import moment from "moment";
 import PropTypes from "prop-types";
-import { Calendar, Heart, MapPin } from "react-feather";
+import { Heart, MapPin } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { addBookmark, removeBookmark } from "../../state/slices/bookmarkSlice";
 
 const VenueList = ({
   image,
   link,
-  features,
   price,
   rating,
   ratingQuantity,
   title,
   desc,
   address,
-  availabilityDate,
-  isBookmarked,
 }) => {
-  const date = moment(availabilityDate);
+  const { user } = useSelector((state) => state.user);
+  const { bookmarks } = useSelector((state) => state.bookmarks);
+  const dipatch = useDispatch();
+
+  const isBookmarked = bookmarks.includes(link);
+
+  const handleBookmarkClicks = () => {
+    if (!user?.firstName) {
+      toast.error("Please Login to Access Bookmarks Functionality");
+      return;
+    }
+
+    if (isBookmarked) {
+      dipatch(removeBookmark(link));
+    } else {
+      dipatch(addBookmark(link));
+    }
+  };
 
   return (
     <div className="col-lg-12 col-md-12">
@@ -27,7 +43,7 @@ const VenueList = ({
               <img src={image} alt="Venue" />
             </Link>
             <div className="fav-item-venues">
-              {features && <span className="tag tag-blue">{features[0]}</span>}
+              {rating > 4.5 && <span className="tag tag-blue">Top Rated</span>}
               <h5 className="tag tag-primary">
                 ₹{price}
                 <span>/hr</span>
@@ -43,6 +59,7 @@ const VenueList = ({
               <div
                 className={`fav-icon ${isBookmarked ? "selected" : ""}`}
                 style={{ cursor: "pointer" }}
+                onClick={handleBookmarkClicks}
               >
                 <Heart size={"18px"} />
               </div>
@@ -51,7 +68,6 @@ const VenueList = ({
               <Link to={`/venues/${link}`}>{title}</Link>
             </h3>
             <div className="listing-details-group">
-              <p>{desc}</p>
               <ul className="listing-details-info">
                 <li>
                   <span>
@@ -59,16 +75,8 @@ const VenueList = ({
                     {address}
                   </span>
                 </li>
-                <li>
-                  <span>
-                    <Calendar size={"15px"} className="me-1" />
-                    Next availablity :
-                    <span className="primary-text">
-                      {date.format("DD MMMM YYYY")}
-                    </span>
-                  </span>
-                </li>
               </ul>
+              <p>{desc}</p>
             </div>
             <div className="listing-button">
               <div className="listing-venue-owner"></div>

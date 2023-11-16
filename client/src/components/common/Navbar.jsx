@@ -1,17 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { Users, X } from "react-feather";
+import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 const navItems = [
   { text: "Home", link: "/" },
   { text: "Book Venues", link: "/venues" },
-  { text: "My Bookings", link: "/bookings" },
-  { text: "Events", link: "/events" },
+  { text: "My Bookings", link: "/bookings", protected: true },
+  // { text: "Events", link: "/events" },
   { text: "About Us", link: "/aboutus" },
   { text: "Contact Us", link: "/contactus" },
 ];
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.user);
   const location = useLocation();
   const { pathname } = location;
 
@@ -36,7 +38,6 @@ const Navbar = () => {
   }, []);
 
   return (
-    // <div className={showNav ? "menu-opened" : ""}>
     <header
       className={`header header-${pathname === "/" ? "trans" : "sticky"} ${
         pathname === "/" ? "" : "fixed-top"
@@ -79,22 +80,28 @@ const Navbar = () => {
               </a>
             </div>
             <ul className="main-nav">
-              {navItems.map((item, i) => (
-                <li
-                  className={activeLink === item.link ? "active" : ""}
-                  key={i}
-                >
-                  <NavLink
-                    to={item.link}
-                    onClick={() => {
-                      setActiveLink(item.link);
-                      setShowNav(false);
-                    }}
-                  >
-                    {item.text}
-                  </NavLink>
-                </li>
-              ))}
+              {navItems.map((item, i) => {
+                if (item?.protected && !user?.firstName) {
+                  return null;
+                } else {
+                  return (
+                    <li
+                      className={activeLink === item.link ? "active" : ""}
+                      key={i}
+                    >
+                      <NavLink
+                        to={item.link}
+                        onClick={() => {
+                          setActiveLink(item.link);
+                          setShowNav(false);
+                        }}
+                      >
+                        {item.text}
+                      </NavLink>
+                    </li>
+                  );
+                }
+              })}
             </ul>
           </div>
           <ul className="nav header-navbar-rht">
@@ -113,7 +120,6 @@ const Navbar = () => {
         </nav>
       </div>
     </header>
-    // {/* </div> */}
   );
 };
 

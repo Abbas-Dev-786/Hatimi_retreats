@@ -50,7 +50,7 @@ const Reviews = () => {
           aria-labelledby="panelsStayOpen-reviews"
         >
           <div className="accordion-body">
-            <div className="row review-wrapper">
+            {/* <div className="row review-wrapper">
               <div className="col-lg-3">
                 <div className="ratings-info corner-radius-10 text-center">
                   <h3>4.8</h3>
@@ -99,7 +99,7 @@ const Reviews = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {data.map((item, i) => (
               <div className="review-box d-md-flex" key={i}>
