@@ -3,21 +3,22 @@ const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
 const factory = require("./factoryHandler");
 
+// get all users => Admin
 module.exports.getAllUsers = factory.getAllDocs(User);
 
+// get a user => Admin
 module.exports.getUser = factory.getDoc(User);
 
+// create a user => All
 module.exports.createUser = factory.createDoc(User);
 
+//update user => All
 module.exports.updateUser = factory.updateDoc(User);
 
+//delete user permanently => Admin
 module.exports.deleteUser = factory.deleteDoc(User);
 
-module.exports.setMe = (req, res, next) => {
-  req.params.id = req.user._id;
-  next();
-};
-
+// delete user profile => user
 module.exports.deleteMe = catchAsync(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(
     req.user.id,
@@ -32,6 +33,13 @@ module.exports.deleteMe = catchAsync(async (req, res, next) => {
   res.status(204).json({ status: "success" });
 });
 
+// set userid middleware
+module.exports.setMe = (req, res, next) => {
+  req.params.id = req.user._id;
+  next();
+};
+
+// check body middlware
 module.exports.checkBody = (req, res, next) => {
   if (req.body.password) {
     return next(

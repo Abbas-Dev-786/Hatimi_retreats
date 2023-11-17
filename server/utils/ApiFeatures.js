@@ -4,6 +4,7 @@ class ApiFeatures {
     this.queryString = queryString;
   }
 
+  // filter data
   filter() {
     const queryObj = { ...this.queryString };
     const excludedFields = ["fields", "sort", "page", "limit"];
@@ -17,6 +18,7 @@ class ApiFeatures {
     return this;
   }
 
+  // sort data
   sort() {
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(",").join(" ");
@@ -28,6 +30,7 @@ class ApiFeatures {
     return this;
   }
 
+  // select limited fields
   limitFields() {
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(",").join(" ");
@@ -39,11 +42,9 @@ class ApiFeatures {
     return this;
   }
 
-  search() {
-    return this;
-  }
-
-  //   paginate() {}
+  // search() {
+  //   return this;
+  // }
 }
 
 module.exports = ApiFeatures;

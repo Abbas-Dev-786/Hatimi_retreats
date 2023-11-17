@@ -12,7 +12,11 @@ router.use("/:courtId/bookings", bookingRouter);
 router.get("/cities", courtController.getAllCities);
 router.get("/top10", courtController.getTop10, courtController.getAllCourts);
 
-router.get("/available-slots/:id", courtController.getAvailableTimeSlots);
+router.get(
+  "/available-slots/:id",
+  authController.protect,
+  courtController.getAvailableTimeSlots
+);
 
 router.route("/").get(courtController.getAllCourts).post(
   authController.protect,

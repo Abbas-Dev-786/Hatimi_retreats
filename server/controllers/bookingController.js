@@ -5,20 +5,26 @@ const catchAsync = require("../utils/catchAsync");
 const factory = require("./factoryHandler");
 const Court = require("../models/CourtModel");
 
+// create booking => All
 module.exports.createBooking = catchAsync(async (req, res, next) => {
   const booking = await Booking.create(req.body);
 
   res.status(201).json({ status: "success", data: booking });
 });
 
+// get booking => All
 module.exports.getBooking = factory.getDoc(Booking);
 
+// get All bookings => All
 module.exports.getAllBookings = factory.getAllDocs(Booking);
 
+// update booking => All
 module.exports.updateBooking = factory.updateDoc(Booking);
 
+// delete booking => All
 module.exports.deleteBooking = factory.deleteDoc(Booking);
 
+// check body middleware
 module.exports.checkBody = catchAsync(async (req, res, next) => {
   if (!(await Court.exists({ _id: req.params.courtId }))) {
     return next(new AppError("Court does not exists", 404));
@@ -30,6 +36,7 @@ module.exports.checkBody = catchAsync(async (req, res, next) => {
   next();
 });
 
+// check overlapping bookings middleware
 module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
   const bookedSlots = await Booking.aggregate([
     {
