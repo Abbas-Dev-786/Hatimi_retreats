@@ -87,7 +87,7 @@ const HeroSection = () => {
                         <label>Select Sport</label>
                         <Dropdown
                           options={sportsData?.map((obj) => obj._id) || []}
-                          placeholder="Search for City"
+                          placeholder="Search for Sports"
                           onChange={(e) => setSport(e.value)}
                           value={sportsData?.[0]?._id}
                           controlClassName="select-hero"
