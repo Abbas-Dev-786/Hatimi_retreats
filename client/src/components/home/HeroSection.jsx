@@ -6,16 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getCities, getSports } from "../../state/api";
 import { useState } from "react";
 
-const sportOptions = [
-  "Box Cricket",
-  "Table Tennis",
-  "Badminton",
-  "Carrom",
-  "Chess",
-];
-
-// const cityOptions = ["Surat"];
-
 const HeroSection = () => {
   const [city, setCity] = useState("");
   const [sport, setSport] = useState("");
