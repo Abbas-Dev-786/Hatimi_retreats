@@ -3,7 +3,7 @@ import { Search } from "react-feather";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useQuery } from "@tanstack/react-query";
-import { getCities } from "../../state/api";
+import { getCities, getSports } from "../../state/api";
 import { useState } from "react";
 
 const sportOptions = [
@@ -21,9 +21,14 @@ const HeroSection = () => {
   const [sport, setSport] = useState("");
   const navigate = useNavigate();
 
-  const { data } = useQuery({
+  const { data: cityData } = useQuery({
     queryKey: ["cities"],
     queryFn: getCities,
+  });
+
+  const { data: sportsData } = useQuery({
+    queryKey: ["sports", city],
+    queryFn: getSports,
   });
 
   const handleFormSubmit = (e) => {
@@ -79,10 +84,10 @@ const HeroSection = () => {
                       <div className="form-group mb-0">
                         <label>Select City </label>
                         <Dropdown
-                          options={data?.map((obj) => obj._id) || []}
+                          options={cityData?.map((obj) => obj._id) || []}
                           placeholder="Search for City"
                           onChange={(e) => setCity(e.value)}
-                          value={data?.[0]?._id}
+                          value={cityData?.[0]?._id}
                           controlClassName="select-hero"
                         />
                       </div>
@@ -91,10 +96,10 @@ const HeroSection = () => {
                       <div className="form-group mb-0">
                         <label>Select Sport</label>
                         <Dropdown
-                          options={sportOptions}
-                          placeholder="Search for Sport"
+                          options={sportsData?.map((obj) => obj._id) || []}
+                          placeholder="Search for City"
                           onChange={(e) => setSport(e.value)}
-                          // value={sportOptions[0]}
+                          value={sportsData?.[0]?._id}
                           controlClassName="select-hero"
                         />
                       </div>
