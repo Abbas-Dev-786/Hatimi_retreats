@@ -1,14 +1,23 @@
+const mongoose = require("mongoose");
+const Court = require("../models/courtModel");
 const Booking = require("../models/bookingModel");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
 const factory = require("./factoryHandler");
-const Court = require("../models/courtModel");
+const Email = require("../utils/Email");
 
 // create booking => All
 module.exports.createBooking = catchAsync(async (req, res, next) => {
   const booking = await Booking.create(req.body);
 
   res.status(201).json({ status: "success", data: booking });
+
+  //send email
+  await new Email(req.user).sendNewBooking(
+    req.court.name,
+    req.body.startTime,
+    req.body.endTime
+  );
 });
 
 // get booking => All
@@ -40,6 +49,7 @@ module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
   const bookedSlots = await Booking.aggregate([
     {
       $match: {
+        court: new mongoose.Types.ObjectId(req.params.courtId),
         startTime: {
           $lt: new Date(req.body.endTime),
         },
@@ -54,5 +64,6 @@ module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
     return next(new AppError("Slot is already booked", 400));
   }
 
+  req.court = await Court.findById(req.params.courtId);
   next();
 });

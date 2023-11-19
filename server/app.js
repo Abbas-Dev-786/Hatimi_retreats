@@ -41,8 +41,8 @@ const corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(cors());
+app.options("*", cors());
 
 // Set security HTTP headers
 app.use(helmet());

@@ -10,6 +10,7 @@ router.use("/:courtId/reviews", reviewRouter);
 router.use("/:courtId/bookings", bookingRouter);
 
 router.get("/cities", courtController.getAllCities);
+router.get("/cities/:city/sports", courtController.getAllSportsWithinCity);
 router.get("/top10", courtController.getTop10, courtController.getAllCourts);
 
 router.post(

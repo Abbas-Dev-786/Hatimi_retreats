@@ -114,6 +114,28 @@ module.exports.getAllCities = catchAsync(async (req, res, next) => {
     .json({ status: "success", results: cities.length, data: cities });
 });
 
+// get All sports within a city => All
+module.exports.getAllSportsWithinCity = catchAsync(async (req, res, next) => {
+  const regex = new RegExp(["^", req.params.city, "$"].join(""), "i");
+
+  const cities = await Court.aggregate([
+    {
+      $match: {
+        city: regex,
+      },
+    },
+    {
+      $group: {
+        _id: "$type",
+      },
+    },
+  ]);
+
+  res
+    .status(200)
+    .json({ status: "success", results: cities.length, data: cities });
+});
+
 // set location coords Middleware
 module.exports.setCoords = (req, res, next) => {
   if (req.body.location) {
