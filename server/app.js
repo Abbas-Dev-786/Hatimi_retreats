@@ -30,7 +30,7 @@ const app = express();
 // Implement CORS
 const whitelist = [
   "http://localhost:5173",
-  "https://hatimi-retreats.netlify.app/",
+  "https://hatimi-retreats.netlify.app",
 ];
 const corsOptions = {
   origin: (origin, callback) => {
