@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
-const Court = require("./CourtModel");
+const Court = require("./courtModel");
 const moment = require("moment");
 
 const bookingSchema = new mongoose.Schema(
@@ -27,6 +27,11 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Booking must have a end time."],
     },
+    totalGuests: {
+      type: Number,
+      min: 0,
+      required: [true, "Enter number of guests"],
+    },
     status: {
       type: String,
       enum: {
@@ -50,9 +55,12 @@ bookingSchema.pre("save", async function (next) {
   const duration = moment.duration(endTime.diff(startTime));
   const hours = duration.asHours();
 
-  console.log(hours);
+  const extraCharges =
+    this.totalGuests > court.maxCapacity
+      ? court.extraMemberCharge * (this.totalGuests - court.maxCapacity)
+      : 0;
 
-  this.price = hours * court.chargePerHour;
+  this.price = hours * court.chargePerHour + extraCharges;
 
   next();
 });

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
-const Court = require("./CourtModel");
+const Court = require("./courtModel");
 
 const reviewSchema = new mongoose.Schema(
   {

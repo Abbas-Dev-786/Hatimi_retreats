@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
 const Booking = require("../models/bookingModel");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
 const factory = require("./factoryHandler");
-const Court = require("../models/CourtModel");
+const Court = require("../models/courtModel");
 
 // create booking => All
 module.exports.createBooking = catchAsync(async (req, res, next) => {

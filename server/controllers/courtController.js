@@ -1,10 +1,10 @@
-const User = require("../models/userModel");
-const moment = require("moment");
-const Court = require("../models/CourtModel");
+const Court = require("../models/courtModel");
 const upload = require("../utils/fileUploads");
 const factory = require("./factoryHandler");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
+const generateTimeSlots = require("../utils/generateTimeSlots");
+const Booking = require("../models/bookingModel");
 
 // get all courts => All
 module.exports.getAllCourts = factory.getAllDocs(Court);
@@ -69,9 +69,34 @@ module.exports.getAvailableTimeSlots = catchAsync(async (req, res, next) => {
     return next(new AppError("Court does not exists", 404));
   }
 
-  const allTimeSlots = court.getAvailableSlots();
+  const allTimeSlots = generateTimeSlots(court.openingTime, court.closingTime);
 
-  res.status(200).json({ status: "success", data: allTimeSlots });
+  const existingBookings = await Booking.find({
+    $expr: {
+      $eq: [
+        req.body.date,
+        { $dateToString: { date: "$startTime", format: "%Y-%m-%d" } },
+      ],
+    },
+  });
+
+  const availableSlots = allTimeSlots.map((slot) => {
+    for (const booking of existingBookings) {
+      if (
+        slot.startTime < booking.endTime &&
+        slot.endTime > booking.startTime
+      ) {
+        return { ...slot, isBooked: true };
+      }
+    }
+    return { ...slot, isBooked: false };
+  });
+
+  res.status(200).json({
+    status: "success",
+    results: availableSlots.length,
+    data: availableSlots,
+  });
 });
 
 // get All cities => All
@@ -115,7 +140,7 @@ module.exports.setImages = (req, res, next) => {
 // get top 10 cities middleware
 module.exports.getTop10 = (req, res, next) => {
   req.query.limit = 10;
-  req.query.sort = "-price";
+  req.query.sort = "-chargePerHour";
 
   next();
 };

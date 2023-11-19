@@ -11,8 +11,7 @@ module.exports.getAllDocs = (Model) =>
     const features = new ApiFeatures(Model.find(filter), req.query)
       .filter()
       .sort()
-      .limitFields()
-      .search();
+      .limitFields();
 
     const docs = await Model.paginate(features.query, {
       page: req.query.page || 1,
