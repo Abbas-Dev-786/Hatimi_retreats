@@ -28,8 +28,21 @@ const globalErrorHandler = require("./controllers/errorController");
 const app = express();
 
 // Implement CORS
-app.use(cors());
-app.options("*", cors());
+const whitelist = [
+  "http://localhost:5173",
+  "https://hatimi-retreats.netlify.app/",
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new AppError("Not allowed by CORS"));
+    }
+  },
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // Set security HTTP headers
 app.use(helmet());
