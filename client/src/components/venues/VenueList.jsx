@@ -23,7 +23,7 @@ const VenueList = ({
 
   const handleBookmarkClicks = () => {
     if (!user?.firstName) {
-      toast.error("Please Login to Access Bookmarks Functionality");
+      toast.error("Please Login to Access Bookmark Functionality");
       return;
     }
 

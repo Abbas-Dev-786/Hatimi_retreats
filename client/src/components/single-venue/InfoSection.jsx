@@ -37,22 +37,22 @@ const InfoSection = () => {
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-lg-6 text-right">
             <ul className="social-options float-lg-end d-sm-flex justify-content-start align-items-center">
-              <li>
+              {/* <li>
                 <div>
                   <i>
                     <Share2 size={"15px"} />
                   </i>
                   Share
                 </div>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <div className="favour-adds">
                   <i>
                     <Star size={"15px"} />
                   </i>
                   Add to favourite
                 </div>
-              </li>
+              </li> */}
               <li className="venue-review-info d-flex justify-content-start align-items-center">
                 <span className="d-flex justify-content-center align-items-center">
                   5.0

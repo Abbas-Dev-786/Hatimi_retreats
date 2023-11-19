@@ -9,7 +9,9 @@ const FilterSection = () => {
   const [selectedSport, setSelectedSport] = useState(sport || "");
 
   useEffect(() => {
-    setSearchParams({ city: selectedCity, sport: selectedSport });
+    if (selectedCity && selectedSport) {
+      setSearchParams({ city: selectedCity, sport: selectedSport });
+    }
   }, [selectedCity, selectedSport, setSearchParams]);
 
   return (

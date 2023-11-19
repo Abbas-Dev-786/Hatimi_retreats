@@ -1,6 +1,7 @@
 import moment from "moment";
 import { Check, X } from "react-feather";
 import AddNewReviewModel from "./AddNewReviewModel";
+import { Rating } from "react-simple-star-rating";
 
 const data = [
   {
@@ -50,57 +51,6 @@ const Reviews = () => {
           aria-labelledby="panelsStayOpen-reviews"
         >
           <div className="accordion-body">
-            {/* <div className="row review-wrapper">
-              <div className="col-lg-3">
-                <div className="ratings-info corner-radius-10 text-center">
-                  <h3>4.8</h3>
-                  <span>out of 5.0</span>
-                  <div className="rating">
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-9">
-                <div className="recommended">
-                  <h5>Recommended by 97% of Players</h5>
-                  <div className="row">
-                    {[1, 2, 3, 4, 5].map((item) => (
-                      <div
-                        className="col-12 col-sm-12 col-md-4 col-lg-4 mb-3"
-                        key={item}
-                      >
-                        <p className="mb-0">Quality of service</p>
-                        <ul>
-                          <li>
-                            <i></i>
-                          </li>
-                          <li>
-                            <i></i>
-                          </li>
-                          <li>
-                            <i></i>
-                          </li>
-                          <li>
-                            <i></i>
-                          </li>
-                          <li>
-                            <i></i>
-                          </li>
-                          <li>
-                            <span>5.0</span>
-                          </li>
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
             {data.map((item, i) => (
               <div className="review-box d-md-flex" key={i}>
                 <div className="review-profile">
@@ -110,12 +60,16 @@ const Reviews = () => {
                   <h6 className="mb-2 tittle">
                     {item.name} Booked on {item.date}
                   </h6>
-                  <div className="rating">
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
+                  <div
+                    className="rating"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <Rating
+                      size={25}
+                      readonly
+                      initialValue={item.rating}
+                      allowFraction
+                    />
                     <span className="ms-2">{item.rating}</span>
                   </div>
                   <span

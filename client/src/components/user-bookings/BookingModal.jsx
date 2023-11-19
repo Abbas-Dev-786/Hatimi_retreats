@@ -1,6 +1,10 @@
 import { X } from "react-feather";
+import { useSelector } from "react-redux";
 
 const BookingModal = () => {
+  const { bookingData } = useSelector((state) => state.booking);
+  const { image, courtName, amount } = bookingData;
+
   return (
     <div
       className="modal custom-modal fade request-modal"
@@ -13,7 +17,7 @@ const BookingModal = () => {
             <div className="form-header modal-header-title">
               <h4 className="mb-0">
                 Court Booking Details
-                <span className="badge bg-info ms-2">Upcoming</span>
+                <span className="badge bg-info ms-2">Accepted</span>
               </h4>
             </div>
             <a className="close" data-bs-dismiss="modal" aria-label="Close">
@@ -36,14 +40,11 @@ const BookingModal = () => {
                       <li>
                         <div className="appointment-item">
                           <div className="appointment-img">
-                            <img
-                              src="/img/booking/booking-03.jpg"
-                              alt="Booking"
-                            />
+                            <img src={image} alt="Booking" />
                           </div>
                           <div className="appointment-content">
-                            <h6>Wing Sports Academy</h6>
-                            <p className="color-green">Court 1</p>
+                            <h6>{courtName}</h6>
+                            <p className="color-green">Address</p>
                           </div>
                         </div>
                       </li>
@@ -92,7 +93,7 @@ const BookingModal = () => {
                     <ul className="appointmentset">
                       <li>
                         <h6>Court Booking Amount</h6>
-                        <p>₹150</p>
+                        <p>₹{amount}</p>
                       </li>
                       <li>
                         <h6>Additional Guests</h6>

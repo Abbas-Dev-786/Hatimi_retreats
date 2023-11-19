@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 const FeatureSlide = ({
   image,
   link,
-  features,
   price,
   rating,
   ratingQuantity,
@@ -25,7 +24,7 @@ const FeatureSlide = ({
 
   const handleBookmarkClicks = () => {
     if (!user?.firstName) {
-      toast.error("Please Login to Access Bookmarks Functionality");
+      toast.error("Please Login to Access Bookmark Functionality");
       return;
     }
 
@@ -44,7 +43,7 @@ const FeatureSlide = ({
             <img src={image} alt="Venue" />
           </Link>
           <div className="fav-item-venues">
-            {features && <span className="tag tag-blue">{features[0]}</span>}
+            {rating > 4.5 && <span className="tag tag-blue">Top Rated</span>}
             <h5 className="tag tag-primary">
               ₹{price}
               <span>/hr</span>

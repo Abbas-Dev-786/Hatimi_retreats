@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 
 const TestimonialSlide = ({
   rating,
@@ -13,11 +14,7 @@ const TestimonialSlide = ({
     <div className="testimonial-group">
       <div className="testimonial-review">
         <div className="rating-point">
-          <i className="fas fa-star filled"></i>
-          <i className="fas fa-star filled"></i>
-          <i className="fas fa-star filled"></i>
-          <i className="fas fa-star filled"></i>
-          <i className="fas fa-star filled"></i>
+          <Rating size={20} initialValue={rating} readonly allowFraction />
           <span> {rating}</span>
         </div>
         <h5>{review}</h5>

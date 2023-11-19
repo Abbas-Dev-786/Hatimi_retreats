@@ -9,7 +9,7 @@ import TestimonialSlide from "./TestimonialSlide";
 
 const data = [
   {
-    rating: 5.0,
+    rating: 3,
     review: "Personalized Attention",
     comments:
       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
@@ -18,7 +18,7 @@ const data = [
     propertyName: "Box Cricket",
   },
   {
-    rating: 5.0,
+    rating: 5,
     review: "Quality Matters !",
     comments:
       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
@@ -27,7 +27,7 @@ const data = [
     propertyName: "Box Cricket",
   },
   {
-    rating: 5.0,
+    rating: 1.5,
     review: "Excellent Professionalism !",
     comments:
       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
@@ -36,7 +36,7 @@ const data = [
     propertyName: "Box Cricket",
   },
   {
-    rating: 5.0,
+    rating: 2.5,
     review: "Quality Matters !",
     comments:
       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",

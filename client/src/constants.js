@@ -8,6 +8,8 @@ const twitterHandle = "test";
 const InstagramHandle = "test";
 const linkedinHandle = "test";
 
+const mapZoomLevel = 17;
+
 export {
   email,
   phoneNumber,
@@ -17,4 +19,5 @@ export {
   InstagramHandle,
   twitterHandle,
   linkedinHandle,
-}
+  mapZoomLevel,
+};

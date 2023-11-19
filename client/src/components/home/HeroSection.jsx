@@ -39,21 +39,21 @@ const HeroSection = () => {
 
   return (
     <section className="hero-section">
-      <div className="banner-cock-one">
+      {/* <div className="banner-cock-one">
         <img
           src="/img/icons/banner-cock1.png"
           alt="Banner"
           width="50px"
           style={{ opacity: 0.3 }}
         />
-      </div>
+      </div> */}
       <div className="banner-shapes">
         <div className="banner-dot-one">
           <span></span>
         </div>
         <div className="banner-cock-two">
-          <img src="/img/icons/banner-cock2.svg" alt="Banner" />
-          <span></span>
+          <img src="/img/bg/ball.png" alt="Banner" />
+          {/* <span></span> */}
         </div>
         <div className="banner-dot-two">
           <span></span>
@@ -82,7 +82,7 @@ const HeroSection = () => {
                           options={data?.map((obj) => obj._id) || []}
                           placeholder="Search for City"
                           onChange={(e) => setCity(e.value)}
-                          // value={data?.[0]?._id}
+                          value={data?.[0]?._id}
                           controlClassName="select-hero"
                         />
                       </div>
@@ -111,11 +111,13 @@ const HeroSection = () => {
             </div>
             <div className="col-lg-5">
               <div className="banner-imgs text-center aos" data-aos="fade-up">
-                <img
-                  className="img-fluid"
-                  src="/img/bg/banner-right.png"
-                  alt="Banner"
-                />
+                <div>
+                  <img
+                    className="img-fluid"
+                    src="/img/bg/banner_img_2.png"
+                    alt="Banner"
+                  />
+                </div>
               </div>
             </div>
           </div>

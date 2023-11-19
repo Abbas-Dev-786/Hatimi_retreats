@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { Rating } from "react-simple-star-rating";
+// import { StarPicker } from "react-star-picker";
+
 const AddNewReviewModel = () => {
+  const [rating, setRating] = useState();
+
   return (
     <div
       className="modal custom-modal fade payment-modal"
@@ -22,56 +28,12 @@ const AddNewReviewModel = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="input-space review">
-                    <label className="form-label">
-                      Rating <span>*</span>
-                    </label>
-                    <div className="star-rating">
-                      <input
-                        id="star-5"
-                        type="radio"
-                        name="rating"
-                        value="star-5"
-                      />
-                      <label htmlFor="star-5" title="5 stars">
-                        <i className="active fa fa-star"></i>
-                      </label>
-                      <input
-                        id="star-4"
-                        type="radio"
-                        name="rating"
-                        value="star-4"
-                      />
-                      <label htmlFor="star-4" title="4 stars">
-                        <i className="active fa fa-star"></i>
-                      </label>
-                      <input
-                        id="star-3"
-                        type="radio"
-                        name="rating"
-                        value="star-3"
-                      />
-                      <label htmlFor="star-3" title="3 stars">
-                        <i className="active fa fa-star"></i>
-                      </label>
-                      <input
-                        id="star-2"
-                        type="radio"
-                        name="rating"
-                        value="star-2"
-                      />
-                      <label htmlFor="star-2" title="2 stars">
-                        <i className="active fa fa-star"></i>
-                      </label>
-                      <input
-                        id="star-1"
-                        type="radio"
-                        name="rating"
-                        value="star-1"
-                      />
-                      <label htmlFor="star-1" title="1 star">
-                        <i className="active fa fa-star"></i>
-                      </label>
-                    </div>
+                    <Rating
+                      onClick={(value) => setRating(value)}
+                      allowFraction
+                      size={40}
+                      showTooltip
+                    />
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -92,7 +54,7 @@ const AddNewReviewModel = () => {
           </div>
           <div className="modal-footer">
             <div className="table-accept-btn">
-              <button href="#" className="btn btn-primary">
+              <button className="btn btn-primary" data-bs-dismiss="modal">
                 Add Review
               </button>
             </div>

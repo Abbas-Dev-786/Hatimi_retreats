@@ -1,10 +1,18 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const { user } = useSelector((state) => state.user);
 
-  return user?.firstName ? children : <Navigate to="/" />;
+  useEffect(() => {
+    if (!user?.firstName) {
+      toast.error("Please Login To Access");
+    }
+  }, [user]);
+
+  return user?.firstName ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

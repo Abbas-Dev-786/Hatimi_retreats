@@ -13,7 +13,7 @@ const tempData = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "3457873578",
-    features: ["featured"],
+    // features: ["featured"],
     price: 450,
     rating: 4.2,
     ratingQuantity: 300,
@@ -26,7 +26,7 @@ const tempData = [
   {
     image: "/img/venues/venues-01.jpg",
     link: "6875678767",
-    features: ["top rated"],
+    // features: ["top rated"],
     price: 200,
     rating: 5.0,
     ratingQuantity: 150,

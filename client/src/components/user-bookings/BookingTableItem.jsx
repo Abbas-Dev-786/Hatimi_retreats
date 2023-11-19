@@ -1,7 +1,12 @@
 import { CornerDownLeft, Edit, Eye } from "react-feather";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setBookingData } from "../../state/slices/bookingSlice";
 
 const BookingTableItem = ({ link, image, courtName, dateTime, amount }) => {
+  const data = { link, image, courtName, dateTime, amount };
+  const dispatch = useDispatch();
+
   return (
     <tr>
       <td>
@@ -39,12 +44,11 @@ const BookingTableItem = ({ link, image, courtName, dateTime, amount }) => {
           Accepted
         </span>
       </td>
-      <td className="text-pink view-detail-pink">
-        <a
-          // href="javascript:;"
-          data-bs-toggle="modal"
-          data-bs-target="#upcoming-court"
-        >
+      <td
+        className="text-pink view-detail-pink"
+        onClick={() => dispatch(setBookingData(data))}
+      >
+        <a data-bs-toggle="modal" data-bs-target="#upcoming-court">
           <i>
             <Eye size={"15px"} />
           </i>
@@ -55,7 +59,6 @@ const BookingTableItem = ({ link, image, courtName, dateTime, amount }) => {
       <td className="text-end">
         <div className="dropdown dropdown-action table-drop-action">
           <a
-            // href="#"
             className="action-icon dropdown-toggle"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -65,7 +68,6 @@ const BookingTableItem = ({ link, image, courtName, dateTime, amount }) => {
           <div className="dropdown-menu dropdown-menu-end">
             <div
               className="dropdown-item"
-              // href="javascript:void(0);"
               data-bs-toggle="modal"
               data-bs-target="#cancel-court"
             >
@@ -74,10 +76,7 @@ const BookingTableItem = ({ link, image, courtName, dateTime, amount }) => {
               </i>
               Cancel Booking
             </div>
-            <div
-              className="dropdown-item"
-              // href="javascript:void(0);"
-            >
+            <div className="dropdown-item">
               <i>
                 <Edit size={"15px"} />
               </i>

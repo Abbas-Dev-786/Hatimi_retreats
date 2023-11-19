@@ -20,6 +20,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import ScrollToTop from "./components/common/ScrollToTop";
 import Notification from "./components/common/Notification";
+import Checkout from "./pages/Checkout";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -35,8 +37,8 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <div className="main-wrapper">
         <Navbar />
-        <ScrollToTop />
         <Notification />
+        <ScrollToTop />
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
@@ -51,16 +53,16 @@ const App = () => {
               <Route path=":id" element={<SingleVenue />} />
             </Route>
 
-            <Route
-              path="bookings"
-              element={
-                <ProtectedRoute>
-                  <UserBookings />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="bookings">
+              {/* <Route path="bookings" element={<ProtectedRoute />}> */}
+              <Route index element={<UserBookings />} />
+              <Route path=":propertyId/new" element={<Checkout />} />
+            </Route>
+
             <Route path="aboutus" element={<AboutUs />} />
             <Route path="contactus" element={<ContactUs />} />
+
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </div>

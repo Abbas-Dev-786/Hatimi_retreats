@@ -8,7 +8,7 @@ const navItems = [
   { text: "Book Venues", link: "/venues" },
   { text: "My Bookings", link: "/bookings", protected: true },
   // { text: "Events", link: "/events" },
-  { text: "About Us", link: "/aboutus" },
+  // { text: "About Us", link: "/aboutus" },
   { text: "Contact Us", link: "/contactus" },
 ];
 
