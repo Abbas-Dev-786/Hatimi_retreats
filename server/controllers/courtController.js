@@ -153,8 +153,10 @@ module.exports.uploadCourtImages = upload.fields([
 
 // image url handler middleware
 module.exports.setImages = (req, res, next) => {
-  req.body.coverImage = req?.files?.coverImage?.[0]?.path;
-  req.body.images = req?.files?.images?.map((img) => img?.path);
+  req.body.coverImage = req?.files?.coverImage?.[0]?.path?.split("/")?.at(-1);
+  req.body.images = req?.files?.images?.map((img) =>
+    img?.path?.split("/")?.at(-1)
+  );
 
   next();
 };

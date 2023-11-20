@@ -33,6 +33,7 @@ const server = app.listen(port, () => {
 process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION! 💥 Shutting down...");
   console.log(err.name, err.message);
+  console.log(err);
   server.close(() => {
     process.exit(1);
   });
@@ -47,3 +48,4 @@ process.on("SIGTERM", () => {
 });
 
 // https://hatimi-retreats.onrender.com
+// https://res.cloudinary.com/dumtnfzsn/image/upload/v1700490645/retreats/<IMAGE_NAME>
