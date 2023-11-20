@@ -59,6 +59,9 @@ Version      : 1.0
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }
+.border-btm-dark{
+  border-bottom: 1px solid #000;
+}
 
 .css-equal-content {
   color: red;

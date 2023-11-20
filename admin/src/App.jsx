@@ -10,6 +10,10 @@ import "aos/dist/aos.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Login from "./pages/Login";
+import Dashboard from "./pages/dashboard";
+import Courts from "./pages/Courts";
+import Request from "./pages/Request";
+
 import Notification from "./components/common/Notification";
 
 const queryClient = new QueryClient({
@@ -30,6 +34,10 @@ const App = () => {
           <Route path="/"></Route>
 
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/courts" element={<Courts />} />
+          <Route path="/request" element={<Request />} />
+  
         </Routes>
       </div>
     </QueryClientProvider>
