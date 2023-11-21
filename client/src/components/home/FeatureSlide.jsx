@@ -4,23 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addBookmark, removeBookmark } from "../../state/slices/bookmarkSlice";
 import { toast } from "react-toastify";
+import { IMAGE_URL } from "../../constants";
 
 const FeatureSlide = ({
-  image,
-  link,
-  price,
-  rating,
-  ratingQuantity,
-  title,
-  desc,
+  coverImage,
+  _id,
+  chargePerHour,
+  ratingsAverage,
+  ratingsQuantity,
+  name,
+  description,
   address,
-  // availabilityDate,
 }) => {
   const { user } = useSelector((state) => state.user);
   const { bookmarks } = useSelector((state) => state.bookmarks);
   const dipatch = useDispatch();
 
-  const isBookmarked = bookmarks.includes(link);
+  const isBookmarked = bookmarks.includes(_id);
 
   const handleBookmarkClicks = () => {
     if (!user?.firstName) {
@@ -29,23 +29,25 @@ const FeatureSlide = ({
     }
 
     if (isBookmarked) {
-      dipatch(removeBookmark(link));
+      dipatch(removeBookmark(_id));
     } else {
-      dipatch(addBookmark(link));
+      dipatch(addBookmark(_id));
     }
   };
 
   return (
-    <div className="featured-venues-item aos" data-aos="fade-up">
+    <div className="featured-venues-item aos h-100" data-aos="fade-up">
       <div className="listing-item mb-0">
-        <div className="listing-img">
-          <Link to={`/venues/${link}`}>
-            <img src={image} alt="Venue" />
+        <div className="listing-img" style={{ height: "250px" }}>
+          <Link to={`/venues/${_id}`}>
+            <img src={`${IMAGE_URL}/${coverImage}`} alt="Venue" />
           </Link>
           <div className="fav-item-venues">
-            {rating > 4.5 && <span className="tag tag-blue">Top Rated</span>}
+            {ratingsAverage > 4.5 && (
+              <span className="tag tag-blue">Top Rated</span>
+            )}
             <h5 className="tag tag-primary">
-              ₹{price}
+              ₹{chargePerHour}
               <span>/hr</span>
             </h5>
           </div>
@@ -53,8 +55,8 @@ const FeatureSlide = ({
         <div className="listing-content">
           <div className="list-reviews">
             <div className="d-flex align-items-center">
-              <span className="rating-bg">{rating}</span>
-              <span>{ratingQuantity} Reviews</span>
+              <span className="rating-bg">{ratingsAverage}</span>
+              <span>{ratingsQuantity} Reviews</span>
             </div>
             <div
               className={`fav-icon ${isBookmarked ? "selected" : ""}`}
@@ -65,10 +67,10 @@ const FeatureSlide = ({
             </div>
           </div>
           <h3 className="listing-title">
-            <Link to={`/venues/${link}`}>{title}</Link>
+            <Link to={`/venues/${_id}`}>{name}</Link>
           </h3>
           <div className="listing-details-group">
-            <p>{desc}</p>
+            <p>{description?.split(" ").slice(10)}</p>
             <ul className="listing-details-info">
               <li>
                 <span>
@@ -89,7 +91,7 @@ const FeatureSlide = ({
           </div>
           <div className="listing-button">
             <div className="listing-venue-owner"></div>
-            <Link to={`venues/${link}`} className="user-book-now">
+            <Link to={`venues/${_id}`} className="user-book-now">
               <span>
                 <i className="feather-calendar me-2"></i>
               </span>
@@ -105,15 +107,13 @@ const FeatureSlide = ({
 export default FeatureSlide;
 
 FeatureSlide.propTypes = {
-  image: PropTypes.string,
-  link: PropTypes.string,
-  features: PropTypes.any,
-  price: PropTypes.number,
-  rating: PropTypes.number,
-  ratingQuantity: PropTypes.number,
-  title: PropTypes.string,
-  desc: PropTypes.string,
+  coverImage: PropTypes.string,
+  _id: PropTypes.string,
+  chargePerHour: PropTypes.number,
+  ratingsAverage: PropTypes.number,
+  ratingsQuantity: PropTypes.number,
+  name: PropTypes.string,
+  description: PropTypes.string,
   address: PropTypes.string,
-  availabilityDate: PropTypes.any,
   isBookmarked: PropTypes.bool,
 };

@@ -1,13 +1,16 @@
+import { useSelector } from "react-redux";
 import { Mail, MapPin, PhoneCall, Share2, Star } from "react-feather";
 
 const InfoSection = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <div className="venue-info white-bg d-block">
       <div className="container">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <h1 className="d-flex align-items-center justify-content-start">
-              Box Cricket Academy
+              {courtData?.name}
               <span className="d-flex justify-content-center align-items-center">
                 <i className="fas fa-check-double"></i>
               </span>
@@ -17,7 +20,7 @@ const InfoSection = () => {
                 <i>
                   <MapPin size={"15px"} />
                 </i>
-                70 Bright St Surat, India
+                {courtData?.address}
               </li>
               <li>
                 <i>
@@ -29,7 +32,7 @@ const InfoSection = () => {
                 <i>
                   <Mail size={"15px"} />
                 </i>
-                <a href="">
+                <a>
                   <span className="__cf_email__">[email&#160;protected]</span>
                 </a>
               </li>
@@ -55,7 +58,7 @@ const InfoSection = () => {
               </li> */}
               <li className="venue-review-info d-flex justify-content-start align-items-center">
                 <span className="d-flex justify-content-center align-items-center">
-                  5.0
+                  {courtData?.ratingsAverage}
                 </span>
                 <div className="review">
                   <div className="rating">
@@ -65,7 +68,7 @@ const InfoSection = () => {
                     <i className="fas fa-star filled"></i>
                     <i className="fas fa-star filled"></i>
                   </div>
-                  <p className="mb-0">15 Reviews</p>
+                  <p className="mb-0">{courtData?.ratingsQuantity} Reviews</p>
                 </div>
               </li>
             </ul>
@@ -87,7 +90,7 @@ const InfoSection = () => {
                 </div>
                 <div className="ms-2">
                   <p>Venue Type</p>
-                  <h6 className="mb-0">Box Cricket</h6>
+                  <h6 className="mb-0 text-capitalize">{courtData?.type}</h6>
                 </div>
               </li>
               <li>
@@ -111,7 +114,8 @@ const InfoSection = () => {
             <div className="d-flex float-sm-end align-items-center">
               <p className="d-inline-block me-2 mb-0">Starts From :</p>
               <h3 className="primary-text mb-0 d-inline-block">
-                ₹150<span>/ hr</span>
+                ₹{courtData?.chargePerHour}
+                <span>/ hr</span>
               </h3>
             </div>
           </div>

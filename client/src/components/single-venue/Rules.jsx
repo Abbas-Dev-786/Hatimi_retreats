@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { AlertOctagon } from "react-feather";
 
 const Rules = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <div className="accordion-item mb-4" id="rules">
       <h4 className="accordion-header" id="panelsStayOpen-rules">
@@ -22,32 +25,16 @@ const Rules = () => {
       >
         <div className="accordion-body">
           <ul>
-            <li>
-              <p>
-                <i>
-                  <AlertOctagon size={"16px"} />
-                </i>
-                Non Marking Shoes are recommended not mandatory for Box Cricket.
-              </p>
-            </li>
-            <li>
-              <p>
-                <i>
-                  <AlertOctagon size={"16px"} />
-                </i>
-                A maximum number of members per booking per Box Cricket court is
-                admissible fixed by Venue Vendors
-              </p>
-            </li>
-            <li>
-              <p>
-                <i>
-                  <AlertOctagon size={"16px"} />
-                </i>
-                No pets, no seeds, no gum, no glass, no hitting or swinging
-                outside of the cage
-              </p>
-            </li>
+            {courtData?.rules?.text?.split(".")?.map((rule, i) => (
+              <li key={i}>
+                <p className="text-capitalize">
+                  <i>
+                    <AlertOctagon size={"16px"} />
+                  </i>
+                  {rule}
+                </p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

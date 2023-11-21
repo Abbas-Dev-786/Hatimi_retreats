@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getCities, getSports } from "../../state/api";
 
 const FilterSection = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -7,6 +9,16 @@ const FilterSection = () => {
 
   const [selectedCity, setSelectedCity] = useState(city || "");
   const [selectedSport, setSelectedSport] = useState(sport || "");
+
+  const { data: cityData } = useQuery({
+    queryKey: ["cities"],
+    queryFn: getCities,
+  });
+
+  const { data: sportsData } = useQuery({
+    queryKey: ["sports", selectedCity],
+    queryFn: getSports,
+  });
 
   useEffect(() => {
     if (selectedCity && selectedSport) {
@@ -45,8 +57,15 @@ const FilterSection = () => {
                         onChange={(e) => setSelectedCity(e.target.value)}
                         value={city}
                       >
-                        <option value={"city A"}>City A</option>
-                        <option value={"city B"}>City B</option>
+                        {cityData?.map((city, i) => (
+                          <option
+                            key={i}
+                            value={city._id}
+                            className="text-capitalize"
+                          >
+                            {city._id}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -55,13 +74,19 @@ const FilterSection = () => {
                     <span className="sortbytitle">Sport</span>
                     <div className="sorting-select">
                       <select
-                        className="form-select"
+                        className="form-select text-capitalize"
                         onChange={(e) => setSelectedSport(e.target.value)}
-                        // value={sport}
-                        defaultValue={sport}
+                        value={sport}
                       >
-                        <option value={"sport A"}>Sport A</option>
-                        <option value={"sport B"}>Sport B</option>
+                        {sportsData?.map((sport, i) => (
+                          <option
+                            key={i}
+                            value={sport._id}
+                            className="text-capitalize"
+                          >
+                            {sport._id}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

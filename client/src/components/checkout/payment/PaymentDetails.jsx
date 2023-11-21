@@ -29,9 +29,9 @@ const PaymentDetails = () => {
             />
           </div>
           <label className="form-check-label" htmlFor="policy">
-            By clicking <b>Send Request</b>, I agree to Hatimi Retreats
-            <a href="privacy-policy.html">Privacy Policy</a> and
-            <a href="terms-condition.html">Terms of Use</a>
+            By clicking <b>Send Request</b>, I agree to Hatimi Retreats &nbsp;
+            <u>Privacy Policy</u> and &nbsp;
+            <u>Terms of Use</u>
           </label>
         </div>
         <div className="d-grid btn-block">
@@ -41,7 +41,7 @@ const PaymentDetails = () => {
             data-bs-toggle="modal"
             data-bs-target="#bookingconfirmModal"
           >
-            Proceed ₹200
+            Send Request
           </button>
         </div>
       </aside>

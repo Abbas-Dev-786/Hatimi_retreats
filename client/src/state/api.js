@@ -46,3 +46,40 @@ export const getTop10Courts = async () => {
     throw Error(message);
   }
 };
+
+export const getCourts = async ({ page, city, sport }) => {
+  try {
+    const res = await customRequest.get(
+      `/courts?page=${page}&sort=-price&city=${city}&type=${sport}`
+    );
+    return res.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const getSingleCourt = async ({ queryKey }) => {
+  try {
+    const res = await customRequest.get(`/courts/${queryKey[1]}`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const getAvailableSlots = async ({ queryKey }) => {
+  try {
+    const res = await customRequest.post(
+      `/courts/available-slots/${queryKey[1]}`,
+      {
+        date: queryKey[2],
+      }
+    );
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};

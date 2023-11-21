@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { MinusCircle, PlusCircle } from "react-feather";
+import { setAddtionalGuests } from "../../../state/slices/checkoutSlice";
 
 const SelectGuests = () => {
+  const { maxGuests } = useSelector((state) => state.checkout);
   const [count, setCount] = useState(5);
+  const [maxGuestsCount, setMaxGuestsCount] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (count > maxGuests && maxGuests != 0) {
+      const additionalGuests = count - maxGuests;
+      setMaxGuestsCount(additionalGuests);
+      dispatch(setAddtionalGuests(additionalGuests));
+    }
+  }, [count, maxGuests, dispatch]);
 
   const handleIncrement = () => {
     if (count >= 50) return;
@@ -27,7 +40,10 @@ const SelectGuests = () => {
   return (
     <div className="select-guest">
       <h5>Select Guest</h5>
-      <span className="primary-text"> (0 additional guests)</span>
+      <span className="primary-text">
+        {" "}
+        ({maxGuestsCount} additional guests)
+      </span>
       <div className="d-md-flex justify-content-between align-items-center">
         <div className="qty-item text-center">
           <a
@@ -56,7 +72,7 @@ const SelectGuests = () => {
           </a>
           <label htmlFor="adults">
             <span className="dark-text">Total Guests</span>
-            <span className="dull-text">Max 50 Guests</span>
+            <span className="dull-text">Max {maxGuests} Guests</span>
           </label>
         </div>
       </div>

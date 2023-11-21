@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { MinusCircle, PlusCircle } from "react-feather";
 
 const Overview = () => {
+  const { courtData } = useSelector((state) => state.court);
   const [isShowMore, setShowMore] = useState(false);
 
   return (
@@ -24,24 +26,11 @@ const Overview = () => {
         aria-labelledby="panelsStayOpen-overview"
       >
         <div className="accordion-body">
-          <div className="text">
-            <p>
-              Box Cricket Academy is a renowned sports facility situated in
-              Sacramento, CA. With a commitment to providing high-quality
-              services, we offer a range of amenities and equipment to support
-              athletes in their training and development.
-            </p>
+          <div className="text text-capitalize">
+            <p>{courtData?.description?.split(" ")?.slice(30)?.join(" ")}</p>
             {isShowMore && (
               <p>
-                Our facility is equipped with state-of-the-art features,
-                ensuring a conducive environment for athletes to excel in their
-                respective sports.
-                <br />
-                <br />
-                Whether you&apos;re a professional athlete or a sports
-                enthusiast, Sarah Sports Academy is the ideal place to enhance
-                your skills and achieve your goals. Contact Mart Dublin for more
-                information and to book your next training session.
+                {courtData?.description?.split(" ")?.slice(30, 200)?.join(" ")}
               </p>
             )}
           </div>

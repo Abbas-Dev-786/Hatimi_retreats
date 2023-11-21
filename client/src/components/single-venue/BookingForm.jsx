@@ -1,7 +1,10 @@
-import { Calendar, Plus } from "react-feather";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Calendar, Plus } from "react-feather";
 
 const BookingForm = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <div className="white-bg book-court">
       <h4 className="border-bottom">Book A Court</h4>
@@ -9,9 +12,11 @@ const BookingForm = () => {
       <p className="d-inline-block">available Now</p>
       <ul className="d-sm-flex align-items-center justify-content-evenly">
         <li>
-          <h3 className="d-inline-block primary-text">₹150</h3>
+          <h3 className="d-inline-block primary-text">
+            ₹{courtData?.chargePerHour}
+          </h3>
           <span>/hr</span>
-          <p>up to 1 guests</p>
+          <p>up to {courtData?.maxCapacity} guests</p>
         </li>
         <li>
           <span>
@@ -21,17 +26,16 @@ const BookingForm = () => {
           </span>
         </li>
         <li>
-          <h4 className="d-inline-block primary-text">₹5</h4>
+          <h4 className="d-inline-block primary-text">
+            ₹{courtData?.extraMemberCharge}
+          </h4>
           <span>/hr</span>
-          <p>
-            each additional guest <br />
-            up to 4 guests max
-          </p>
+          <p>each additional guest</p>
         </li>
       </ul>
       <div className="d-grid btn-block mt-3">
         <Link
-          to={`/bookings/478573847/new`}
+          to={`/bookings/${courtData?._id}/new`}
           className="btn btn-secondary d-inline-flex justify-content-center align-items-center"
         >
           <i>

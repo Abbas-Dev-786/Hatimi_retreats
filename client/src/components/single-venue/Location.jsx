@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import MapBox from "../common/MapBox";
 
 const Location = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <div className="accordion-item" id="location">
       <h4 className="accordion-header" id="panelsStayOpen-location">
@@ -23,8 +26,9 @@ const Location = () => {
         <div className="accordion-body">
           <div className="google-maps">
             <MapBox
+              // coordinates={courtData?.location?.coordinates}
               coordinates={[22.7055, 75.812]}
-              address="70 Bright St New York, USA"
+              address={courtData?.address}
             />
           </div>
           <div className="dull-bg d-flex justify-content-start align-items-center mt-3">
@@ -33,7 +37,7 @@ const Location = () => {
             </div>
             <div>
               <h6>Our Venue Location</h6>
-              <p>70 Bright St New York, USA</p>
+              <p>{courtData?.address}</p>
             </div>
           </div>
         </div>

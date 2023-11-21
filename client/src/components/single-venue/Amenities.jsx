@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 const Amenities = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <div className="accordion-item mb-4" id="amenities">
       <h4 className="accordion-header" id="panelsStayOpen-amenities">
@@ -20,26 +24,12 @@ const Amenities = () => {
       >
         <div className="accordion-body">
           <ul className="d-md-flex justify-content-between align-items-center">
-            <li>
-              <i className="fa fa-check-circle" aria-hidden="true"></i>
-              Parking
-            </li>
-            <li>
-              <i className="fa fa-check-circle" aria-hidden="true"></i>
-              Drinking Water
-            </li>
-            <li>
-              <i className="fa fa-check-circle" aria-hidden="true"></i>
-              First Aid
-            </li>
-            <li>
-              <i className="fa fa-check-circle" aria-hidden="true"></i>
-              Change Room
-            </li>
-            <li>
-              <i className="fa fa-check-circle" aria-hidden="true"></i>
-              Shower
-            </li>
+            {courtData?.amenities?.map((amenity, i) => (
+              <li key={i} className="text-capitalize">
+                <i className="fa fa-check-circle" aria-hidden="true"></i>
+                {amenity.name}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

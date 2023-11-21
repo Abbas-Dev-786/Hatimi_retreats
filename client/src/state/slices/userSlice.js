@@ -1,8 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("user"))?.user || {},
-  token: JSON.parse(localStorage.getItem("user"))?.token || "",
+  user: JSON.parse(localStorage.getItem("user"))?.user || {
+    _id: "654dd3ac51e42dde00c4e033",
+    firstName: "Test",
+    lastName: "user",
+    email: "test@gmail.com",
+    profileImg: "testImg",
+    phone: "1234567890",
+    city: "test",
+    country: "test",
+    address: "test address",
+    role: "user",
+    its: "12345678",
+    createdAt: "2023-11-10T06:54:36.219Z",
+    __v: 0,
+    id: "654dd3ac51e42dde00c4e033",
+  },
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGRkM2FjNTFlNDJkZGUwMGM0ZTAzMyIsImlhdCI6MTcwMDU3NTMzNCwiZXhwIjoxNzAzMTY3MzM0fQ.qYJlaweTXeKFo_gdxLELfNgOF7eSiFBAIZtBlUJ_mLg" ||
+    JSON.parse(localStorage.getItem("user"))?.token,
 };
 
 const userSlice = createSlice({
