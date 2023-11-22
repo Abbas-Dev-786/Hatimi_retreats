@@ -32,6 +32,29 @@ module.exports.updateBooking = factory.updateDoc(Booking);
 // delete booking => All
 module.exports.deleteBooking = factory.deleteDoc(Booking);
 
+// check slot availability
+module.exports.checkSlotAvailability = catchAsync(async (req, res, next) => {
+  const bookedSlots = await Booking.aggregate([
+    {
+      $match: {
+        court: new mongoose.Types.ObjectId(req.params.courtId),
+        startTime: {
+          $lt: new Date(req.body.endTime),
+        },
+        endTime: {
+          $gt: new Date(req.body.startTime),
+        },
+      },
+    },
+  ]);
+
+  if (bookedSlots.length) {
+    return next(new AppError("Slot is already booked", 400));
+  }
+
+  res.status(200).json({ status: "success", isAvailable: true });
+});
+
 // check body middleware
 module.exports.checkBody = catchAsync(async (req, res, next) => {
   if (!(await Court.exists({ _id: req.params.courtId }))) {
@@ -40,6 +63,13 @@ module.exports.checkBody = catchAsync(async (req, res, next) => {
 
   if (!req.body.court) req.body.court = req.params.courtId;
   if (!req.body.user) req.body.user = req.user.id;
+
+  next();
+});
+
+// set my middleware
+module.exports.setME = catchAsync(async (req, res, next) => {
+  req.query.user = req.user._id;
 
   next();
 });

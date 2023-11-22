@@ -5,6 +5,8 @@ const router = express.Router({ mergeParams: true });
 
 router.use(authController.protect);
 
+router.post("/check-availability", bookingController.checkSlotAvailability);
+
 router
   .route("/")
   .get(bookingController.getAllBookings)
@@ -13,6 +15,8 @@ router
     bookingController.checkOverLappingBookings,
     bookingController.createBooking
   );
+
+router.get("/my", bookingController.setME, bookingController.getAllBookings);
 
 router
   .route("/:id")

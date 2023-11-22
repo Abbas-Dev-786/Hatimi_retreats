@@ -60,7 +60,7 @@ bookingSchema.pre("save", async function (next) {
       ? court.extraMemberCharge * (this.totalGuests - court.maxCapacity)
       : 0;
 
-  this.price = hours * court.chargePerHour + extraCharges;
+  this.price = hours * (court.chargePerHour + extraCharges);
 
   next();
 });
@@ -68,7 +68,8 @@ bookingSchema.pre("save", async function (next) {
 bookingSchema.pre(/^find/, function (next) {
   this.populate({ path: "user", select: "firstName lastName" }).populate({
     path: "court",
-    select: "name",
+    select:
+      "name address coverImage chargePerHour maxCapacity extraMemberCharge",
   });
   next();
 });
