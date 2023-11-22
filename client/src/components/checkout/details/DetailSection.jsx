@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Plus } from "react-feather";
 import { getSingleCourt } from "../../../state/api";
-import { setMaxGuests } from "../../../state/slices/checkoutSlice";
+import { setCourtData } from "../../../state/slices/checkoutSlice";
 import { IMAGE_URL } from "../../../constants";
 
 const DetailSection = () => {
@@ -16,7 +16,7 @@ const DetailSection = () => {
   });
 
   useEffect(() => {
-    dispatch(setMaxGuests(data?.maxCapacity));
+    dispatch(setCourtData(data));
   }, [data, dispatch]);
 
   return (

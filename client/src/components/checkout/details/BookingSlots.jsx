@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import DatePicker from "react-datepicker";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import SelectGuests from "./SelectGuests";
 import { getAvailableSlots } from "../../../state/api";
+import { setFormData } from "../../../state/slices/checkoutSlice";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./slots.css";
@@ -23,12 +25,19 @@ import "./slots.css";
 const BookingSlots = () => {
   const [date, setDate] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const [guests, setGuests] = useState(5);
 
   const { propertyId } = useParams();
   const { data } = useQuery({
     queryKey: ["slots", propertyId, date],
     queryFn: getAvailableSlots,
+    enabled: Boolean(date),
   });
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setFormData({ date: String(date), ...selectedSlot, guests }));
+  }, [date, selectedSlot, guests, dispatch]);
 
   return (
     <form>
@@ -78,7 +87,7 @@ const BookingSlots = () => {
         </div>
       )}
 
-      <SelectGuests />
+      <SelectGuests set={setGuests} />
     </form>
   );
 };

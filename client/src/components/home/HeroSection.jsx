@@ -19,6 +19,7 @@ const HeroSection = () => {
   const { data: sportsData } = useQuery({
     queryKey: ["sports", city],
     queryFn: getSports,
+    enabled: Boolean(city),
   });
 
   const handleFormSubmit = (e) => {

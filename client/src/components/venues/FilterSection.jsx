@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getCities, getSports } from "../../state/api";
 
 const FilterSection = () => {
+  const { totalCounts } = useSelector((state) => state.court);
   const [searchParams, setSearchParams] = useSearchParams();
   const { city, sport } = Object.fromEntries([...searchParams]);
 
@@ -18,6 +20,7 @@ const FilterSection = () => {
   const { data: sportsData } = useQuery({
     queryKey: ["sports", selectedCity],
     queryFn: getSports,
+    enabled: Boolean(selectedCity) || Boolean(city),
   });
 
   useEffect(() => {
@@ -35,7 +38,7 @@ const FilterSection = () => {
               <div className="col-xl-4 col-lg-3 col-sm-12 col-12">
                 <div className="count-search">
                   <p>
-                    <span>400</span> venues are listed
+                    <span>{totalCounts}</span> venues are listed
                   </p>
                 </div>
               </div>

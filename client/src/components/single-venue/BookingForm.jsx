@@ -8,7 +8,7 @@ const BookingForm = () => {
   return (
     <div className="white-bg book-court">
       <h4 className="border-bottom">Book A Court</h4>
-      <h5 className="d-inline-block">Box Cricket Academy,</h5>
+      <h5 className="d-inline-block">{courtData?.name}, &nbsp;</h5>
       <p className="d-inline-block">available Now</p>
       <ul className="d-sm-flex align-items-center justify-content-evenly">
         <li>

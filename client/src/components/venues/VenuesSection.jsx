@@ -1,48 +1,11 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import VenueList from "./VenueList";
 import { getCourts } from "../../state/api";
-
-// const data = [
-//   {
-//     image: "/img/venues/venues-01.jpg",
-//     link: "3457873578",
-//     price: 450,
-//     rating: 4.2,
-//     ratingQuantity: 300,
-//     title: "Box Cricket Venus",
-//     desc: "Elevate your athletic journey at Sarah Sports Academy, where excellence meets opportunity.",
-//     address: "Port Alsworth, AK",
-//     availabilityDate: new Date(),
-//     isBookmarked: false,
-//   },
-//   {
-//     image: "/img/venues/venues-01.jpg",
-//     link: "6875678767",
-//     price: 200,
-//     rating: 5.0,
-//     ratingQuantity: 150,
-//     title: "Box Cricket Venus",
-//     desc: "Unleash your Box Cricket potential at our premier Box Cricket Academy, where champions are made.",
-//     address: "Guysville, OH",
-//     availabilityDate: new Date(),
-//     isBookmarked: false,
-//   },
-//   {
-//     image: "/img/venues/venues-01.jpg",
-//     link: "8475685767",
-//     price: 350,
-//     rating: 4.7,
-//     ratingQuantity: 120,
-//     title: "Box Cricket Venus",
-//     desc: "Manchester Academy: Where dreams meet excellence in sports education and training.",
-//     address: "Little Rock, AR",
-//     availabilityDate: new Date(),
-//     isBookmarked: true,
-//   },
-// ];
+import { setTotalCounts } from "../../state/slices/courtSlice";
 
 const genNextPage = (lastPage, allPages) => {
   const nextPage = lastPage.data.hasNextPage ? allPages.length + 1 : undefined;
@@ -58,6 +21,7 @@ const selectDataFields = (obj) => {
 };
 
 const VenuesSection = () => {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const { city, sport } = Object.fromEntries([...searchParams]);
 
@@ -69,8 +33,11 @@ const VenuesSection = () => {
     select: selectDataFields,
   });
 
+  useEffect(() => {
+    dispatch(setTotalCounts(data?.totalDocs));
+  }, [data, dispatch]);
+
   const courtsData = useMemo(() => data?.data, [data]);
-  console.log(courtsData);
 
   if (!city || !sport) {
     return <h4 className="text-center">Please Select a City and Sport.</h4>;

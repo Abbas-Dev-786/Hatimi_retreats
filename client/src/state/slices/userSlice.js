@@ -17,9 +17,7 @@ const initialState = {
     __v: 0,
     id: "654dd3ac51e42dde00c4e033",
   },
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGRkM2FjNTFlNDJkZGUwMGM0ZTAzMyIsImlhdCI6MTcwMDU3NTMzNCwiZXhwIjoxNzAzMTY3MzM0fQ.qYJlaweTXeKFo_gdxLELfNgOF7eSiFBAIZtBlUJ_mLg" ||
-    JSON.parse(localStorage.getItem("user"))?.token,
+  token: JSON.parse(localStorage.getItem("user"))?.token,
 };
 
 const userSlice = createSlice({

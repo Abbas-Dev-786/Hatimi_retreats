@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 import { setHours, setMinutes } from "date-fns";
 import DatePicker from "react-datepicker";
-
 import SelectGuests from "./SelectGuests";
+import { setFormData } from "../../../state/slices/checkoutSlice";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const BookingForm = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const [guests, setGuests] = useState(5);
+
+  const { courtData } = useSelector((state) => state.checkout);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      setFormData({
+        startTime: String(startDate),
+        endTime: String(endDate),
+        guests,
+      })
+    );
+  }, [startDate, endDate, guests, dispatch]);
 
   return (
     <form>
@@ -27,8 +42,20 @@ const BookingForm = () => {
             dateFormat="MMMM d, yyyy h:mm aa"
             onChange={(newDate) => setStartDate(newDate)}
             timeFormat="HH:mm"
-            minTime={setHours(setMinutes(new Date(), 0), 9)}
-            maxTime={setHours(setMinutes(new Date(), 0), 12)}
+            minTime={setHours(
+              setMinutes(
+                new Date(),
+                new Date(courtData?.openingTime).getMinutes()
+              ),
+              new Date(courtData?.openingTime).getHours()
+            )}
+            maxTime={setHours(
+              setMinutes(
+                new Date(),
+                new Date(courtData?.closingTime).getMinutes()
+              ),
+              new Date(courtData?.closingTime).getHours()
+            )}
             timeIntervals={60}
             showTimeSelect
             withPortal
@@ -56,10 +83,16 @@ const BookingForm = () => {
             onChange={(newDate) => setEndDate(newDate)}
             timeFormat="HH:mm"
             minTime={setHours(
-              setMinutes(new Date(), 0),
+              setMinutes(new Date(), new Date(startDate).getMinutes()),
               new Date(startDate).getHours() + 1
             )}
-            maxTime={setHours(setMinutes(new Date(), 0), 12)}
+            maxTime={setHours(
+              setMinutes(
+                new Date(),
+                new Date(courtData?.closingTime).getMinutes()
+              ),
+              new Date(courtData?.closingTime).getHours()
+            )}
             timeIntervals={60}
             showTimeSelect
             withPortal
@@ -73,7 +106,7 @@ const BookingForm = () => {
         </div>
       </div>
 
-      <SelectGuests />
+      <SelectGuests set={setGuests} />
     </form>
   );
 };

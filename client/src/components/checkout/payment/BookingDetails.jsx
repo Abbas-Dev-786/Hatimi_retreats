@@ -1,38 +1,50 @@
+import moment from "moment";
+import { useSelector } from "react-redux";
 import { Calendar, Clock, UserPlus, Users } from "react-feather";
 
 const BookingDetails = () => {
+  const { courtData, bookingData, additionalGuests } = useSelector(
+    (state) => state.checkout
+  );
+
   return (
     <div className="col-12 col-sm-12 col-md-12 col-lg-7">
       <div className="card booking-details">
         <h3 className="border-bottom">Order Summary</h3>
         <ul className="list-unstyled">
           <li>
-            <i className="fa-regular fa-building me-2"></i>Standard Synthetic
-            Court 1<span className="x-circle"></span>
+            <i className="fa-regular fa-building me-2"></i>
+            {courtData?.name}
+            <span className="x-circle"></span>
           </li>
           <li>
             <i className="me-2">
               <Calendar size={"15px"} />
             </i>
-            27, April 2023
+            {moment(
+              new Date(
+                bookingData?.date ? bookingData?.date : bookingData?.startTime
+              )
+            ).format("DD MMMM YYYY")}
           </li>
           <li>
             <i className="me-2">
               <Clock size={"15px"} />
             </i>
-            01:00 PM to 03:00 PM
+            {moment(new Date(bookingData?.startTime)).format("hh:mm A")} to{" "}
+            {moment(new Date(bookingData?.endTime)).format("hh:mm A")}
           </li>
           <li>
             <i className="me-2">
               <Users size={"15px"} />
             </i>
-            15 Guests
+            {bookingData?.guests} Guests
           </li>
           <li>
             <i className="me-2">
               <UserPlus size={"15px"} />
             </i>
-            5 Additional Guests
+            {additionalGuests} Additional Guests
           </li>
         </ul>
       </div>

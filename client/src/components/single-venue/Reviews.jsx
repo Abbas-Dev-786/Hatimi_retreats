@@ -2,8 +2,10 @@ import moment from "moment";
 import { Check, X } from "react-feather";
 import AddNewReviewModel from "./AddNewReviewModel";
 import { Rating } from "react-simple-star-rating";
+import { useSelector } from "react-redux";
+import { IMAGE_URL } from "../../constants";
 
-const data = [
+const data2 = [
   {
     image: "/img/profiles/avatar-01.jpg",
     name: "David",
@@ -25,6 +27,8 @@ const data = [
 ];
 
 const Reviews = () => {
+  const { courtData } = useSelector((state) => state.court);
+
   return (
     <>
       <div className="accordion-item mb-4" id="reviews">
@@ -51,14 +55,21 @@ const Reviews = () => {
           aria-labelledby="panelsStayOpen-reviews"
         >
           <div className="accordion-body">
-            {data.map((item, i) => (
+            {!courtData?.reviews?.length && (
+              <h6 className="text-center">No Review are There</h6>
+            )}
+            {courtData?.reviews?.map((item, i) => (
               <div className="review-box d-md-flex" key={i}>
                 <div className="review-profile">
-                  <img src={item.image} alt="User" />
+                  {console.log(item)}
+                  <img
+                    src={`${IMAGE_URL}/${item?.user?.profileImg}`}
+                    alt="User"
+                  />
                 </div>
                 <div className="review-info">
                   <h6 className="mb-2 tittle">
-                    {item.name} Booked on {item.date}
+                    {`${item?.user?.firstName} ${item?.user?.lastName}`}
                   </h6>
                   <div
                     className="rating"
@@ -72,7 +83,7 @@ const Reviews = () => {
                     />
                     <span className="ms-2">{item.rating}</span>
                   </div>
-                  <span
+                  {/* <span
                     className={`${
                       item.rating > 3 ? "success" : "warning"
                     }-text`}
@@ -85,21 +96,21 @@ const Reviews = () => {
                       )}
                     </i>
                     {item.text}
-                  </span>
+                  </span> */}
                   <h6>{item.review}</h6>
-                  <p>{item.desc}</p>
+                  {/* <p>{item.desc}</p> */}
                 </div>
               </div>
             ))}
 
-            <div className="d-flex justify-content-center mt-1">
+            {/* <div className="d-flex justify-content-center mt-1">
               <button
                 type="button"
                 className="btn btn-load-more d-flex justify-content-center align-items-center"
               >
                 Load More<i className="feather-plus-square"></i>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

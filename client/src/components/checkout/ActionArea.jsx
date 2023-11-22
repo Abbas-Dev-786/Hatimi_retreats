@@ -1,10 +1,20 @@
 import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import { next, prev } from "../../state/slices/checkoutSlice";
+import { toast } from "react-toastify";
 
 const ActionArea = () => {
-  const { currentTab } = useSelector((state) => state.checkout);
+  const { currentTab, bookingData } = useSelector((state) => state.checkout);
   const dipatch = useDispatch();
+
+  const handleNextClick = () => {
+    if (!bookingData?.startTime || !bookingData?.endTime) {
+      toast.error("All Fields are Mandatory");
+      return;
+    }
+
+    dipatch(next());
+  };
 
   return (
     <div className="text-center btn-row">
@@ -21,7 +31,7 @@ const ActionArea = () => {
       <button
         className="btn btn-secondary btn-icon"
         disabled={currentTab === 2}
-        onClick={() => dipatch(next())}
+        onClick={handleNextClick}
       >
         Next
         <i className="ms-1">

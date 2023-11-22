@@ -8,7 +8,9 @@ export const baseURL = import.meta.env.DEV
 
 const customRequest = axios.create({ baseURL });
 customRequest.interceptors.request.use((config) => {
-  const accessToken = JSON.parse(localStorage.getItem("user"))?.token;
+  // const accessToken = JSON.parse(localStorage.getItem("user"))?.token;
+  const accessToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGRkM2FjNTFlNDJkZGUwMGM0ZTAzMyIsImlhdCI6MTcwMDU3NTMzNCwiZXhwIjoxNzAzMTY3MzM0fQ.qYJlaweTXeKFo_gdxLELfNgOF7eSiFBAIZtBlUJ_mLg";
 
   if (accessToken) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -83,3 +85,50 @@ export const getAvailableSlots = async ({ queryKey }) => {
     throw Error(message);
   }
 };
+
+export const createNewBooking = async (data) => {
+  try {
+    await customRequest.post(`/courts/${data.id}/bookings`, data);
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const getMyBookings = async () => {
+  try {
+    const res = await customRequest.get(`/bookings/my`);
+    return res.data.data.docs;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const deleteBooking = async (id) => {
+  try {
+    await customRequest.delete(`/bookings/${id}`);
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const createReview = async (data) => {
+  try {
+    console.log(data);
+    await customRequest.post(`/courts/${data.id}/reviews`, data);
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+// export const getAllReviews = async (data) => {
+//   try {
+//     await customRequest.post(`/courts/${data.id}/reviews`, data);
+//   } catch (err) {
+//     const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+//     throw Error(message);
+//   }
+// };

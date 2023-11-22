@@ -1,9 +1,37 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
-// import { StarPicker } from "react-star-picker";
+import { useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { createReview } from "../../state/api";
 
 const AddNewReviewModel = () => {
+  const { id } = useParams();
   const [rating, setRating] = useState();
+  const [review, setReview] = useState("");
+
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: createReview,
+    onError: (err) => {
+      toast.error(err.message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["court"] });
+      toast.success("Review Created Successfully");
+    },
+  });
+
+  const handleAddReview = (e) => {
+    e.preventDefault();
+
+    if (!review || !rating) {
+      toast.error("All Fields are Mandatory.");
+      return;
+    }
+
+    mutate({ id, review, rating });
+  };
 
   return (
     <div
@@ -45,7 +73,9 @@ const AddNewReviewModel = () => {
                       className="form-control"
                       id="review"
                       rows="3"
+                      value={review}
                       placeholder="Enter Your Review"
+                      onChange={(e) => setReview(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
@@ -54,7 +84,12 @@ const AddNewReviewModel = () => {
           </div>
           <div className="modal-footer">
             <div className="table-accept-btn">
-              <button className="btn btn-primary" data-bs-dismiss="modal">
+              <button
+                className="btn btn-primary"
+                // data-bs-dismiss="modal"
+                onClick={handleAddReview}
+                type="submit"
+              >
                 Add Review
               </button>
             </div>

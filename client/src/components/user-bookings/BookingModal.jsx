@@ -1,9 +1,20 @@
 import { X } from "react-feather";
 import { useSelector } from "react-redux";
+import { IMAGE_URL } from "../../constants";
+import moment from "moment";
+import { useMemo } from "react";
 
 const BookingModal = () => {
-  const { bookingData } = useSelector((state) => state.booking);
-  const { image, courtName, amount } = bookingData;
+  const { bookingData = {} } = useSelector((state) => state.booking);
+
+  const totalHours = useMemo(() => {
+    const endTime = moment(bookingData?.endTime);
+    const startTime = moment(bookingData?.startTime);
+    const duration = moment.duration(endTime.diff(startTime));
+    const hours = duration.asHours();
+
+    return hours;
+  }, [bookingData]);
 
   return (
     <div
@@ -17,7 +28,9 @@ const BookingModal = () => {
             <div className="form-header modal-header-title">
               <h4 className="mb-0">
                 Court Booking Details
-                <span className="badge bg-info ms-2">Accepted</span>
+                <span className="badge bg-info ms-2 text-capitalize">
+                  {bookingData?.status}
+                </span>
               </h4>
             </div>
             <a className="close" data-bs-dismiss="modal" aria-label="Close">
@@ -40,25 +53,34 @@ const BookingModal = () => {
                       <li>
                         <div className="appointment-item">
                           <div className="appointment-img">
-                            <img src={image} alt="Booking" />
+                            <img
+                              src={`${IMAGE_URL}/${bookingData?.court?.coverImage}`}
+                              alt="Booking"
+                            />
                           </div>
                           <div className="appointment-content">
-                            <h6>{courtName}</h6>
-                            <p className="color-green">Address</p>
+                            <h6>{bookingData?.court?.name}</h6>
+                            <p className="color-green">
+                              {bookingData?.court?.address}
+                            </p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <h6>Booked On</h6>
-                        <p>₹150 Upto 2 guests</p>
+                        <p>
+                          {moment(bookingData?.createdAt).format(
+                            "DD MMMM YYYY"
+                          )}
+                        </p>
                       </li>
                       <li>
-                        <h6>Price Per Guest</h6>
-                        <p>₹15</p>
+                        <h6>Price Per Hour</h6>
+                        <p>₹{bookingData?.court?.chargePerHour}</p>
                       </li>
                       <li>
                         <h6>Maximum Number of Guests</h6>
-                        <p>2</p>
+                        <p>{bookingData?.court?.maxCapacity}</p>
                       </li>
                     </ul>
                   </div>
@@ -71,16 +93,25 @@ const BookingModal = () => {
                     <ul className="appointmentset">
                       <li>
                         <h6>Booked On</h6>
-                        <p>Mon, Jul 14</p>
+                        <p>
+                          {moment(bookingData?.createdAt).format(
+                            "DD MMMM YYYY"
+                          )}
+                        </p>
                       </li>
                       <li>
                         <h6>Date & Time</h6>
-                        <p>Mon, Jul 14</p>
-                        <p>05:00 PM - 08:00 PM</p>
+                        <p>
+                          {moment(bookingData?.startTime).format("DD MMM YYYY")}{" "}
+                          <br />
+                          {moment(bookingData?.startTime).format(
+                            "hh:mm A"
+                          )}- {moment(bookingData?.endTime).format("hh:mm A")}
+                        </p>
                       </li>
                       <li>
                         <h6>Total Number of Hours</h6>
-                        <p>2</p>
+                        <p>{totalHours}</p>
                       </li>
                     </ul>
                   </div>
@@ -93,23 +124,25 @@ const BookingModal = () => {
                     <ul className="appointmentset">
                       <li>
                         <h6>Court Booking Amount</h6>
-                        <p>₹{amount}</p>
+                        <p>₹{bookingData?.price}</p>
                       </li>
                       <li>
                         <h6>Additional Guests</h6>
-                        <p>2</p>
+                        <p>
+                          {bookingData?.totalGuests >
+                          bookingData?.court?.maxCapacity
+                            ? bookingData?.totalGuests -
+                              bookingData?.court?.maxCapacity
+                            : 0}
+                        </p>
                       </li>
                       <li>
-                        <h6>Amount Additional Guests</h6>
-                        <p>₹30</p>
-                      </li>
-                      <li>
-                        <h6>Service Charge</h6>
-                        <p>₹20</p>
+                        <h6>Amount Additional To Each Guest</h6>
+                        <p>₹{bookingData?.court?.extraMemberCharge}</p>
                       </li>
                     </ul>
                   </div>
-                  <div className="appointment-info appoin-border">
+                  {/* <div className="appointment-info appoin-border">
                     <ul className="appointmentsetview">
                       <li>
                         <h6>Total Amount Paid</h6>
@@ -128,7 +161,7 @@ const BookingModal = () => {
                         <p>Wallet</p>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

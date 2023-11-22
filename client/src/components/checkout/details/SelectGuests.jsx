@@ -1,32 +1,34 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MinusCircle, PlusCircle } from "react-feather";
-import { setAddtionalGuests } from "../../../state/slices/checkoutSlice";
+import { setTotalGuests } from "../../../state/slices/checkoutSlice";
 
-const SelectGuests = () => {
-  const { maxGuests } = useSelector((state) => state.checkout);
+const SelectGuests = ({ set }) => {
+  const { courtData } = useSelector((state) => state.checkout);
   const [count, setCount] = useState(5);
   const [maxGuestsCount, setMaxGuestsCount] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (count > maxGuests && maxGuests != 0) {
-      const additionalGuests = count - maxGuests;
+    if (count > courtData?.maxCapacity && courtData?.maxCapacity != 0) {
+      const additionalGuests = count - courtData?.maxCapacity;
       setMaxGuestsCount(additionalGuests);
-      dispatch(setAddtionalGuests(additionalGuests));
+      dispatch(setTotalGuests({ totalGuests: count, additionalGuests }));
     }
-  }, [count, maxGuests, dispatch]);
+  }, [count, courtData, dispatch]);
 
   const handleIncrement = () => {
     if (count >= 50) return;
 
     setCount((prev) => prev + 1);
+    set((prev) => prev + 1);
   };
 
   const handleDecrement = () => {
     if (count <= 1) return;
 
     setCount((prev) => prev - 1);
+    set((prev) => prev - 1);
   };
 
   const handleCountChange = (e) => {
@@ -35,6 +37,7 @@ const SelectGuests = () => {
     if (value > 50) return;
 
     setCount(value);
+    set(value);
   };
 
   return (
@@ -72,7 +75,9 @@ const SelectGuests = () => {
           </a>
           <label htmlFor="adults">
             <span className="dark-text">Total Guests</span>
-            <span className="dull-text">Max {maxGuests} Guests</span>
+            <span className="dull-text">
+              Max {courtData?.maxCapacity} Guests
+            </span>
           </label>
         </div>
       </div>

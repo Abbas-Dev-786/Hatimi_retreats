@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentTab: 0,
   bookingData: {},
-  maxGuests: 0,
+  courtData: {},
   additionalGuests: 0,
+  totalGuests: 0,
 };
 
 const checkout = createSlice({
@@ -26,12 +27,13 @@ const checkout = createSlice({
       state.bookingData = action.payload;
     },
 
-    setMaxGuests(state, action) {
-      state.maxGuests = action.payload;
+    setCourtData(state, action) {
+      state.courtData = action.payload;
     },
 
-    setAddtionalGuests(state, action) {
-      state.additionalGuests = action.payload;
+    setTotalGuests(state, action) {
+      state.totalGuests = action.payload.totalGuests;
+      state.additionalGuests = action.payload.additionalGuests;
     },
 
     prev(state) {
@@ -42,12 +44,6 @@ const checkout = createSlice({
   },
 });
 
-export const {
-  next,
-  prev,
-  setFormData,
-  setMaxGuests,
-  setAddtionalGuests,
-  reset,
-} = checkout.actions;
+export const { next, prev, setFormData, setCourtData, setTotalGuests, reset } =
+  checkout.actions;
 export default checkout.reducer;

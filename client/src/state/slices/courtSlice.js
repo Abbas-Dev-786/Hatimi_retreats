@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   courtData: {},
+  totalCounts: 0,
 };
 
 const court = createSlice({
@@ -11,8 +12,12 @@ const court = createSlice({
     setCourtData(state, action) {
       state.courtData = action.payload;
     },
+
+    setTotalCounts(state, action) {
+      state.totalCounts = action.payload;
+    },
   },
 });
 
-export const { setCourtData } = court.actions;
+export const { setCourtData, setTotalCounts } = court.actions;
 export default court.reducer;

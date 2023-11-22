@@ -7,7 +7,7 @@ const Sidebar = () => {
     <StickyBox
       offsetTop={20}
       offsetBottom={0}
-      style={{ height: "70vh" }}
+      style={{ height: "95vh" }}
       className="col-12 col-sm-12 col-md-12 col-lg-4"
     >
       <aside className="">
