@@ -16782,3 +16782,17 @@ span.icon-bg-40 img {
   height: 100%;
   object-fit: cover;
 }
+
+.four_zero_four_bg {
+  background-image: url("../../../public/img/404.gif");
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.active-custom-option {
+  background-color: rgb(9 126 82 / 57%) !important;
+}
