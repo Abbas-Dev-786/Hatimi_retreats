@@ -79,13 +79,13 @@ const Footer = () => {
                         </i>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link className="twitter" to={twitterHandle}>
                         <i>
                           <Twitter size="18px" />
                         </i>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link className="instagram" to={InstagramHandle}>
                         <i>
@@ -93,13 +93,13 @@ const Footer = () => {
                         </i>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link className="linked-in" to={linkedinHandle}>
                         <i>
                           <Linkedin size="18px" />
                         </i>
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
