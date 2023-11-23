@@ -66,7 +66,10 @@ bookingSchema.pre("save", async function (next) {
 });
 
 bookingSchema.pre(/^find/, function (next) {
-  this.populate({ path: "user", select: "firstName lastName" }).populate({
+  this.populate({
+    path: "user",
+    select: "firstName lastName profileImg",
+  }).populate({
     path: "court",
     select:
       "name address coverImage chargePerHour maxCapacity extraMemberCharge",

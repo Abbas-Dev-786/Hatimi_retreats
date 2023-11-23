@@ -1,3 +1,5 @@
+const Booking = require("../models/bookingModel");
+const Court = require("../models/courtModel");
 const User = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
@@ -31,6 +33,19 @@ module.exports.deleteMe = catchAsync(async (req, res, next) => {
   }
 
   res.status(204).json({ status: "success" });
+});
+
+// admin dashboard stats => admin
+module.exports.getAdminStats = catchAsync(async (req, res, next) => {
+  const totalCourts = await Court.countDocuments();
+
+  const upcomingBookings = await Booking.countDocuments({
+    startTime: { $gte: new Date() },
+  });
+
+  res
+    .status(200)
+    .json({ status: "success", data: { totalCourts, upcomingBookings } });
 });
 
 // set userid middleware

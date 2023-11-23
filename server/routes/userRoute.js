@@ -7,6 +7,11 @@ const router = express.Router();
 router.use(authController.protect);
 
 router.get("/", authController.restrictTo("admin"), userController.getAllUsers);
+router.get(
+  "/stats",
+  authController.restrictTo("admin"),
+  userController.getAdminStats
+);
 
 router
   .route("/me")
