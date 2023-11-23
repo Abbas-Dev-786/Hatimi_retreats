@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Mail, MapPin, PhoneCall, Share2, Star } from "react-feather";
+import { Mail, MapPin, PhoneCall } from "react-feather";
 import { Rating } from "react-simple-star-rating";
 import { customerCareNumber, email } from "../../constants";
 

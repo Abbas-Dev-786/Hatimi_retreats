@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Calendar, Clock } from "react-feather";
 
 const btnStyle = {
@@ -38,3 +39,8 @@ const OptionsContainer = ({ active, setActive }) => {
 };
 
 export default OptionsContainer;
+
+OptionsContainer.propTypes = {
+  active: PropTypes.number,
+  setActive: PropTypes.func,
+};

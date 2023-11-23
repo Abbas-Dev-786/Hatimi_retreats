@@ -11,17 +11,6 @@ import { setFormData } from "../../../state/slices/checkoutSlice";
 import "react-datepicker/dist/react-datepicker.css";
 import "./slots.css";
 
-// const data2 = [
-//   { startTime: "10:00AM", endTime: "11:00AM", isBooked: false },
-//   { startTime: "11:00AM", endTime: "12:00AM", isBooked: false },
-//   { startTime: "12:00PM", endTime: "01:00PM", isBooked: false },
-//   { startTime: "01:00PM", endTime: "02:00PM", isBooked: true },
-//   { startTime: "02:00PM", endTime: "03:00PM", isBooked: false },
-//   { startTime: "03:00PM", endTime: "04:00PM", isBooked: false },
-//   { startTime: "04:00PM", endTime: "05:00PM", isBooked: true },
-//   { startTime: "05:00PM", endTime: "06:00PM", isBooked: false },
-// ];
-
 const BookingSlots = () => {
   const [date, setDate] = useState();
   const [selectedSlot, setSelectedSlot] = useState();

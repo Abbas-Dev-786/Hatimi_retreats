@@ -27,12 +27,19 @@ const Overview = () => {
       >
         <div className="accordion-body">
           <div className="text text-capitalize">
-            <p>{courtData?.description?.split(" ")?.slice(30)?.join(" ")}</p>
-            {isShowMore && (
-              <p>
-                {courtData?.description?.split(" ")?.slice(30, 200)?.join(" ")}
-              </p>
-            )}
+            <p>
+              {courtData?.description?.split(" ")?.slice(0, 30)?.join(" ")}
+              &nbsp;
+              {
+                isShowMore &&
+                  // <p>
+                  courtData?.description
+                    ?.split(" ")
+                    ?.slice(30, courtData?.description?.split(" ")?.length)
+                    ?.join(" ")
+                // </p>
+              }
+            </p>
           </div>
           <div
             className="show-more d align-items-center primary-text"

@@ -6,9 +6,12 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import StatusModal from "./StatusModal";
 import { createNewBooking } from "../../../state/api";
+import { useDispatch } from "react-redux";
+import { reset } from "../../../state/slices/checkoutSlice";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { courtData, bookingData, additionalGuests, totalGuests } = useSelector(
     (state) => state.checkout
   );
@@ -37,6 +40,7 @@ const PaymentDetails = () => {
     },
     onSuccess: () => {
       toast.success("Booking Request Successfully send!");
+      dispatch(reset());
       navigate("/bookings");
     },
   });

@@ -70,7 +70,7 @@ const FeatureSlide = ({
             <Link to={`/venues/${_id}`}>{name}</Link>
           </h3>
           <div className="listing-details-group">
-            <p>{description?.split(" ").slice(10)}</p>
+            <p>{description?.split(" ").slice(0, 10).join(" ")}</p>
             <ul className="listing-details-info">
               <li>
                 <span>

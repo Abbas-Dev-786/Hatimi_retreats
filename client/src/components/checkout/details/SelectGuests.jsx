@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MinusCircle, PlusCircle } from "react-feather";
@@ -10,7 +11,7 @@ const SelectGuests = ({ set }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (count > courtData?.maxCapacity && courtData?.maxCapacity != 0) {
+    if (count >= courtData?.maxCapacity && courtData?.maxCapacity != 0) {
       const additionalGuests = count - courtData?.maxCapacity;
       setMaxGuestsCount(additionalGuests);
       dispatch(setTotalGuests({ totalGuests: count, additionalGuests }));
@@ -86,3 +87,7 @@ const SelectGuests = ({ set }) => {
 };
 
 export default SelectGuests;
+
+SelectGuests.propTypes = {
+  set: PropTypes.func,
+};

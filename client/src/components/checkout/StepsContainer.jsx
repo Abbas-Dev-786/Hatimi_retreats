@@ -1,16 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { reset } from "../../state/slices/checkoutSlice";
+import { useSelector } from "react-redux";
+// import { reset } from "../../state/slices/checkoutSlice";
 
 const stepData = ["Book a Court", "Order Confirmation", "Payment"];
 
 const StepsContainer = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { currentTab } = useSelector((state) => state.checkout);
 
-  useEffect(() => {
-    dispatch(reset());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(reset());
+  // }, [dispatch]);
 
   return (
     <section className="booking-steps py-30">
