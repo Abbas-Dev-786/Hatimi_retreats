@@ -49,6 +49,16 @@ export const getTop10Courts = async () => {
   }
 };
 
+export const getTop10Reviews = async () => {
+  try {
+    const res = await customRequest.get(`/reviews?limit=10`);
+    return res.data.data.docs;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
 export const getCourts = async ({ page, city, sport }) => {
   try {
     const res = await customRequest.get(

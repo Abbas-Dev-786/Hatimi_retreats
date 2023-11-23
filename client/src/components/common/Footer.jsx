@@ -36,10 +36,12 @@ const Footer = () => {
             <div className="col-lg-5 col-md-6">
               <img src="/img/logo.png" width="90px" />
               <p className="mt-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                qui ab illo animi ex, aut quod soluta eveniet. Praesentium
-                architecto dolorem doloremque nam amet obcaecati doloribus
-                dolorum? Quo, tempore saepe?
+                Book your sports turf now and experience the thrill of the game
+                in our state-of-the-art facilities. We offer a variety of turf
+                sizes and amenities to accommodate all levels of play. Our
+                convenient online booking system makes it easy to reserve your
+                time, and our friendly staff is always available to answer your
+                questions.
               </p>
             </div>
 

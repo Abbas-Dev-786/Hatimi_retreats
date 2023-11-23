@@ -1,15 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
+import { IMAGE_URL } from "../../constants";
 
-const TestimonialSlide = ({
-  rating,
-  review,
-  comments,
-  image,
-  name,
-  propertyName,
-}) => {
+const TestimonialSlide = ({ rating, review, user, court }) => {
   return (
     <div className="testimonial-group">
       <div className="testimonial-review">
@@ -18,15 +12,15 @@ const TestimonialSlide = ({
           <span> {rating}</span>
         </div>
         <h5>{review}</h5>
-        <p>{comments}</p>
-      </div>
-      <div className="listing-venue-owner">
-        <img src={image} alt="User" />
-        <div className="testimonial-content">
-          <h5>{name}</h5>
-          <Link to="/venues/7878788" className="btn btn-primary">
-            {propertyName}
-          </Link>
+        {/* <p>{comments}</p> */}
+        <div className="listing-venue-owner mt-4">
+          <img src={`${IMAGE_URL}/${user?.profileImg}`} alt="User" />
+          <div className="testimonial-content">
+            <p>{`${user?.firstName} ${user?.lastName}`}</p>
+            <Link to={`/venues/${court?._id}`} className="btn btn-primary">
+              {court?.name}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -38,8 +32,6 @@ export default TestimonialSlide;
 TestimonialSlide.propTypes = {
   rating: PropTypes.any,
   review: PropTypes.string,
-  comments: PropTypes.string,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  propertyName: PropTypes.string,
+  user: PropTypes.object,
+  court: PropTypes.object,
 };

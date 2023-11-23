@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { Mail, MapPin, PhoneCall, Share2, Star } from "react-feather";
+import { Rating } from "react-simple-star-rating";
+import { customerCareNumber, email } from "../../constants";
 
 const InfoSection = () => {
   const { courtData } = useSelector((state) => state.court);
@@ -26,14 +28,14 @@ const InfoSection = () => {
                 <i>
                   <PhoneCall size={"15px"} />
                 </i>
-                +3 80992 31212
+                {customerCareNumber}
               </li>
               <li>
                 <i>
                   <Mail size={"15px"} />
                 </i>
                 <a>
-                  <span className="__cf_email__">[email&#160;protected]</span>
+                  <span className="__cf_email__">{email}</span>
                 </a>
               </li>
             </ul>
@@ -61,12 +63,13 @@ const InfoSection = () => {
                   {courtData?.ratingsAverage}
                 </span>
                 <div className="review">
-                  <div className="rating">
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
-                    <i className="fas fa-star filled"></i>
+                  <div>
+                    <Rating
+                      size={20}
+                      initialValue={courtData?.ratingsAverage}
+                      readonly
+                      allowFraction
+                    />
                   </div>
                   <p className="mb-0">{courtData?.ratingsQuantity} Reviews</p>
                 </div>

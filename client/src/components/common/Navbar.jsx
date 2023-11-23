@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Users, X } from "react-feather";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import UserMenu from "./UserMenu";
 
 const navItems = [
   { text: "Home", link: "/" },
@@ -105,17 +106,21 @@ const Navbar = () => {
             </ul>
           </div>
           <ul className="nav header-navbar-rht">
-            <li className="nav-item">
-              <a
-                className="nav-link btn btn-secondary"
-                href="https://www.its52.com/"
-              >
-                <span>
-                  <Users size="15px" />
-                </span>
-                Login with ITS
-              </a>
-            </li>
+            {user?.firstName ? (
+              <UserMenu />
+            ) : (
+              <li className="nav-item">
+                <a
+                  className="nav-link btn btn-secondary"
+                  href="https://www.its52.com/"
+                >
+                  <span>
+                    <Users size="15px" />
+                  </span>
+                  Login with ITS
+                </a>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

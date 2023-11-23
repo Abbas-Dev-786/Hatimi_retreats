@@ -6,7 +6,7 @@ const initialState = {
     firstName: "Test",
     lastName: "user",
     email: "test@gmail.com",
-    profileImg: "testImg",
+    profileImg: "download_j53sib.jpg",
     phone: "1234567890",
     city: "test",
     country: "test",
