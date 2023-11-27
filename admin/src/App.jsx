@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as bootstrap from "bootstrap";
 
@@ -28,7 +28,8 @@ const App = () => {
       <Notification />
       <div className="main-wrapper">
         <Routes>
-          <Route path="/dashboard" element={<ProtectedRoute />} replace>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
 
             <Route path="courts">
