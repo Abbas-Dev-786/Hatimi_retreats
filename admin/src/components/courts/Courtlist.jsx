@@ -1,131 +1,96 @@
-import React from 'react'
+import { useQuery } from "@tanstack/react-query";
+import { getAllCourts } from "../../state/api";
+import TableItem from "./TableItem";
+import SearchBar from "../common/SearchBar";
+import { useEffect, useState } from "react";
 
 const Courtlist = () => {
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["courts"],
+    queryFn: getAllCourts,
+  });
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      const filteredObj = data?.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+
+      setFilteredData(filteredObj);
+    }
+  }, [search, data]);
+
   return (
     <>
       <div className="court-bg">
-  <div className="container">
-    <div className="row">
-      <div className="col-sm-12">
-        <div className="court-tab-content">
-          <div className="card card-tableset">
-            <div className="card-body">
-              <div className="coache-head-blk">
-                <div className="row align-items-center">
-                  <div className="col-md-6">
-                    <div className="court-table-head">
-                      <h4>Courts</h4>
-                      <p>
-                        Explore top-quality courts for your sporting activities
-                      </p>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="court-tab-content">
+                <div className="card card-tableset">
+                  <div className="card-body">
+                    <div className="coache-head-blk">
+                      <div className="row align-items-center">
+                        <div className="col-md-6">
+                          <div className="court-table-head">
+                            <h4>Courts</h4>
+                            <p>
+                              Explore top-quality courts for your sporting
+                              activities
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <SearchBar search={search} setSearch={setSearch} />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div id="tablefilter" />
+                    <div
+                      className="table-responsive"
+                      style={{ height: `${data?.length * 70}px` }}
+                    >
+                      {!data?.length && !isLoading && (
+                        <p className="text-center">No Courts Available</p>
+                      )}
+
+                      <table className="table table-borderless datatable">
+                        <thead className="thead-light fixed-table-head">
+                          <tr>
+                            <th>Court Name</th>
+                            <th>Location</th>
+                            <th>Amount</th>
+                            <th>Max Guest</th>
+                            <th>Added On</th>
+
+                            {/* <th>Status</th> */}
+                            <th />
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {!filteredData?.length &&
+                            data?.map((item) => (
+                              <TableItem key={item._id} {...item} />
+                            ))}
+
+                          {filteredData?.length > 0 &&
+                            filteredData?.map((item) => (
+                              <TableItem key={item._id} {...item} />
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="table-responsive">
-                <table className="table table-borderless datatable">
-                  <thead className="thead-light">
-                    <tr>
-                      <th>Court Name</th>
-                      <th>Location</th>
-                      <th>Amount</th>
-                      <th>Max Guest</th>
-                      <th>Additional Guests</th>
-                      <th>Added On</th>
-                     
-                      <th>Status</th>
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h2 className="table-avatar">
-                          <a
-                            href="#"
-                            className="avatar avatar-sm  flex-shrink-0"
-                          >
-                            <img
-                              className="avatar-img"
-                              src="/img/booking/booking-01.jpg"
-                              alt="User"
-                            />
-                          </a>
-                          <span className="table-head-name flex-grow-1">
-                            <a href="#">Leap Sports Academy</a>
-                            <span>Court 1</span>
-                          </span>
-                        </h2>
-                      </td>
-                      <td>Victoria, TX</td>
-                      <td>
-                        <span className="pay-dark">₹150</span>
-                      </td>
-                      <td>1</td>
-                      <td>2</td>
-                      <td>Mon, Jul 12</td>
-                      
-                      <td className="table-inset-btn">
-                        <div className="interset-btn">
-                          <div className="status-toggle d-inline-flex align-items-center">
-                            <input
-                              type="checkbox"
-                              id="status_1"
-                              className="check"
-                            />
-                            <label htmlFor="status_1" className="checktoggle">
-                              checkbox
-                            </label>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div className="dropdown dropdown-action table-drop-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="fas fa-ellipsis-h" />
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-end">
-                            <a
-                              className="dropdown-item"
-                              href="javascript:void(0);"
-                            >
-                              <i className="feather-edit" />
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="javascript:void(0);"
-                            >
-                              <i className="feather-trash" />
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
-              </div>
             </div>
           </div>
-          
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
     </>
-  )
-}
+  );
+};
 
-export default Courtlist
+export default Courtlist;

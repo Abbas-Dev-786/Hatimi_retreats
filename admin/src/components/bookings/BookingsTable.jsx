@@ -1,15 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllBookings } from "../../state/api";
 import TableItem from "./TableItem";
-import { useMemo } from "react";
+import { getAllBookings } from "../../state/api";
+import { useEffect, useMemo, useState } from "react";
+import SearchBar from "../common/SearchBar";
 
-const Bookings = () => {
-  const { data: apiData } = useQuery({
-    queryKey: ["bookings"],
+const BookingsTable = () => {
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  const { data: apiData, isLoading } = useQuery({
+    queryKey: ["bookings", "attempted"],
     queryFn: getAllBookings,
   });
 
   const data = useMemo(() => apiData?.docs, [apiData]);
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      const filteredObj = data?.filter(
+        (item) =>
+          item.court.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.firstName.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.lastName.toLowerCase().includes(search.toLowerCase())
+      );
+
+      setFilteredData(filteredObj);
+    }
+  }, [search, data]);
 
   return (
     <>
@@ -23,19 +40,21 @@ const Bookings = () => {
                     <div className="col-md-6">
                       <div className="court-table-head">
                         <h4>Bookings</h4>
-                        <p>
-                          Effortlessly track and manage your completed bookings
-                        </p>
+                        <p>Effortlessly track and manage your bookings</p>
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="coach-active-blk">
-                        <div id="tablefilter" />
+                        <SearchBar search={search} setSearch={setSearch} />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="tab-content">
+                  {!data?.length && !isLoading && (
+                    <p className="text-center">No Bookings Available</p>
+                  )}
+
                   <div
                     className="tab-pane fade show active"
                     id="nav-Recent"
@@ -43,22 +62,32 @@ const Bookings = () => {
                     aria-labelledby="nav-Recent-tab"
                     tabIndex={0}
                   >
-                    <div className="table-responsive">
+                    <div
+                      className="table-responsive"
+                      style={{ height: `${data?.length * 150}px` }}
+                    >
                       <table className="table table-borderless datatable">
-                        <thead className="thead-light">
+                        <thead className="thead-light fixed-table-head">
                           <tr>
                             <th>Court Name</th>
                             <th>User Name</th>
                             <th>Date &amp; Time </th>
                             <th>Total Guests</th>
+                            <th>Status</th>
                             <th>Payment</th>
                             <th />
                           </tr>
                         </thead>
                         <tbody>
-                          {data?.slice(0, 3)?.map((item) => (
-                            <TableItem key={item._id} {...item} />
-                          ))}
+                          {!filteredData?.length &&
+                            data?.map((item) => (
+                              <TableItem key={item._id} {...item} />
+                            ))}
+
+                          {filteredData?.length > 0 &&
+                            filteredData?.map((item) => (
+                              <TableItem key={item._id} {...item} />
+                            ))}
                         </tbody>
                       </table>
                     </div>
@@ -73,4 +102,4 @@ const Bookings = () => {
   );
 };
 
-export default Bookings;
+export default BookingsTable;

@@ -59,7 +59,7 @@ Version      : 1.0
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }
-.border-btm-dark{
+.border-btm-dark {
   border-bottom: 1px solid #000;
 }
 
@@ -16784,7 +16784,7 @@ span.icon-bg-40 img {
 }
 
 .four_zero_four_bg {
-  background-image: url("../../../public/img/404.gif");
+  background-image: url("../public/img/404.gif");
   height: 400px;
   background-position: center;
 }
@@ -16795,4 +16795,14 @@ span.icon-bg-40 img {
 
 .active-custom-option {
   background-color: rgb(9 126 82 / 57%) !important;
+}
+
+.fixed-table-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table-responsive {
+  overflow-y: auto;
 }

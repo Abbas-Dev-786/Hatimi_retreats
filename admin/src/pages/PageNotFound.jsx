@@ -16,8 +16,10 @@ const PageNotFound = () => {
 
               <p>The page you are looking for is not avaible!</p>
 
-              <Link to="/">
-                <button className="btn btn-success mt-2">Go To Home</button>
+              <Link to="/dashboard">
+                <button className="btn btn-success mt-2">
+                  Go To Dashboard
+                </button>
               </Link>
             </div>
           </div>
