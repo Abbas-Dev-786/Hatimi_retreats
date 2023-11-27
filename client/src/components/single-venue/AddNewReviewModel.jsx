@@ -86,9 +86,8 @@ const AddNewReviewModel = () => {
             <div className="table-accept-btn">
               <button
                 className="btn btn-primary"
-                // data-bs-dismiss="modal"
+                data-bs-dismiss="modal"
                 onClick={handleAddReview}
-                type="submit"
               >
                 Add Review
               </button>
