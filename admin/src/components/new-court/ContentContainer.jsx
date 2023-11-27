@@ -34,8 +34,6 @@ const ContentContainer = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    console.log(form);
-
     if (!Object.values(form).every((field) => Boolean(field))) {
       toast.error("All Fields Are Mandantory");
       return;

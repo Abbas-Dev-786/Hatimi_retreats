@@ -4,7 +4,7 @@ const DEFAULT_ERROR_MESSAGE = "Network Error or Something went wrong.";
 
 export const baseURL = import.meta.env.DEV
   ? "http://127.0.0.1:8000/api/v1"
-  : "";
+  : "https://hatimi-retreats.onrender.com/api/v1";
 
 const customRequest = axios.create({ baseURL });
 customRequest.interceptors.request.use((config) => {
