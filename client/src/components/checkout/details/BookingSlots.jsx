@@ -11,6 +11,22 @@ import { setFormData } from "../../../state/slices/checkoutSlice";
 import "react-datepicker/dist/react-datepicker.css";
 import "./slots.css";
 
+const mergeDateAndTime = (date, time) => {
+  const dateMoment = moment(date, "YYYY-MM-DD");
+  const timeMoment = moment(new Date(time), "hh:mm:ss");
+
+  // Combine date and time using set or add
+  const combinedMoment = dateMoment.set({
+    hour: timeMoment.hours(),
+    minute: timeMoment.minutes(),
+    second: timeMoment.seconds(),
+  });
+
+  // Format the result as a string
+  const resultString = combinedMoment.format("YYYY-MM-DD HH:mm:ss");
+  return resultString.includes("Invalid") ? "" : resultString;
+};
+
 const BookingSlots = () => {
   const [date, setDate] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
@@ -25,7 +41,10 @@ const BookingSlots = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setFormData({ date: String(date), ...selectedSlot, guests }));
+    const startTime = String(mergeDateAndTime(date, selectedSlot?.startTime));
+    const endTime = String(mergeDateAndTime(date, selectedSlot?.endTime));
+
+    dispatch(setFormData({ date: String(date), startTime, endTime, guests }));
   }, [date, selectedSlot, guests, dispatch]);
 
   return (
