@@ -98,5 +98,15 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.comparePasswords = async (enteredPassword, storedPassword) =>
   await bcrypt.compare(enteredPassword, storedPassword);
 
+userSchema.methods.deleteAllUserRelations = async function (userId) {
+  try {
+    const userObjectId = new mongoose.Types.ObjectId(userId);
+
+    await Review.deleteMany({ user: userObjectId });
+  } catch (err) {
+    throw new AppError(err.message, 400);
+  }
+};
+
 const User = mongoose.model("User", userSchema);
 module.exports = User;

@@ -18,7 +18,17 @@ module.exports.createUser = factory.createDoc(User);
 module.exports.updateUser = factory.updateDoc(User);
 
 //delete user permanently => Admin
-module.exports.deleteUser = factory.deleteDoc(User);
+module.exports.deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  if (!user) {
+    return next(new AppError("user does not exists", 404));
+  }
+
+  user.deleteAllUserRelations(req.params.id);
+
+  res.status(204).json({ status: "success" });
+});
 
 // delete user profile => user
 module.exports.deleteMe = catchAsync(async (req, res, next) => {
@@ -32,6 +42,8 @@ module.exports.deleteMe = catchAsync(async (req, res, next) => {
     return next(new AppError("User does not exists", 404));
   }
 
+  user.deleteAllUserRelations(req.params.id);
+
   res.status(204).json({ status: "success" });
 });
 
@@ -40,7 +52,7 @@ module.exports.getAdminStats = catchAsync(async (req, res, next) => {
   const totalCourts = await Court.countDocuments();
 
   const upcomingBookings = await Booking.countDocuments({
-    startTime: { $gte: new Date() },
+    $and: [{ status: "confirmed" }, { startTime: { $gte: new Date() } }],
   });
 
   res

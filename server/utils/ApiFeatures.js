@@ -11,7 +11,10 @@ class ApiFeatures {
     excludedFields.forEach((field) => delete queryObj[field]);
 
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
+    queryStr = queryStr.replace(
+      /\b(gt|gte|lt|lte|ne)\b/g,
+      (match) => `$${match}`
+    );
 
     this.query = this.query.find(JSON.parse(queryStr));
 

@@ -19,7 +19,17 @@ module.exports.getCourt = factory.getDoc(Court);
 module.exports.updateCourt = factory.updateDoc(Court);
 
 // delete court => Admin
-module.exports.deleteCourt = factory.deleteDoc(Court);
+module.exports.deleteCourt = catchAsync(async (req, res, next) => {
+  const property = await Court.findByIdAndDelete(req.params.id);
+
+  if (!property) {
+    return next(new AppError("court does not exists", 404));
+  }
+
+  property.deleteAllCourtRelations(req.params.id);
+
+  res.status(204).json({ status: "success" });
+});
 
 // add amenity of court => Admin
 module.exports.addAmenity = catchAsync(async (req, res, next) => {

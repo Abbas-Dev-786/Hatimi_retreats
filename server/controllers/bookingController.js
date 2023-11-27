@@ -44,6 +44,7 @@ module.exports.checkSlotAvailability = catchAsync(async (req, res, next) => {
         endTime: {
           $gt: new Date(req.body.startTime),
         },
+        status: "confirmed",
       },
     },
   ]);
@@ -86,6 +87,7 @@ module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
         endTime: {
           $gt: new Date(req.body.startTime),
         },
+        status: "confirmed",
       },
     },
   ]);
@@ -93,7 +95,7 @@ module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
   if (bookedSlots.length) {
     return next(new AppError("Slot is already booked", 400));
   }
-
+  
   req.court = await Court.findById(req.params.courtId);
   next();
 });

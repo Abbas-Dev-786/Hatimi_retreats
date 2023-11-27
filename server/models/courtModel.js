@@ -135,5 +135,16 @@ courtSchema.pre("findOne", function (next) {
   next();
 });
 
+courtSchema.methods.deleteAllCourtRelations = async function (courtId) {
+  try {
+    const courtObjectId = new mongoose.Types.ObjectId(courtId);
+
+    await Booking.deleteMany({ court: courtObjectId });
+    await Review.deleteMany({ court: courtObjectId });
+  } catch (err) {
+    throw new AppError(err.message, 400);
+  }
+};
+
 const Court = mongoose.model("Court", courtSchema);
 module.exports = Court;
