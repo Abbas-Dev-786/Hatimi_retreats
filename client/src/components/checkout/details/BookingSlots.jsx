@@ -24,7 +24,7 @@ const mergeDateAndTime = (date, time) => {
   });
 
   // Format the result as a string
-  const resultString = combinedMoment.format("YYYY-MM-DD HH:mm:ss");
+  const resultString = combinedMoment.format("YYYY-MM-DD hh:mm:ss");
   return resultString.includes("Invalid") ? "" : resultString;
 };
 

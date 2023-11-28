@@ -34,7 +34,7 @@ const PaymentDetails = () => {
     [courtData, additionalGuests, totalHours]
   );
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: createNewBooking,
     onError: (err) => {
       toast.error(err.message);
@@ -102,7 +102,7 @@ const PaymentDetails = () => {
           <button
             type="button"
             className="btn btn-primary"
-            disabled={isLoading}
+            disabled={isPending}
             // data-bs-toggle={isSuccess ? "modal" : ""}
             // data-bs-target={isSuccess ? "#bookingconfirmModal" : ""}
             onClick={handleFormSubmit}

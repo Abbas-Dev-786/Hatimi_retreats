@@ -8,10 +8,12 @@ const OrderDetails = () => {
   );
 
   const totalHours = useMemo(() => {
-    const endTime = moment(new Date(bookingData?.endTime));
     const startTime = moment(new Date(bookingData?.startTime));
-    const duration = moment.duration(endTime.diff(startTime));
-    const hours = duration.asHours();
+    const endTime = moment(new Date(bookingData?.endTime));
+    // const duration = moment.duration(endTime.diff(startTime));
+    // const hours = duration.asHours();
+
+    const hours = endTime.diff(startTime, "hours");
 
     return hours;
   }, [bookingData]);
