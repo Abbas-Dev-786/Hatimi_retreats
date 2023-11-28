@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import BookingTableItem from "./BookingTableItem";
 import { getMyBookings } from "../../state/api";
+import Spinner from "../common/Spinner";
 
 // const data2 = [
 //   {
@@ -46,7 +47,10 @@ import { getMyBookings } from "../../state/api";
 // ];
 
 const BookingDataTable = () => {
-  const { data } = useQuery({ queryKey: ["bookings"], queryFn: getMyBookings });
+  const { data, isLoading } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: getMyBookings,
+  });
 
   return (
     <div className="row">
@@ -86,6 +90,7 @@ const BookingDataTable = () => {
                         </tr>
                       </thead>
                       <tbody>
+                        {isLoading && <Spinner />}
                         {data?.map((item) => (
                           <BookingTableItem key={item._id} {...item} />
                         ))}

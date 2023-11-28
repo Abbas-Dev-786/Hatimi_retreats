@@ -78,7 +78,7 @@ const HeroSection = () => {
                           options={cityData?.map((obj) => obj._id) || []}
                           placeholder="Search for City"
                           onChange={(e) => setCity(e.value)}
-                          value={cityData?.[0]?._id}
+                          // value={cityData?.[0]?._id}
                           controlClassName="select-hero"
                         />
                       </div>
@@ -90,7 +90,7 @@ const HeroSection = () => {
                           options={sportsData?.map((obj) => obj._id) || []}
                           placeholder="Search for Sports"
                           onChange={(e) => setSport(e.value)}
-                          value={sportsData?.[0]?._id}
+                          // value={sportsData?.[0]?._id}
                           controlClassName="select-hero"
                         />
                       </div>

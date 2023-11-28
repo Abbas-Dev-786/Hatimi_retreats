@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import VenueList from "./VenueList";
 import { getCourts } from "../../state/api";
 import { setTotalCounts } from "../../state/slices/courtSlice";
+import Spinner from "../common/Spinner";
 
 const genNextPage = (lastPage, allPages) => {
   const nextPage = lastPage.data.hasNextPage ? allPages.length + 1 : undefined;
@@ -25,7 +26,7 @@ const VenuesSection = () => {
   const [searchParams] = useSearchParams();
   const { city, sport } = Object.fromEntries([...searchParams]);
 
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery({
     queryKey: ["courts", city, sport],
     queryFn: ({ pageParam = 1 }) => getCourts({ page: pageParam, city, sport }),
 
@@ -50,11 +51,14 @@ const VenuesSection = () => {
         next={fetchNextPage}
         hasMore={data?.totalDocs !== courtsData?.length}
         scrollableTarget="scrollableDiv"
-        loader={<h6 className="text-center">Loading...</h6>}
+        loader={<Spinner />}
         endMessage={
-          <h5 className="text-center my-3">Yay! You have seen it all</h5>
+          <h5 className="text-center my-3">
+            {courtsData?.length ? "Yay! You have seen it all" : ""}
+          </h5>
         }
       >
+        {isLoading && <Spinner />}
         {courtsData?.map((court) => (
           <VenueList key={court._id} {...court} />
         ))}

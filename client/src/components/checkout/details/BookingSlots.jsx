@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import SelectGuests from "./SelectGuests";
 import { getAvailableSlots } from "../../../state/api";
 import { setFormData } from "../../../state/slices/checkoutSlice";
+import Spinner from "../../common/Spinner";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./slots.css";
@@ -33,7 +34,7 @@ const BookingSlots = () => {
   const [guests, setGuests] = useState(5);
 
   const { propertyId } = useParams();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["slots", propertyId, date],
     queryFn: getAvailableSlots,
     enabled: Boolean(date),
@@ -70,6 +71,8 @@ const BookingSlots = () => {
       <p>
         <b>Select Your Slot</b>
       </p>
+      {isLoading && <Spinner />}
+
       {!date ? (
         <h6 className="text-center">
           Please Select a Date to view Available Slots

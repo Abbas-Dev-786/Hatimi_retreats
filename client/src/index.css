@@ -16798,3 +16798,8 @@ span.icon-bg-40 img {
   input {
   width: 100%;
 }
+
+.full-screen{
+  height: 90vh;
+  width: 100vw;
+}

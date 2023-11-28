@@ -6,11 +6,12 @@ import { Plus } from "react-feather";
 import { getSingleCourt } from "../../../state/api";
 import { setCourtData } from "../../../state/slices/checkoutSlice";
 import { IMAGE_URL } from "../../../constants";
+import Spinner from "../../common/Spinner";
 
 const DetailSection = () => {
   const dispatch = useDispatch();
   const { propertyId } = useParams();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["court", propertyId],
     queryFn: getSingleCourt,
   });
@@ -18,6 +19,10 @@ const DetailSection = () => {
   useEffect(() => {
     dispatch(setCourtData(data));
   }, [data, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="card mb-40">

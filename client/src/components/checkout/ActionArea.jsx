@@ -2,6 +2,7 @@ import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import { next, prev } from "../../state/slices/checkoutSlice";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const ActionArea = () => {
   const { currentTab, bookingData } = useSelector((state) => state.checkout);
@@ -10,6 +11,16 @@ const ActionArea = () => {
   const handleNextClick = () => {
     if (!bookingData?.startTime || !bookingData?.endTime) {
       toast.error("All Fields are Mandatory");
+      return;
+    }
+
+    if (
+      !moment(new Date(bookingData?.startTime))?.isSame(
+        moment(new Date(bookingData?.endTime)),
+        "day"
+      )
+    ) {
+      toast.error("Booking Dates are not matching");
       return;
     }
 
