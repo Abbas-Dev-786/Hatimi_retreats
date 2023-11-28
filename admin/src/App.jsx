@@ -6,7 +6,7 @@ import "bootstrap/scss/bootstrap.scss";
 //eslint-disable-next-line
 
 import Login from "./pages/Login";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import Courts from "./pages/Courts";
 import Request from "./pages/Request";
 
