@@ -67,8 +67,6 @@ const AddNewRuleModal = () => {
   };
 
   useEffect(() => {
-    console.log(isNew, form);
-
     if (!isNew && form?.text) {
       setText(form.text);
     } else {
