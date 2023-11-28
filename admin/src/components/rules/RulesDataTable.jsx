@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getAllRules } from "../../state/api";
 import SearchBar from "../common/SearchBar";
-import { useEffect, useState } from "react";
 import RulesDataItem from "./RulesDataItem";
+import { setNew } from "../../state/slices/ruleSlice";
 
 const RulesDataTable = () => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
@@ -46,6 +49,9 @@ const RulesDataTable = () => {
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#amenityModal"
+                      onClick={() => {
+                        dispatch(setNew());
+                      }}
                     >
                       Add New Rule
                     </button>

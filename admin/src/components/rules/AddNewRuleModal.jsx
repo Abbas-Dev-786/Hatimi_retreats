@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { createRule } from "../../state/api";
+import { createRule, editRule } from "../../state/api";
+import { resetRuleData } from "../../state/slices/ruleSlice";
 
 const AddNewRuleModal = () => {
+  const dispatch = useDispatch();
+  const { form, isNew } = useSelector((state) => state.rule);
   const [text, setText] = useState("");
 
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate: createRuleFn } = useMutation({
     mutationKey: ["add-rule"],
     mutationFn: createRule,
     onError: (err) => {
@@ -21,19 +25,56 @@ const AddNewRuleModal = () => {
     },
   });
 
+  const { mutate: editRuleFn } = useMutation({
+    mutationKey: ["delete-rule"],
+    mutationFn: editRule,
+    onError: (err) => {
+      toast.error(err.message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["rules"] });
+
+      toast.success(`Rule edited Successfully`);
+    },
+  });
+
   const handleNewRule = () => {
     if (!text) {
       toast.error("Rule is mandatory");
       return;
     }
 
-    if (text.length > 150) {
+    if (text.length > 450) {
       toast.error("Text could not be greater than 150 characters");
       return;
     }
 
-    mutate({ text });
+    createRuleFn({ text });
   };
+
+  const handleEditRule = () => {
+    if (!text) {
+      toast.error("Rule is mandatory");
+      return;
+    }
+
+    if (text.length > 450) {
+      toast.error("Text could not be greater than 150 characters");
+      return;
+    }
+
+    editRuleFn({ id: form._id, text });
+  };
+
+  useEffect(() => {
+    console.log(isNew, form);
+
+    if (!isNew && form?.text) {
+      setText(form.text);
+    } else {
+      setText("");
+    }
+  }, [form, isNew]);
 
   return (
     <div
@@ -45,7 +86,7 @@ const AddNewRuleModal = () => {
         <div className="modal-content">
           <div className="modal-header">
             <div className="form-header modal-header-title">
-              <h4 className="mb-0">Add New Rule</h4>
+              <h4 className="mb-0">{!isNew ? "Edit Rule" : "Add New Rule"}</h4>
             </div>
             <a className="close" data-bs-dismiss="modal" aria-label="Close">
               <span className="align-center" aria-hidden="true">
@@ -78,16 +119,29 @@ const AddNewRuleModal = () => {
               <button
                 data-bs-dismiss="modal"
                 className="btn cancel-table-btn me-3"
+                onClick={() => {
+                  dispatch(resetRuleData());
+                }}
               >
                 Cancel
               </button>
-              <button
-                data-bs-dismiss="modal"
-                className="btn btn-primary"
-                onClick={handleNewRule}
-              >
-                Create
-              </button>
+              {isNew ? (
+                <button
+                  data-bs-dismiss="modal"
+                  className="btn btn-primary"
+                  onClick={handleNewRule}
+                >
+                  Create
+                </button>
+              ) : (
+                <button
+                  data-bs-dismiss="modal"
+                  className="btn btn-primary"
+                  onClick={handleEditRule}
+                >
+                  Edit
+                </button>
+              )}
             </div>
           </div>
         </div>

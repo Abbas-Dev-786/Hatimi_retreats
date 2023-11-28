@@ -82,6 +82,16 @@ export const getAllCourts = async () => {
   }
 };
 
+export const getSingleCourt = async ({ queryKey }) => {
+  try {
+    const res = await customRequest.get(`/courts/${queryKey[1]}`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
 export const createCourt = async (data) => {
   try {
     const res = await customRequest.post(`/courts`, data);
@@ -156,6 +166,18 @@ export const getAllRules = async () => {
 export const createRule = async (data) => {
   try {
     const res = await customRequest.post(`/rules`, data);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const editRule = async (data) => {
+  try {
+    const res = await customRequest.patch(`/rules/${data.id}`, {
+      text: data.text,
+    });
     return res.data.data;
   } catch (err) {
     const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;

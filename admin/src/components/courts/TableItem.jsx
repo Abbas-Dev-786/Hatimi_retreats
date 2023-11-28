@@ -58,16 +58,6 @@ const TableItem = ({
       <td>{maxCapacity}</td>
       <td>{moment(createdAt).format("DD MMMM YYYY")}</td>
 
-      {/* <td className="table-inset-btn">
-        <div className="interset-btn">
-          <div className="status-toggle d-inline-flex align-items-center">
-            <input type="checkbox" id="status_1" className="check" />
-            <label htmlFor="status_1" className="checktoggle">
-              checkbox
-            </label>
-          </div>
-        </div>
-      </td> */}
       <td className="text-end">
         <div className="dropdown dropdown-action table-drop-action">
           <a
@@ -78,10 +68,15 @@ const TableItem = ({
             <i className="fas fa-ellipsis-h" />
           </a>
           <div className="dropdown-menu dropdown-menu-end">
-            {/* <a className="dropdown-item" href="javascript:void(0);">
-              <i className="feather-edit" />
+            {/* <Link
+              to={`/dashboard/courts/${_id}/edit`}
+              className="dropdown-item"
+            >
+              <i>
+                <Edit size={"15px"} />
+              </i>
               Edit
-            </a> */}
+            </Link> */}
             <a className="dropdown-item" onClick={handleDelete}>
               <i>
                 <Trash size={"15px"} />

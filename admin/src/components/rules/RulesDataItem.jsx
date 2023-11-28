@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import moment from "moment";
+import { useDispatch } from "react-redux";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Trash } from "react-feather";
+import { Edit, Trash } from "react-feather";
 import { deleteRule } from "../../state/api";
+import { setRuleData } from "../../state/slices/ruleSlice";
 
 const RulesDataItem = ({ text, createdAt, _id }) => {
   const queryClient = useQueryClient();
@@ -22,6 +24,17 @@ const RulesDataItem = ({ text, createdAt, _id }) => {
 
   const handleDelete = () => {
     mutate(_id);
+  };
+
+  const dispatch = useDispatch();
+  const handleEdit = () => {
+    const data = {
+      text,
+      createdAt,
+      _id,
+    };
+
+    dispatch(setRuleData(data));
   };
 
   return (
@@ -44,12 +57,17 @@ const RulesDataItem = ({ text, createdAt, _id }) => {
             <i className="fas fa-ellipsis-h" />
           </a>
           <div className="dropdown-menu dropdown-menu-end">
-            {/* <a className="dropdown-item">
+            <div
+              className="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#amenityModal"
+              onClick={handleEdit}
+            >
               <i>
                 <Edit size={"15px"} />
               </i>
               Edit
-            </a> */}
+            </div>
             <div className="dropdown-item" onClick={handleDelete}>
               <i>
                 <Trash size={"15px"} />

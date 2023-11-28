@@ -17,6 +17,7 @@ import Bookings from "./pages/Bookings";
 import Amenities from "./pages/Amenities";
 import Rules from "./pages/Rules";
 import NewCourt from "./pages/NewCourt";
+import EditCourt from "./pages/EditCourt";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="courts">
               <Route index element={<Courts />} />
               <Route path="new" element={<NewCourt />} />
+              <Route path=":id/edit" element={<EditCourt />} />
             </Route>
 
             <Route path="bookings" element={<Bookings />} />

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   form: {},
+  isEdit: false,
 };
 
 const courtSlice = createSlice({
