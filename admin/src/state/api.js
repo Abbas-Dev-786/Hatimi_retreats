@@ -122,6 +122,18 @@ export const createAmenity = async (data) => {
   }
 };
 
+export const editAmenity = async (data) => {
+  try {
+    const res = await customRequest.patch(`/amenities/${data.id}`, {
+      name: data.name,
+    });
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
 export const deleteAmenity = async (id) => {
   try {
     await customRequest.delete(`/amenities/${id}`);

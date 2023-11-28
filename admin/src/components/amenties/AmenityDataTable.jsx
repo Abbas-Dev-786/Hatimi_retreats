@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 import { getAllAmenities } from "../../state/api";
 import AmenityTableItem from "./AmenityTableItem";
 import SearchBar from "../common/SearchBar";
 import { useEffect, useState } from "react";
+import { setNew } from "../../state/slices/amenitySlice";
 
 const AmenityDataTable = () => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
@@ -46,6 +49,9 @@ const AmenityDataTable = () => {
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#amenityModal"
+                      onClick={() => {
+                        dispatch(setNew());
+                      }}
                     >
                       Add New Amenity
                     </button>
