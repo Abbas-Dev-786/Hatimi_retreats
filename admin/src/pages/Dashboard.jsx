@@ -1,4 +1,4 @@
-import Statistics from "../components/dashboard/statistics";
+import Statistics from "../components/dashboard/Statistics";
 import Bookings from "../components/dashboard/Bookings";
 import Navbar from "../components/common/Navbar";
 import Breadcrumbs from "../components/common/Breadcrumbs";
