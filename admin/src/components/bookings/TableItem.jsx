@@ -69,6 +69,7 @@ const TableItem = ({
           </span>
         </h2>
       </td>
+      <td className="pay-dark">{user?.phone}</td>
       <td className="table-date-time">
         <h4>
           {moment(startTime).format("DD MMM YYYY")} <br />

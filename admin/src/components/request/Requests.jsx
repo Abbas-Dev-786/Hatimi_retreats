@@ -65,7 +65,8 @@ const Requests = () => {
                             <thead className="thead-light">
                               <tr>
                                 <th>Court Name</th>
-                                <th>Player Name</th>
+                                <th>User Name</th>
+                                <th>Phone Number</th>
                                 <th>Date &amp; Time </th>
                                 <th>Total Guests</th>
                                 <th>Payment</th>
@@ -93,7 +94,7 @@ const Requests = () => {
                     )}
                   </div>
                 </div>
-                <div className="tab-footer">
+                {/* <div className="tab-footer">
                   <div className="row">
                     <div className="col-md-6">
                       <div id="tablelength" />
@@ -102,7 +103,7 @@ const Requests = () => {
                       <div id="tablepage" />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

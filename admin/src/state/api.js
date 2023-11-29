@@ -53,9 +53,14 @@ export const getAllBookings = async ({ queryKey }) => {
 
 export const editBookingRequest = async (data) => {
   try {
-    const res = await customRequest.patch(`/bookings/${data.id}`, {
-      status: data.status,
-    });
+    const res = await customRequest.patch(
+      `${data?.courtId ? `/courts/${data.courtId}` : ""}/bookings/${data.id}`,
+      {
+        status: data.status,
+        startTime: data?.startTime,
+        endTime: data?.endTime,
+      }
+    );
     return res.data.data;
   } catch (err) {
     const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;

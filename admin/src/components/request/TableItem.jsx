@@ -23,18 +23,27 @@ const TableItem = ({
       toast.error(err.message);
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["bookings-r", "pending"] });
+      queryClient.invalidateQueries({ queryKey: ["bookings-r"] });
 
       toast.success(`Request Successfully ${data.status}`);
     },
   });
 
   const handleRequestConfirm = () => {
-    mutate({ id: _id, status: "confirmed" });
+    mutate({
+      id: _id,
+      status: "confirmed",
+      courtId: court?._id,
+      startTime,
+      endTime,
+    });
   };
 
   const handleRequestReject = () => {
-    mutate({ id: _id, status: "rejected" });
+    mutate({
+      id: _id,
+      status: "rejected",
+    });
   };
 
   return (
@@ -70,6 +79,7 @@ const TableItem = ({
           </span>
         </h2>
       </td>
+      <td className="pay-dark">{user?.phone}</td>
       <td className="table-date-time">
         <h4>
           {moment(startTime).format("DD MMM YYYY")} <br />

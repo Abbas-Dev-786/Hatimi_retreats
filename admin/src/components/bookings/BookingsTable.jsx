@@ -64,13 +64,14 @@ const BookingsTable = () => {
                   >
                     <div
                       className="table-responsive"
-                      style={{ height: `${data?.length * 150}px` }}
+                      style={{ height: `${data?.length * 100}px` }}
                     >
                       <table className="table table-borderless datatable">
                         <thead className="thead-light fixed-table-head">
                           <tr>
                             <th>Court Name</th>
                             <th>User Name</th>
+                            <th>Phone Number</th>
                             <th>Date &amp; Time </th>
                             <th>Total Guests</th>
                             <th>Status</th>
