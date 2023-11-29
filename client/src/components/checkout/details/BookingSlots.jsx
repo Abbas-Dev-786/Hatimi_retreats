@@ -13,19 +13,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./slots.css";
 
 const mergeDateAndTime = (date, time) => {
-  const dateMoment = moment(date, "YYYY-MM-DD");
+  const dateMoment = moment(date, "DD MMMM YYYY");
   const timeMoment = moment(new Date(time), "hh:mm:ss");
 
-  // Combine date and time using set or add
   const combinedMoment = dateMoment.set({
     hour: timeMoment.hours(),
     minute: timeMoment.minutes(),
     second: timeMoment.seconds(),
   });
 
-  // Format the result as a string
-  const resultString = combinedMoment.format("YYYY-MM-DD hh:mm:ss");
-  return resultString.includes("Invalid") ? "" : resultString;
+  // // Format the result as a string
+  const resultString = combinedMoment.format("DD MMMM YYYY HH:mm:ss");
+  return resultString.includes("Invalid") ? "" : new Date(resultString);
 };
 
 const BookingSlots = () => {
