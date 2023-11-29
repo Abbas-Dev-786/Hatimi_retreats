@@ -2,6 +2,7 @@ import Navbar from "../components/common/Navbar";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import Tabs from "../components/common/Tabs";
 import Courtlist from "../components/courts/Courtlist";
+import EditCourtModal from "../components/courts/EditCourtModal";
 
 const Courts = () => {
   return (
@@ -11,6 +12,7 @@ const Courts = () => {
         <Breadcrumbs />
         <Tabs />
         <Courtlist />
+        <EditCourtModal />
       </div>
     </div>
   );

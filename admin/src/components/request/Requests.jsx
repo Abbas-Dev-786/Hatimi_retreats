@@ -53,10 +53,6 @@ const Requests = () => {
                       </div>
                     </div>
                     <div className="tab-content">
-                      {!data?.length && !isLoading && (
-                        <p className="text-center">No Requests Available</p>
-                      )}
-
                       <div
                         className="tab-pane fade show active"
                         id="nav-Recent"
@@ -91,6 +87,10 @@ const Requests = () => {
                         </div>
                       </div>
                     </div>
+
+                    {!data?.length && !isLoading && (
+                      <p className="text-center mt-4">No Requests Available</p>
+                    )}
                   </div>
                 </div>
                 <div className="tab-footer">

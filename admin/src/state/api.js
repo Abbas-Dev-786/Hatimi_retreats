@@ -102,6 +102,16 @@ export const createCourt = async (data) => {
   }
 };
 
+export const editCourt = async (data) => {
+  try {
+    const res = await customRequest.patch(`/courts/${data.id}`, data);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
 export const deleteCourt = async (id) => {
   try {
     const res = await customRequest.delete(`/courts/${id}`);

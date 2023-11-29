@@ -27,7 +27,7 @@ const AddNewAmenityModal = () => {
   });
 
   const { mutate: editAmenityFn } = useMutation({
-    mutationKey: ["delete-amenity"],
+    mutationKey: ["edit-amenity"],
     mutationFn: editAmenity,
     onError: (err) => {
       toast.error(err.message);

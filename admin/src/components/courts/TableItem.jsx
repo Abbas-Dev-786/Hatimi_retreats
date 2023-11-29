@@ -1,21 +1,25 @@
 import PropTypes from "prop-types";
 import moment from "moment";
+import { useDispatch } from "react-redux";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Trash } from "react-feather";
+import { Edit, Trash } from "react-feather";
 import { IMAGE_URL } from "../../constants";
 import { deleteCourt } from "../../state/api";
+import { setEditCourtData } from "../../state/slices/courtSlice";
 
-const TableItem = ({
-  coverImage,
-  name,
-  type,
-  address,
-  chargePerHour,
-  maxCapacity,
-  createdAt,
-  _id,
-}) => {
+const TableItem = (data) => {
+  const {
+    coverImage,
+    name,
+    type,
+    address,
+    chargePerHour,
+    maxCapacity,
+    createdAt,
+    _id,
+  } = data;
+
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["delete-court"],
@@ -32,6 +36,11 @@ const TableItem = ({
 
   const handleDelete = () => {
     mutate(_id);
+  };
+
+  const dispatch = useDispatch();
+  const handleEdit = () => {
+    dispatch(setEditCourtData(data));
   };
 
   return (
@@ -67,22 +76,27 @@ const TableItem = ({
           >
             <i className="fas fa-ellipsis-h" />
           </a>
-          <div className="dropdown-menu dropdown-menu-end">
-            {/* <Link
-              to={`/dashboard/courts/${_id}/edit`}
+          <div
+            className="dropdown-menu dropdown-menu-end"
+            style={{ cursor: "pointer" }}
+          >
+            <div
               className="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#amenityModal"
+              onClick={handleEdit}
             >
               <i>
                 <Edit size={"15px"} />
               </i>
               Edit
-            </Link> */}
-            <a className="dropdown-item" onClick={handleDelete}>
+            </div>
+            <div className="dropdown-item" onClick={handleDelete}>
               <i>
                 <Trash size={"15px"} />
               </i>
               Delete
-            </a>
+            </div>
           </div>
         </div>
       </td>

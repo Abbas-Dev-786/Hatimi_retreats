@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   form: {},
   isEdit: false,
+  editForm: {},
 };
 
 const courtSlice = createSlice({
@@ -14,10 +15,24 @@ const courtSlice = createSlice({
     },
 
     resetNewCourtData(state) {
-      state.form = initialState;
+      state.form = initialState.form;
+    },
+
+    setEditCourtData(state, action) {
+      state.editForm = { ...state.editForm, ...action.payload };
+    },
+
+    resetEditCourtData(state) {
+      state.editForm = initialState.editForm;
     },
   },
 });
 
-export const { setNewCourtData, resetNewCourtData } = courtSlice.actions;
+export const {
+  setNewCourtData,
+  resetNewCourtData,
+  setEditCourtData,
+  resetEditCourtData,
+} = courtSlice.actions;
+
 export default courtSlice.reducer;
