@@ -45,6 +45,8 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+courtSchema.index({ startTime: 1, endTime: 1 });
+
 bookingSchema.plugin(mongoosePaginate);
 
 bookingSchema.pre("save", async function (next) {
@@ -68,7 +70,7 @@ bookingSchema.pre("save", async function (next) {
 bookingSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
-    select: "firstName lastName profileImg",
+    select: "firstName lastName profileImg phone",
   }).populate({
     path: "court",
     select:

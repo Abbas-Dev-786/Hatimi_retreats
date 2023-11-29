@@ -21,7 +21,10 @@ router.get("/my", bookingController.setME, bookingController.getAllBookings);
 router
   .route("/:id")
   .get(bookingController.getBooking)
-  .delete(bookingController.deleteBooking)
-  .patch(bookingController.updateBooking);
+  .patch(
+    bookingController.checkOverLappingBookings,
+    bookingController.updateBooking
+  )
+  .delete(bookingController.deleteBooking);
 
 module.exports = router;

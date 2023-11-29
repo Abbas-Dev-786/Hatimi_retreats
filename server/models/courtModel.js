@@ -113,6 +113,9 @@ const courtSchema = new mongoose.Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+courtSchema.index({ city: 1, type: 1 });
+courtSchema.index({ location: "2dsphere" });
+
 courtSchema.plugin(mongoosePaginate);
 
 // Virtual populate
