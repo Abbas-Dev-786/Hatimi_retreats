@@ -46,7 +46,7 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-courtSchema.index({ startTime: 1, endTime: 1 });
+bookingSchema.index({ startTime: 1, endTime: 1 });
 
 bookingSchema.plugin(mongoosePaginate);
 
