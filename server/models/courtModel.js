@@ -6,11 +6,13 @@ const courtSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      lowercase: true,
       required: [true, "Please Enter court name"],
     },
     type: {
       type: String,
       trim: true,
+      lowercase: true,
       required: [true, "Please Enter court type"],
     },
     size: {
@@ -36,11 +38,13 @@ const courtSchema = new mongoose.Schema(
     city: {
       type: String,
       trim: true,
+      lowercase: true,
       required: [true, "Please Enter City"],
     },
     country: {
       type: String,
       trim: true,
+      lowercase: true,
       required: [true, "Please Enter Country"],
     },
     address: {

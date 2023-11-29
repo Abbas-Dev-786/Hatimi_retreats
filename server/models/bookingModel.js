@@ -34,6 +34,7 @@ const bookingSchema = new mongoose.Schema(
     },
     status: {
       type: String,
+      lowercase: true,
       enum: {
         values: ["confirmed", "rejected", "pending"],
         message: "not a valid status",
