@@ -35,8 +35,8 @@ router
     authController.protect,
     authController.restrictTo("admin"),
     courtController.setCoords,
-    courtController.uploadCourtImages,
-    courtController.setImages,
+    // courtController.uploadCourtImages,
+    // courtController.setImages,
     courtController.updateCourt
   )
   .delete(
