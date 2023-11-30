@@ -3,7 +3,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Edit, Trash } from "react-feather";
+import { Compass, Edit, Image, Trash } from "react-feather";
 import { IMAGE_URL } from "../../constants";
 import { deleteCourt } from "../../state/api";
 import { setEditCourtData } from "../../state/slices/courtSlice";
@@ -13,11 +13,13 @@ const TableItem = (data) => {
     coverImage,
     name,
     type,
-    address,
+    city,
     chargePerHour,
     maxCapacity,
     createdAt,
     _id,
+    openingTime,
+    closingTime,
   } = data;
 
   const queryClient = useQueryClient();
@@ -60,7 +62,11 @@ const TableItem = (data) => {
           </span>
         </h2>
       </td>
-      <td>{address}</td>
+      <td>{city}</td>
+      <td>
+        {moment(openingTime).format("hh:mm A")}-{" "}
+        {moment(closingTime).format("hh:mm A")}
+      </td>
       <td>
         <span className="pay-dark">₹{chargePerHour}</span>
       </td>
@@ -90,6 +96,28 @@ const TableItem = (data) => {
                 <Edit size={"15px"} />
               </i>
               Edit
+            </div>
+            <div
+              className="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onClick={handleEdit}
+            >
+              <i>
+                <Image size={"15px"} />
+              </i>
+              Change Images
+            </div>
+            <div
+              className="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#amenityModal2"
+              onClick={handleEdit}
+            >
+              <i>
+                <Compass size={"15px"} />
+              </i>
+              Change Amenites And Rules
             </div>
             <div className="dropdown-item" onClick={handleDelete}>
               <i>

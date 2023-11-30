@@ -3,6 +3,8 @@ import Breadcrumbs from "../components/common/Breadcrumbs";
 import Tabs from "../components/common/Tabs";
 import Courtlist from "../components/courts/Courtlist";
 import EditCourtModal from "../components/courts/EditCourtModal";
+import ChangeImageModal from "../components/courts/ChangeImageModal";
+import ChangeAmenitiesModal from "../components/courts/ChangeAmenitiesModal";
 
 const Courts = () => {
   return (
@@ -13,6 +15,8 @@ const Courts = () => {
         <Tabs />
         <Courtlist />
         <EditCourtModal />
+        <ChangeImageModal />
+        <ChangeAmenitiesModal />
       </div>
     </div>
   );

@@ -60,7 +60,8 @@ const Courtlist = () => {
                         <thead className="thead-light fixed-table-head">
                           <tr>
                             <th>Court Name</th>
-                            <th>Location</th>
+                            <th>City</th>
+                            <th>Timings</th>
                             <th>Amount</th>
                             <th>Max Guest</th>
                             <th>Added On</th>

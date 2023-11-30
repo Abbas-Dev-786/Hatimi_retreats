@@ -1,24 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { X } from "react-feather";
-// import Select from "react-select";
-// import makeAnimated from "react-select/animated";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
-import { editCourt, getAllAmenities } from "../../state/api";
+import { editCourt } from "../../state/api";
 import { setHours, setMinutes } from "date-fns";
 import { resetEditCourtData } from "../../state/slices/courtSlice";
-
-// const animatedComponents = makeAnimated();
-
-// const textCapitalise = (text) => {
-//   return text
-//     .split(" ")
-//     .map((w) => w[0].toUpperCase() + w.slice(1, w.length))
-//     .join(" ");
-// };
 
 const EditCourtModal = () => {
   const dispatch = useDispatch();
@@ -37,11 +26,6 @@ const EditCourtModal = () => {
   const [city, setCity] = useState("");
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
-
-  const { data } = useQuery({
-    queryKey: ["amenities"],
-    queryFn: getAllAmenities,
-  });
 
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
@@ -92,16 +76,7 @@ const EditCourtModal = () => {
     setCity(editForm?.city);
     setAddress(editForm?.address);
     setLocation(editForm?.location?.coordinates.join(","));
-
-    // const includedAmenities = editForm?.amenities
-    //   ?.map((item) => data.find((amenity) => amenity._id === item))
-    //   ?.map((item) => ({
-    //     label: textCapitalise(item.name),
-    //     value: item._id,
-    //   }));
-
-    // setAmenities(includedAmenities);
-  }, [editForm, data]);
+  }, [editForm]);
 
   return (
     <div
@@ -287,28 +262,6 @@ const EditCourtModal = () => {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="row mt-4">
-                      <div className="col-12">
-                        <div className="input-space">
-                          <Select
-                            isMulti
-                            name="colors"
-                            components={animatedComponents}
-                            options={
-                              data?.map((item) => ({
-                                label: textCapitalise(item.name),
-                                value: item._id,
-                              })) || []
-                            }
-                            className="basic-multi-select"
-                            placeholder="Select Amenities"
-                            classNamePrefix="select"
-                            value={amenities}
-                            onChange={(e) => setAmenities(e)}
-                          />
-                        </div>
-                      </div>
-                    </div> */}
                     <div className="row mt-4">
                       <div className="col-lg-4 col-md-4">
                         <div className="input-space">
