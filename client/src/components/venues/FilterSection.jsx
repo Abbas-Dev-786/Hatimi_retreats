@@ -25,7 +25,10 @@ const FilterSection = () => {
 
   useEffect(() => {
     if (selectedCity && selectedSport) {
-      setSearchParams({ city: selectedCity, sport: selectedSport });
+      setSearchParams({
+        city: selectedCity?.toLowerCase(),
+        sport: selectedSport?.toLowerCase(0),
+      });
     }
   }, [selectedCity, selectedSport, setSearchParams]);
 

@@ -30,7 +30,7 @@ const HeroSection = () => {
       return;
     }
 
-    navigate(`/venues?city=${city}&sport=${sport}`);
+    navigate(`/venues?city=${city.toLowerCase()}&sport=${sport.toLowerCase()}`);
   };
 
   return (
