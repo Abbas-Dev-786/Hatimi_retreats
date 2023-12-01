@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user"))?.user || {
-    _id: "6568a223e5c51de608a59f45",
+    _id: "65696d6a9e8f67e7e74b2500",
     firstName: "Huzaifa",
     lastName: "Tayyab Ali",
     email: "test@gmail.com",
@@ -13,9 +13,9 @@ const initialState = {
     address: "test address",
     role: "user",
     its: "12345678",
-    createdAt: "2023-11-30T14:54:27.071Z",
+    createdAt: "2023-12-01T05:21:46.339Z",
     __v: 0,
-    id: "6568a223e5c51de608a59f45",
+    id: "65696d6a9e8f67e7e74b2500",
   },
   token: JSON.parse(localStorage.getItem("user"))?.token,
 };

@@ -66,7 +66,7 @@ const FeatureSlide = ({
               <Heart size={"18px"} />
             </div>
           </div>
-          <h3 className="listing-title">
+          <h3 className="listing-title text-capitalize">
             <Link to={`/venues/${_id}`}>{name}</Link>
           </h3>
           <div className="listing-details-group">
@@ -78,15 +78,6 @@ const FeatureSlide = ({
                   {address}
                 </span>
               </li>
-              {/* <li>
-                <span>
-                  <Calendar size={"15px"} className="me-1" />
-                  Next availablity :
-                  <span className="primary-text">
-                    {moment(availabilityDate).format("DD MMMM YYYY")}
-                  </span>
-                </span>
-              </li> */}
             </ul>
           </div>
           <div className="listing-button">

@@ -11,7 +11,7 @@ const InfoSection = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-12 col-lg-6">
-            <h1 className="d-flex align-items-center justify-content-start">
+            <h1 className="d-flex align-items-center justify-content-start text-capitalize">
               {courtData?.name}
               <span className="d-flex justify-content-center align-items-center">
                 <i className="fas fa-check-double"></i>

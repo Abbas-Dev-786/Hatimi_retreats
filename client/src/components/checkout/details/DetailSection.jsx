@@ -50,7 +50,7 @@ const DetailSection = () => {
                   </span>
                   <span>{data?.ratingsQuantity} Reviews</span>
                 </div>
-                <h3 className="mb-2">{data?.name}</h3>
+                <h3 className="mb-2 text-capitalize">{data?.name}</h3>
                 <p>{data?.description?.split(" ").slice(0, 20).join(" ")}</p>
               </div>
             </div>

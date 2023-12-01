@@ -44,7 +44,7 @@ const TableItem = ({
             />
           </a>
           <span className="table-head-name flex-grow-1">
-            <a>{court?.name}</a>
+            <a className="text-capitalize">{court?.name}</a>
             <span>
               {court?.address}
               <span className="book-on-date">

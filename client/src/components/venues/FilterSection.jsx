@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getCities, getSports } from "../../state/api";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const FilterSection = () => {
   const { totalCounts } = useSelector((state) => state.court);
@@ -57,43 +59,27 @@ const FilterSection = () => {
                 >
                   <div className="sortbyset">
                     <span className="sortbytitle">City</span>
-                    <div className="sorting-select">
-                      <select
-                        className="form-select"
-                        onChange={(e) => setSelectedCity(e.target.value)}
+                    <div className="form-group mb-0">
+                      <Dropdown
+                        options={cityData?.map((obj) => obj._id) || []}
+                        placeholder="Search for City"
+                        onChange={(e) => setSelectedCity(e.value)}
+                        className="text-capitalize"
                         value={city}
-                      >
-                        {cityData?.map((city, i) => (
-                          <option
-                            key={i}
-                            value={city._id}
-                            className="text-capitalize"
-                          >
-                            {city._id}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                   </div>
 
                   <div className="sortbyset">
                     <span className="sortbytitle">Sport</span>
-                    <div className="sorting-select">
-                      <select
-                        className="form-select text-capitalize"
-                        onChange={(e) => setSelectedSport(e.target.value)}
+                    <div className="form-group mb-0">
+                      <Dropdown
+                        options={sportsData?.map((obj) => obj._id) || []}
+                        placeholder="Search for Sports"
+                        onChange={(e) => setSelectedSport(e.value)}
                         value={sport}
-                      >
-                        {sportsData?.map((sport, i) => (
-                          <option
-                            key={i}
-                            value={sport._id}
-                            className="text-capitalize"
-                          >
-                            {sport._id}
-                          </option>
-                        ))}
-                      </select>
+                        className="text-capitalize w-100"
+                      />
                     </div>
                   </div>
                 </div>

@@ -57,12 +57,12 @@ const TableItem = (data) => {
             />
           </a>
           <span className="table-head-name flex-grow-1">
-            <a>{name}</a>
+            <a className="text-capitalize">{name}</a>
             <span className="text-capitalize">{type}</span>
           </span>
         </h2>
       </td>
-      <td>{city}</td>
+      <td className="text-capitalize">{city}</td>
       <td>
         {moment(openingTime).format("hh:mm A")}-{" "}
         {moment(closingTime).format("hh:mm A")}

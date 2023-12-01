@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { CornerDownLeft, Edit, Eye } from "react-feather";
+import { CornerDownLeft, Eye } from "react-feather";
 import { setBookingData } from "../../state/slices/bookingSlice";
 import { IMAGE_URL } from "../../constants";
 import { deleteBooking } from "../../state/api";
@@ -60,23 +60,14 @@ const BookingTableItem = ({
               alt="image"
             />
           </Link>
-          <span className="table-head-name flex-grow-1">
-            <Link
-              to={`/venues/${court?._id}`}
-              // data-bs-toggle="modal"
-              // data-bs-target="#profile-court"
-            >
-              {court?.name}
-            </Link>
+          <span className="table-head-name flex-grow-1 text-capitalize">
+            <Link to={`/venues/${court?._id}`}>{court?.name}</Link>
             <span>{court?.address} </span>
           </span>
         </h2>
       </td>
       <td className="table-date-time">
         <h4>
-          {/* {dateTime} */}
-          {/* Mon, Jul 11<span>06:00 PM - 08:00 PM</span>
-           */}
           {moment(startTime).format("DD MMM YYYY")} <br />
           {moment(startTime).format("hh:mm A")}-{" "}
           {moment(endTime).format("hh:mm A")}
@@ -116,23 +107,12 @@ const BookingTableItem = ({
             className="dropdown-menu dropdown-menu-end"
             style={{ cursor: "pointer" }}
           >
-            <div
-              className="dropdown-item"
-              // data-bs-toggle="modal"
-              // data-bs-target="#cancel-court"
-              onClick={handleBookingCancel}
-            >
+            <div className="dropdown-item" onClick={handleBookingCancel}>
               <i>
                 <CornerDownLeft size={"15px"} />
               </i>
               Cancel Booking
             </div>
-            {/* <div className="dropdown-item">
-              <i>
-                <Edit size={"15px"} />
-              </i>
-              Edit
-            </div> */}
           </div>
         </div>
       </td>

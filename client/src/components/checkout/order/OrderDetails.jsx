@@ -31,7 +31,7 @@ const OrderDetails = () => {
       <h5 className="mb-3">Booking Details</h5>
       <ul className="booking-info d-lg-flex justify-content-between align-items-center">
         <li>
-          <h6>{courtData?.name}</h6>
+          <h6 className="text-capitalize">{courtData?.name}</h6>
           <p className="text-capitalize">{courtData?.type}</p>
         </li>
         <li>

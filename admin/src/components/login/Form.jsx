@@ -20,6 +20,11 @@ const Form = () => {
       toast.error(err.message);
     },
     onSuccess: (data) => {
+      if (data.user.role != "admin") {
+        toast.error("Only Admin can Login");
+        return;
+      }
+
       dispatch(login(data));
 
       navigate("/dashboard");

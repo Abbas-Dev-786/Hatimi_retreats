@@ -58,7 +58,11 @@ const TableItem = ({
             />
           </a>
           <span className="table-head-name flex-grow-1">
-            <a data-bs-toggle="modal" data-bs-target="#request-court">
+            <a
+              className="text-capitalize"
+              data-bs-toggle="modal"
+              data-bs-target="#request-court"
+            >
               {court.name}
             </a>
             <span>{court.address}</span>

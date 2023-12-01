@@ -71,7 +71,7 @@ const VenueList = ({
                 <Heart size={"18px"} />
               </div>
             </div>
-            <h3 className="listing-title">
+            <h3 className="listing-title text-capitalize">
               <Link to={`/venues/${_id}`}>{name}</Link>
             </h3>
             <div className="listing-details-group">

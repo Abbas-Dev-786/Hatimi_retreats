@@ -12,8 +12,8 @@ const BookingDetails = () => {
       <div className="card booking-details">
         <h3 className="border-bottom">Order Summary</h3>
         <ul className="list-unstyled">
-          <li>
-            <i className="fa-regular fa-building me-2"></i>
+          <li className="text-capitalize">
+            <i className="fa-regular fa-building me-2 "></i>
             {courtData?.name}
             <span className="x-circle"></span>
           </li>

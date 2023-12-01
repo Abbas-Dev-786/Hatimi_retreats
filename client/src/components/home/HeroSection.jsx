@@ -80,6 +80,7 @@ const HeroSection = () => {
                           onChange={(e) => setCity(e.value)}
                           // value={cityData?.[0]?._id}
                           controlClassName="select-hero"
+                          className="text-capitalize"
                         />
                       </div>
                     </div>
@@ -92,6 +93,7 @@ const HeroSection = () => {
                           onChange={(e) => setSport(e.value)}
                           // value={sportsData?.[0]?._id}
                           controlClassName="select-hero"
+                          className="text-capitalize"
                         />
                       </div>
                     </div>
