@@ -79,7 +79,15 @@ module.exports.getAvailableTimeSlots = catchAsync(async (req, res, next) => {
     return next(new AppError("Court does not exists", 404));
   }
 
-  const allTimeSlots = generateTimeSlots(court.openingTime, court.closingTime);
+  if (!req?.body?.date) {
+    return next(new AppError("Please Enter a date", 400));
+  }
+
+  const allTimeSlots = generateTimeSlots(
+    court.openingTime,
+    court.closingTime,
+    req.body.date
+  );
 
   const existingBookings = await Booking.find({
     $expr: {
