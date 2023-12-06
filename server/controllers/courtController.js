@@ -95,6 +95,7 @@ module.exports.getAvailableTimeSlots = catchAsync(async (req, res, next) => {
 
   const existingBookings = await Booking.find({
     court: new mongoose.Types.ObjectId(req.params.id),
+    status: "confirmed",
     $expr: {
       $eq: [
         date,
