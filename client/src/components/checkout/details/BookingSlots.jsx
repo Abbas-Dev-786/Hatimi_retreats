@@ -44,7 +44,14 @@ const BookingSlots = () => {
     const startTime = String(mergeDateAndTime(date, selectedSlot?.startTime));
     const endTime = String(mergeDateAndTime(date, selectedSlot?.endTime));
 
-    dispatch(setFormData({ date: String(date), startTime, endTime, guests }));
+    dispatch(
+      setFormData({
+        date: new Date(date).toDateString(),
+        startTime,
+        endTime,
+        guests,
+      })
+    );
   }, [date, selectedSlot, guests, dispatch]);
 
   return (

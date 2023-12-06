@@ -3,27 +3,6 @@ import { Rating } from "react-simple-star-rating";
 import { useSelector } from "react-redux";
 import { IMAGE_URL } from "../../constants";
 
-// const data2 = [
-//   {
-//     image: "/img/profiles/avatar-01.jpg",
-//     name: "David",
-//     date: moment().format("DD/MM/YYYY"),
-//     rating: 5.0,
-//     text: "Yes, I would book again.",
-//     review: "Absolutely perfect",
-//     desc: "If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.",
-//   },
-//   {
-//     image: "/img/profiles/avatar-06.jpg",
-//     name: "Amanda",
-//     date: moment().format("DD/MM/YYYY"),
-//     rating: 1.5,
-//     text: "No, I dont want to book again.",
-//     review: "Awesome. Its very convenient to play.",
-//     desc: "If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.",
-//   },
-// ];
-
 const Reviews = () => {
   const { courtData } = useSelector((state) => state.court);
 

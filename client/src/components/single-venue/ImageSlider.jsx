@@ -10,15 +10,6 @@ import "swiper/css/navigation";
 
 import { IMAGE_URL } from "../../constants";
 
-// const data2 = [
-//   "/img/gallery/1.jpg",
-//   "/img/gallery/2.jpg",
-//   "/img/gallery/3.jpg",
-//   "/img/gallery/1.jpg",
-//   "/img/gallery/2.jpg",
-//   "/img/gallery/3.jpg",
-// ];
-
 const ImageSlider = () => {
   const { courtData } = useSelector((state) => state.court);
 

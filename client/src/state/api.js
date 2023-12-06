@@ -86,7 +86,7 @@ export const getAvailableSlots = async ({ queryKey }) => {
     const res = await customRequest.post(
       `/courts/available-slots/${queryKey[1]}`,
       {
-        date: queryKey[2],
+        date: new Date(queryKey[2]).toDateString(),
       }
     );
     return res.data.data;
@@ -126,7 +126,6 @@ export const deleteBooking = async (id) => {
 
 export const createReview = async (data) => {
   try {
-    console.log(data);
     await customRequest.post(`/courts/${data.id}/reviews`, data);
   } catch (err) {
     const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;

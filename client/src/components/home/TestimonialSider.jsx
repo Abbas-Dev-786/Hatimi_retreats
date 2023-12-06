@@ -9,45 +9,6 @@ import "swiper/css/navigation";
 import TestimonialSlide from "./TestimonialSlide";
 import { getTop10Reviews } from "../../state/api";
 
-// const data2 = [
-//   {
-//     rating: 3,
-//     review: "Personalized Attention",
-//     comments:
-//       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
-//     image: "/img/profiles/avatar-01.jpg",
-//     name: "Ariyan Rusov",
-//     propertyName: "Box Cricket",
-//   },
-//   {
-//     rating: 5,
-//     review: "Quality Matters !",
-//     comments:
-//       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
-//     image: "/img/profiles/avatar-04.jpg",
-//     name: "Darren Valdez",
-//     propertyName: "Box Cricket",
-//   },
-//   {
-//     rating: 1.5,
-//     review: "Excellent Professionalism !",
-//     comments:
-//       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
-//     image: "/img/profiles/avatar-03.jpg",
-//     name: "Elinor Dunn",
-//     propertyName: "Box Cricket",
-//   },
-//   {
-//     rating: 2.5,
-//     review: "Quality Matters !",
-//     comments:
-//       "Hatimi Retreats' coaching services enhanced my Box Cricket skills.Personalized attention from knowledgeable coaches propelled my game to new heights.",
-//     image: "/img/profiles/avatar-01.jpg",
-//     name: "Darren Valdez",
-//     propertyName: "Box Cricket",
-//   },
-// ];
-
 const TestimonialSider = () => {
   const { data } = useQuery({
     queryKey: ["top-reviews"],
