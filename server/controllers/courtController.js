@@ -1,10 +1,12 @@
+const moment = require("moment");
+const mongoose = require("mongoose");
 const Court = require("../models/courtModel");
+const Booking = require("../models/bookingModel");
 const upload = require("../utils/fileUploads");
 const factory = require("./factoryHandler");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 const generateTimeSlots = require("../utils/generateTimeSlots");
-const Booking = require("../models/bookingModel");
 
 // get all courts => All
 module.exports.getAllCourts = factory.getAllDocs(Court);
@@ -83,16 +85,19 @@ module.exports.getAvailableTimeSlots = catchAsync(async (req, res, next) => {
     return next(new AppError("Please Enter a date", 400));
   }
 
+  const date = moment(new Date(req.body.date)).format("YYYY-MM-DD");
+
   const allTimeSlots = generateTimeSlots(
     court.openingTime,
     court.closingTime,
-    req.body.date
+    date
   );
 
   const existingBookings = await Booking.find({
+    court: new mongoose.Types.ObjectId(req.params.id),
     $expr: {
       $eq: [
-        req.body.date,
+        date,
         { $dateToString: { date: "$startTime", format: "%Y-%m-%d" } },
       ],
     },
