@@ -3,13 +3,19 @@ const authController = require("./../controllers/authController");
 
 const router = express.Router();
 
-router.post("/register", authController.register);
+router.post(
+  "/register",
+  authController.protect,
+  authController.restrictTo("admin"),
+  authController.register
+);
 
 router.post("/login", authController.login);
 
 router.patch(
   "/updatePassword",
   authController.protect,
+  authController.restrictTo("admin"),
   authController.updatePassword
 );
 

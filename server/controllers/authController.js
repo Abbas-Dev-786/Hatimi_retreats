@@ -72,10 +72,10 @@ module.exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("user does not exists", 404));
   }
 
-  // // check user role
-  // if (user.role === "user") {
-  //   return next(new AppError("You are not allowed", 403));
-  // }
+  // check user role
+  if (user.role === "user") {
+    return next(new AppError("You are not allowed", 403));
+  }
 
   // if each checks are passed then create and send token to user
   createAndSendToken(res, user);
