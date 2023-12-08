@@ -28,6 +28,26 @@ export const LoginUser = async (data) => {
   }
 };
 
+export const me = async () => {
+  try {
+    const res = await customRequest.get(`/users/me`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const changePassword = async (data) => {
+  try {
+    const res = await customRequest.patch(`/auth/updatePassword`, data);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
 export const getAllStats = async () => {
   try {
     const res = await customRequest.get(`/users/stats`);

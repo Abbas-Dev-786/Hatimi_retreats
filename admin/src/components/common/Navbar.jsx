@@ -1,5 +1,6 @@
-import { CheckCircle } from "react-feather";
 import { Link } from "react-router-dom";
+import { CheckCircle } from "react-feather";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   return (
@@ -38,21 +39,25 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-            <ul className="nav header-navbar-rht logged-in">
-              <li className="nav-item">
-                <Link
-                  to="/dashboard/courts/new"
-                  className="nav-link btn btn-secondary"
-                >
-                  <span>
-                    <i>
-                      <CheckCircle size={"15px"} />
-                    </i>
-                  </span>
-                  Add New Court
-                </Link>
-              </li>
-            </ul>
+            <div className="d-flex flex-row align-items-center justify-content-center gap-5">
+              <ul className="nav header-navbar-rht logged-in">
+                <li className="nav-item">
+                  <Link
+                    to="/dashboard/courts/new"
+                    className="nav-link btn btn-secondary"
+                  >
+                    <span>
+                      <i>
+                        <CheckCircle size={"15px"} />
+                      </i>
+                    </span>
+                    Add New Court
+                  </Link>
+                </li>
+              </ul>
+
+              <UserMenu />
+            </div>
           </nav>
         </div>
       </header>

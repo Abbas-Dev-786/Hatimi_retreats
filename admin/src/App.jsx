@@ -18,6 +18,7 @@ import Amenities from "./pages/Amenities";
 import Rules from "./pages/Rules";
 import NewCourt from "./pages/NewCourt";
 import EditCourt from "./pages/EditCourt";
+import ChangePassword from "./pages/ChangePassword";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -43,6 +44,8 @@ const App = () => {
             <Route path="requests" element={<Request />} />
             <Route path="amenities" element={<Amenities />} />
             <Route path="rules" element={<Rules />} />
+
+            <Route path="changePassword" element={<ChangePassword />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

@@ -17,7 +17,7 @@ const ContentContainer = () => {
   const { form } = useSelector((state) => state.court);
 
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ["add-court"],
     mutationFn: createCourt,
     onError: (err) => {
@@ -67,7 +67,11 @@ const ContentContainer = () => {
               <LocationSection />
 
               <div className="text-center btn-row">
-                <button className="btn btn-secondary btn-icon" type="submit">
+                <button
+                  className="btn btn-secondary btn-icon"
+                  type="submit"
+                  disabled={isPending}
+                >
                   Create New Court{" "}
                   <i className="ms-1">
                     <ArrowRightCircle size={"15px"} />

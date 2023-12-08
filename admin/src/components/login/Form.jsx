@@ -103,23 +103,6 @@ const Form = () => {
                         />
                       </div>
                     </div>
-                    {/* <div className="form-group d-sm-flex align-items-center justify-content-between">
-                        <div className="form-check form-switch d-flex align-items-center justify-content-start">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="user-pass"
-                          />
-                          <label className="form-check-label" htmlFor="user-pass">
-                            Remember Password
-                          </label>
-                        </div>
-                        <span>
-                          <a href="forgot-password.html" className="forgot-pass">
-                            Forgot Password
-                          </a>
-                        </span>
-                      </div> */}
                     <button
                       className="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block"
                       type="submit"
