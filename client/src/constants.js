@@ -13,6 +13,8 @@ const mapZoomLevel = 17;
 const IMAGE_URL =
   "https://res.cloudinary.com/dumtnfzsn/image/upload/v1700490645/retreats";
 
+const ITS_URL = "https://www.its52.com/Login.aspx?OneLogin=IEDSH";
+
 export {
   email,
   phoneNumber,
@@ -24,4 +26,5 @@ export {
   linkedinHandle,
   mapZoomLevel,
   IMAGE_URL,
+  ITS_URL,
 };

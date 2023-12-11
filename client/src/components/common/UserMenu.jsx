@@ -21,7 +21,7 @@ const UserMenu = () => {
           {user.firstName} {user?.lastName}
         </p> */}
       </div>
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu dropdown-menu-end">
         <li>
           <button className="dropdown-item" type="button">
             Logout
