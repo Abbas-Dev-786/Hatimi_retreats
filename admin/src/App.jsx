@@ -30,7 +30,7 @@ const App = () => {
       <Notification />
       <div className="main-wrapper">
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/admin" element={<Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
 
