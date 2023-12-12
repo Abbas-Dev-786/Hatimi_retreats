@@ -26,19 +26,21 @@ const globalErrorHandler = require("./controllers/errorController");
 
 // Initialise the app
 const app = express();
+app.set("trust proxy", true);
 
 // Implement CORS
 const whitelist = [
-  "http://localhost:5173",
+  // "http://localhost:5173",
   "https://hatimi-retreats.netlify.app",
-  "https://hatimi-retreats-admin.netlify.app",
+  // "https://hatimi-retreats-admin.netlify.app",
+  "https://sports.hatimiproperties.com",
 ];
 const corsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1 || origin === undefined) {
       callback(null, true);
     } else {
-      callback(new AppError("Not allowed by CORS"));
+      callback(new AppError("Not Allowed By CORS for " + origin));
     }
   },
   credentials: true,
