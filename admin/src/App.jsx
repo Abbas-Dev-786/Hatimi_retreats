@@ -31,7 +31,7 @@ const App = () => {
       <div className="main-wrapper">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<ProtectedRoute />}>
+          <Route path="dashboard" element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
 
             <Route path="courts">
@@ -48,8 +48,7 @@ const App = () => {
             <Route path="changePassword" element={<ChangePassword />} />
           </Route>
 
-          <Route path="/login" element={<Login />} />
-
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
