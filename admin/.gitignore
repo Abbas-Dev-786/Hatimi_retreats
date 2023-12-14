@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
-dist-admin.zip
+dist-admin-updated.zip
 dist-ssr
 *.local
 
