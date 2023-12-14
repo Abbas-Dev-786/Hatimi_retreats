@@ -27,6 +27,7 @@ function decryptData(enc, token){
 }
 
 const oneLoginDecryptData = (url) => {
+  // const baseToken = "s3gJU8HvZjN2BozcGQ5iWKxlPDfpS7uMAnyb4rVTkYC1RFth0waOq"; // Change to the token issued to your domain
   const baseToken = "AU68vf26spwX"; // Change to the token issued to your domain
   const parsedData = qs.parse(url);
 
