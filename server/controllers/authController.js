@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
+const oneLoginDecryptData = require("../utils/oneLoginDecrypt");
+const getITSData = require("../utils/getITSData");
 
 const signToken = (id) =>
   // returns a signed jwt
@@ -79,6 +81,25 @@ module.exports.adminLogin = catchAsync(async (req, res, next) => {
 
   // if each checks are passed then create and send token to user
   createAndSendToken(res, user);
+});
+
+module.exports.userITSLogin = catchAsync(async (req, res, next) => {
+  const { url } = req.body;
+  if (!url) return next(new AppError("redirect URL is required", 400));
+
+  const its = oneLoginDecryptData(url);
+  if (!its) return next(new AppError("Not able to find ITS", 400));
+
+  const itsData = await getITSData(its);
+  if (!itsData) return next(new AppError("Not able to get ITS Data", 400));
+
+  const user = await User.findOne({ its });
+  if (!user) {
+    const newUser = await User.create(itsData);
+    createAndSendToken(res, newUser);
+  } else {
+    createAndSendToken(res, user);
+  }
 });
 
 //===============UPDATE_PASSWORD===============

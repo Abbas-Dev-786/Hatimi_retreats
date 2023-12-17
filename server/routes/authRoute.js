@@ -12,6 +12,8 @@ router.post(
 
 router.post("/login", authController.adminLogin);
 
+router.post("/its/login", authController.userITSLogin);
+
 router.patch(
   "/updatePassword",
   authController.protect,

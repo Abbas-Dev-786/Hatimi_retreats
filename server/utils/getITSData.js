@@ -130,13 +130,14 @@ const getITSData = async (its) => {
   try {
     const res = await makeRequest(its, "data");
 
-    // Process the responses
-    console.log(res);
+    return res;
   } catch (error) {
     console.error("Error:", error.message);
   }
 };
 
 // Sample data
-const its = "60472201"; // Replace with your actual ITS_ID // Replace with your actual API key
-getITSData(its);
+// const its = "60472201"; // Replace with your actual ITS_ID // Replace with your actual API key
+// getITSData(its);
+
+module.exports = getITSData;

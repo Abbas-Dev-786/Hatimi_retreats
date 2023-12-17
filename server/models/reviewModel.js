@@ -40,7 +40,7 @@ reviewSchema.index({ court: 1, user: 1 }, { unique: true });
 reviewSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
-    select: "firstName lastName profileImg",
+    select: "fullName profileImg",
   }).populate({ path: "court", select: "name " });
 
   next();

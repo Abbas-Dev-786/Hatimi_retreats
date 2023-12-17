@@ -10,19 +10,18 @@ const userSchema = new mongoose.Schema(
     fullName: {
       type: String,
       trim: true,
-      required: [true, "Please Enter first name"],
+      required: [true, "Please Enter full name"],
     },
     email: {
       type: String,
       trim: true,
-      unique: true,
       validate: [validator.isEmail, "Enter valid email address"],
       required: [true, "Please Enter email address"],
     },
     profileImg: {
       type: String,
       trim: true,
-      required: [true, "Please Enter profile image url"],
+      default: "download_j53sib.jpg",
     },
     phone: {
       type: String,
@@ -69,6 +68,7 @@ const userSchema = new mongoose.Schema(
     its: {
       type: String,
       trim: true,
+      unique: [true, "ITS Already exists"],
       minLength: [8, "min 8 characters"],
       maxLength: [8, "max 8 characters"],
       required: [true, "Please Enter its id"],

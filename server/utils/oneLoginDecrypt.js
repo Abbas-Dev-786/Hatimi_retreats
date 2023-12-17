@@ -38,7 +38,9 @@ const oneLoginDecryptData = (url) => {
   return parseInt(data[0]);
 };
 
-const url =
-  "https://sports.hatimiproperties.com/?SID=hrkyxvvnqhvl45c14ceuzkmd&Lan=en&App=ITSOnelogin&API=3.0&Token=zW5GLPPiU%2fBQ6Ewk6iNZD1HAKp0wNXHtOTqPxgC53ExqQ5jjLpH2HwPps%2bl3ranFLys6GGc3VbtF3WfvW1DkG16rJG2E8eXQdllkYpVsO9iarGqCovHW%2bMO9W5bJCGmuN%2fPeqCj9k6DzZfnJA0GVlQ%3d%3d&DT=ENl5YNM5WasxUusOyDJ3FbpuC3FGW%2bCdCJT81O8UvtVAjON5b%2f7Qi6Y7Ezeqmao9M5ruDaX7lgpnQK2%2fXLCQaJQ41obiyvIQjQwuiox%2fs9%2bVrg4aj1fz7KLAOqEjNUksz5GEkC%2fQMLCTU2%2bbAimlkVGddWkbZWwcz0qvB5y3%2fSBpazJTDpJtPCMy64vIy9fWTsUxeZFgwTzyNYJLP2XU9w%3d%3d";
+// const url =
+//   "https://sports.hatimiproperties.com/?SID=hrkyxvvnqhvl45c14ceuzkmd&Lan=en&App=ITSOnelogin&API=3.0&Token=zW5GLPPiU%2fBQ6Ewk6iNZD1HAKp0wNXHtOTqPxgC53ExqQ5jjLpH2HwPps%2bl3ranFLys6GGc3VbtF3WfvW1DkG16rJG2E8eXQdllkYpVsO9iarGqCovHW%2bMO9W5bJCGmuN%2fPeqCj9k6DzZfnJA0GVlQ%3d%3d&DT=ENl5YNM5WasxUusOyDJ3FbpuC3FGW%2bCdCJT81O8UvtVAjON5b%2f7Qi6Y7Ezeqmao9M5ruDaX7lgpnQK2%2fXLCQaJQ41obiyvIQjQwuiox%2fs9%2bVrg4aj1fz7KLAOqEjNUksz5GEkC%2fQMLCTU2%2bbAimlkVGddWkbZWwcz0qvB5y3%2fSBpazJTDpJtPCMy64vIy9fWTsUxeZFgwTzyNYJLP2XU9w%3d%3d";
+
+// "?SID=hrkyxvvnqhvl45c14ceuzkmd&Lan=en&App=ITSOnelogin&API=3.0&Token=zW5GLPPiU%2fBQ6Ewk6iNZD1HAKp0wNXHtOTqPxgC53ExqQ5jjLpH2HwPps%2bl3ranFLys6GGc3VbtF3WfvW1DkG16rJG2E8eXQdllkYpVsO9iarGqCovHW%2bMO9W5bJCGmuN%2fPeqCj9k6DzZfnJA0GVlQ%3d%3d&DT=ENl5YNM5WasxUusOyDJ3FbpuC3FGW%2bCdCJT81O8UvtVAjON5b%2f7Qi6Y7Ezeqmao9M5ruDaX7lgpnQK2%2fXLCQaJQ41obiyvIQjQwuiox%2fs9%2bVrg4aj1fz7KLAOqEjNUksz5GEkC%2fQMLCTU2%2bbAimlkVGddWkbZWwcz0qvB5y3%2fSBpazJTDpJtPCMy64vIy9fWTsUxeZFgwTzyNYJLP2XU9w%3d%3d";
 
 module.exports = oneLoginDecryptData;

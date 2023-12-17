@@ -71,7 +71,7 @@ bookingSchema.pre("save", async function (next) {
 bookingSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
-    select: "firstName lastName profileImg phone",
+    select: "fullName profileImg phone",
   }).populate({
     path: "court",
     select:
