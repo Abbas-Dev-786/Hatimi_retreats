@@ -23,7 +23,7 @@ const FeatureSlide = ({
   const isBookmarked = bookmarks.includes(_id);
 
   const handleBookmarkClicks = () => {
-    if (!user?.firstName) {
+    if (!user?.email) {
       toast.error("Please Login to Access Bookmark Functionality");
       return;
     }

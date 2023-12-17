@@ -53,8 +53,7 @@ const App = () => {
               <Route path=":id" element={<SingleVenue />} />
             </Route>
 
-            <Route path="bookings">
-              {/* <Route path="bookings" element={<ProtectedRoute />}> */}
+            <Route path="bookings" element={<ProtectedRoute />}>
               <Route index element={<UserBookings />} />
               <Route path=":propertyId/new" element={<Checkout />} />
             </Route>

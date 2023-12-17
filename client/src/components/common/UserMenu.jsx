@@ -1,8 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../state/slices/userSlice";
 import { IMAGE_URL } from "../../constants";
 
 const UserMenu = () => {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+
+    toast.success("Logout Successfull");
+
+    navigate("/");
+  };
 
   return (
     <div className="dropdown">
@@ -23,7 +36,11 @@ const UserMenu = () => {
       </div>
       <ul className="dropdown-menu dropdown-menu-end">
         <li>
-          <button className="dropdown-item" type="button">
+          <button
+            className="dropdown-item"
+            type="button"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         </li>

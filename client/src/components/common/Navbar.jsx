@@ -111,7 +111,7 @@ const Navbar = () => {
               <UserMenu />
             ) : (
               <li className="nav-item">
-                <Link className="nav-link btn btn-secondary" href={ITS_URL}>
+                <Link className="nav-link btn btn-secondary" to={ITS_URL}>
                   <span>
                     <Users size="15px" />
                   </span>

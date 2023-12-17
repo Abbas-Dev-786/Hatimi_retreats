@@ -8,9 +8,7 @@ export const baseURL = import.meta.env.DEV
 
 const customRequest = axios.create({ baseURL });
 customRequest.interceptors.request.use((config) => {
-  // const accessToken = JSON.parse(localStorage.getItem("user"))?.token;
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Njk2ZDZhOWU4ZjY3ZTdlNzRiMjUwMCIsImlhdCI6MTcwMTQwODIxMywiZXhwIjoxNzA0MDAwMjEzfQ.ep2MWlf_mSKW7QOxiO8h42_UVh5vzxpbFJEaHS0covQ";
+  const accessToken = JSON.parse(localStorage.getItem("user"))?.token;
 
   if (accessToken) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -18,6 +16,27 @@ customRequest.interceptors.request.use((config) => {
 
   return config;
 });
+
+export const loginUser = async (data) => {
+  try {
+    const res = await customRequest.post(`/auth/its/login`, data);
+
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const me = async () => {
+  try {
+    const res = await customRequest.get(`/users/me`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
 
 export const getCities = async () => {
   try {

@@ -5,6 +5,7 @@ import { IMAGE_URL } from "../../constants";
 
 const Reviews = () => {
   const { courtData } = useSelector((state) => state.court);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <>
@@ -17,13 +18,14 @@ const Reviews = () => {
             aria-controls="panelsStayOpen-collapseSix"
           >
             <span className="w-75 mb-0"> Reviews </span>
-            <a
+            <button
               className="btn btn-gradient pull-right write-review add-review"
               data-bs-toggle="modal"
               data-bs-target="#add-review"
+              disabled={user?.email ? false : true}
             >
               Write a review
-            </a>
+            </button>
           </div>
         </div>
         <div
@@ -44,9 +46,7 @@ const Reviews = () => {
                   />
                 </div>
                 <div className="review-info">
-                  <h6 className="mb-2 tittle">
-                    {`${item?.user?.firstName} ${item?.user?.lastName}`}
-                  </h6>
+                  <h6 className="mb-2 tittle">{item?.user?.fullName}</h6>
                   <div
                     className="rating"
                     style={{ display: "flex", alignItems: "center" }}
