@@ -4,6 +4,7 @@ const qs = require("qs");
 
 function decryptData(enc, token) {
   const decodedEnc = Buffer.from(enc, "base64");
+
   const unpad = (s) => {
     const paddingLength = s[s.length - 1];
     return s.slice(0, s.length - paddingLength);
