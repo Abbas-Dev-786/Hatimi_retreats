@@ -1,6 +1,8 @@
 const { xml2js } = require("xml-js");
 
-const getRequestBodyAndURL = (its, key, type = "data") => {
+const key = "hrqsy4AJ0LwitKNsGO8yEynmi63IYmh8";
+
+const getRequestBodyAndURL = (its, type = "data") => {
   const dataURL =
     "https://ejas.its52.com/ejamaatservices.asmx?op=Estate_Dept_Hatemi";
   const dataRequestBody = `<?xml version="1.0" encoding="utf-8"?>
@@ -100,9 +102,9 @@ const getFilteredImageData = (data) => {
   return finalData;
 };
 
-async function makeRequest(its, key, type) {
+async function makeRequest(its, type) {
   try {
-    const { url, body } = getRequestBodyAndURL(its, key, type);
+    const { url, body } = getRequestBodyAndURL(its, type);
 
     const request = await fetch(url, {
       method: "POST",
@@ -124,23 +126,17 @@ async function makeRequest(its, key, type) {
   }
 }
 
-const getITSData = async (its, key) => {
+const getITSData = async (its) => {
   try {
-    const responses = await Promise.all([
-      makeRequest(its, key, "data"),
-      makeRequest(its, key, "image"),
-    ]);
+    const res = await makeRequest(its, "data");
 
     // Process the responses
-    responses.forEach((data, index) => {
-      console.log(`Response from API endpoint ${index + 1}:`, data);
-    });
+    console.log(res);
   } catch (error) {
     console.error("Error:", error.message);
   }
 };
 
 // Sample data
-const its = "60472201"; // Replace with your actual ITS_ID
-const key = "hrqsy4AJ0LwitKNsGO8yEynmi63IYmh8"; // Replace with your actual API key
-getITSData(its, key);
+const its = "60472201"; // Replace with your actual ITS_ID // Replace with your actual API key
+getITSData(its);
