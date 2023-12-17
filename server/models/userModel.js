@@ -7,19 +7,10 @@ const ROLES = ["admin", "user"];
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
+    fullName: {
       type: String,
       trim: true,
       required: [true, "Please Enter first name"],
-    },
-    middleName: {
-      type: String,
-      trim: true,
-    },
-    lastName: {
-      type: String,
-      trim: true,
-      // required: [true, "Please Enter last name"],
     },
     email: {
       type: String,
@@ -39,20 +30,21 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isMobilePhone, "Enter valid phone number"],
       required: [true, "Please Enter phone number"],
     },
-    city: {
+    whatsapp: {
       type: String,
       trim: true,
-      required: [true, "Please Enter City"],
+      validate: [validator.isMobilePhone, "Enter valid whatsapp number"],
+      required: [true, "Please Enter whatsapp number"],
+    },
+    vatan: {
+      type: String,
+      trim: true,
+      required: [true, "Please Enter your Vatan"],
     },
     country: {
       type: String,
       trim: true,
       required: [true, "Please Enter Country"],
-    },
-    address: {
-      type: String,
-      trim: true,
-      required: [true, "Please Enter address"],
     },
     role: {
       type: String,

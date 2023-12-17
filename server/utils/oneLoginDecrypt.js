@@ -1,27 +1,54 @@
 const crypto = require("crypto");
+const aesjs = require("aes-js");
 const qs = require("qs");
 
+function decryptData(enc, token) {
+  const decodedEnc = Buffer.from(enc, "base64");
+  const unpad = (s) => {
+    const paddingLength = s[s.length - 1];
+    return s.slice(0, s.length - paddingLength);
+  };
+
+  const keyBuffer = crypto.pbkdf2Sync(token, "V*GH^|9^TO#cT", 1000, 32, "sha1");
+  const iv = keyBuffer.slice(16);
+  const key = keyBuffer.slice(0, 16);
+
+  const aesCbc = new aesjs.ModeOfOperation.cbc(key, iv);
+
+  const encryptedBytes = aesjs.utils.hex.toBytes(decodedEnc.toString("hex"));
+  const decryptedBytes = aesCbc.decrypt(encryptedBytes);
+  const unpaddedData = unpad(Buffer.from(decryptedBytes));
+
+  // Convert to UTF-8 string and split
+  const dataString = unpaddedData.toString("utf8");
+  const dataArray = dataString.replace(/\x00/g, "").split(",");
+
+  return dataArray;
+}
+
 const oneLoginDecryptData = (url) => {
-  const token = "AU68vf26spwX"; // Change to the token issued to your domain
-  const parsedData = qs.parse(url).Dt;
+  const baseToken = "s3gJU8HvZjN2BozcGQ5iWKxlPDfpS7uMAnyb4rVTkYC1RFth0waOq"; // Change to the token issued to your domain
+  const parsedData = qs.parse(url);
 
-  const key = crypto.pbkdf2Sync(token, "V*GH^|9^TO#cT", 1000, 32, "sha1");
-  const iv = Buffer.alloc(16); // Initialization Vector for AES-128-CBC
+  const payload = parsedData?.DT;
 
-  const decipher = crypto.createDecipheriv("aes-128-cbc", key.slice(0, 16), iv);
+  const data = decryptData(payload, baseToken);
 
-  let decrypted = decipher.update(
-    decodeURIComponent(parsedData),
-    "base64",
-    "utf8"
-  );
-  decrypted += decipher.final("utf8");
+  return parseInt(data[0]);
 
-  console.log(decrypted);
-  return decrypted;
+  // return {
+  //   its: parseInt(data[0]),
+  //   name: data[1],
+  //   gender: data[2],
+  //   age: parseInt(data[3]),
+  //   jamaat: data[4],
+  //   jamiat: data[5],
+  //   jamiatId: parseInt(data[6]),
+  // };
 };
 
 const url =
-  "http://hatimi_retreats.com?SID=asdasdqewqsa&Lan=en&App=ITSOnelogin&API=3.0&Token=NyiDF2EsqhmgvBf%2bU%2ffT3ISVhzzgvLiSOrK3Zfuvyt8%3d&Dt=GtxuyQqOIivJd3M3ObXUczE8uMFUp1vG%2fyI26Xq1%2bD3%2blIL4sNXdbvoxZ%2bXT6hcMeJKWZI0VcNGHZHQhN9kBc1M7s4XDXQ3AUQPaZfCbVd7E6oJdlu6N6b1zWvGwwXcwPRqOZZY%2b1wCShxD4MN30qxoqi3%2b8G3aB78bY60kATghITx7widsImdrm3mC0TJOvCKmy83uF6DHfEPQko4FICQ%3d%3d";
-oneLoginDecryptData(url);
+  "https://sports.hatimiproperties.com/?SID=hrkyxvvnqhvl45c14ceuzkmd&Lan=en&App=ITSOnelogin&API=3.0&Token=zW5GLPPiU%2fBQ6Ewk6iNZD1HAKp0wNXHtOTqPxgC53ExqQ5jjLpH2HwPps%2bl3ranFLys6GGc3VbtF3WfvW1DkG16rJG2E8eXQdllkYpVsO9iarGqCovHW%2bMO9W5bJCGmuN%2fPeqCj9k6DzZfnJA0GVlQ%3d%3d&DT=ENl5YNM5WasxUusOyDJ3FbpuC3FGW%2bCdCJT81O8UvtVAjON5b%2f7Qi6Y7Ezeqmao9M5ruDaX7lgpnQK2%2fXLCQaJQ41obiyvIQjQwuiox%2fs9%2bVrg4aj1fz7KLAOqEjNUksz5GEkC%2fQMLCTU2%2bbAimlkVGddWkbZWwcz0qvB5y3%2fSBpazJTDpJtPCMy64vIy9fWTsUxeZFgwTzyNYJLP2XU9w%3d%3d";
+
+console.log(oneLoginDecryptData(url));
 // module.exports = oneLoginDecryptData;
