@@ -20,8 +20,7 @@ const BookingsTable = () => {
       const filteredObj = data?.filter(
         (item) =>
           item.court.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.firstName.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.lastName.toLowerCase().includes(search.toLowerCase())
+          item.user.fullName.toLowerCase().includes(search.toLowerCase())
       );
 
       setFilteredData(filteredObj);

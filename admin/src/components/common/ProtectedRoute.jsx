@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
   const { error, isError } = useQuery({
     queryKey: ["me"],
     queryFn: me,
-    enabled: Boolean(user?.firstName),
+    enabled: Boolean(user?.email),
   });
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ProtectedRoute = () => {
     }
   }, [isError, error, dispatch, navigate]);
 
-  return !user?.firstName ? <Navigate to="/login" /> : <Outlet />;
+  return !user?.email ? <Navigate to="/login" /> : <Outlet />;
 };
 
 export default ProtectedRoute;

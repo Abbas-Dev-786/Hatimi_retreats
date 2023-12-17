@@ -79,7 +79,7 @@ const TableItem = ({
             />
           </a>
           <span className="table-head-name table-name-user flex-grow-1">
-            <a>{`${user?.firstName} ${user?.lastName}`}</a>
+            <a>{user?.fullName}</a>
           </span>
         </h2>
       </td>
