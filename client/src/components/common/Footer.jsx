@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Twitter, Users } from "react-feather";
+import { Facebook, Instagram, Users } from "react-feather";
 import {
+  ITS_URL,
   InstagramHandle,
   customerCareNumber,
   email,
   facebookHandle,
-  linkedinHandle,
-  twitterHandle,
 } from "../../constants";
 import { useSelector } from "react-redux";
 
@@ -22,7 +21,7 @@ const Footer = () => {
             Join our empowering sports community today and grow with us.
           </p>
           {!user?.firstName && (
-            <Link to="https://www.its52.com/" className="btn btn-primary">
+            <Link to={ITS_URL} className="btn btn-primary">
               <i className="me-2">
                 <Users size="18px" />
               </i>

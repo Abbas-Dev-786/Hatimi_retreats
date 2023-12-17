@@ -15,7 +15,7 @@ const TestimonialSlide = ({ rating, review, user, court }) => {
         {/* <p>{comments}</p> */}
         <div className="listing-venue-owner mt-4">
           <img src={`${IMAGE_URL}/${user?.profileImg}`} alt="User" />
-          <div className="testimonial-content">
+          <div className="testimonial-content text-capitalize">
             <p>{`${user?.firstName} ${user?.lastName}`}</p>
             <Link to={`/venues/${court?._id}`} className="btn btn-primary">
               {court?.name}

@@ -3,6 +3,7 @@ import { Users, X } from "react-feather";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import UserMenu from "./UserMenu";
+import { ITS_URL } from "../../constants";
 
 const navItems = [
   { text: "Home", link: "/" },
@@ -110,15 +111,12 @@ const Navbar = () => {
               <UserMenu />
             ) : (
               <li className="nav-item">
-                <a
-                  className="nav-link btn btn-secondary"
-                  href="https://www.its52.com/"
-                >
+                <Link className="nav-link btn btn-secondary" href={ITS_URL}>
                   <span>
                     <Users size="15px" />
                   </span>
                   Login with ITS
-                </a>
+                </Link>
               </li>
             )}
           </ul>
