@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
             <ul className="main-nav">
               {navItems.map((item, i) => {
-                if (item?.protected && !user?.firstName) {
+                if (item?.protected && !user?.email) {
                   return null;
                 } else {
                   return (
@@ -107,7 +107,7 @@ const Navbar = () => {
             </ul>
           </div>
           <ul className="nav header-navbar-rht">
-            {user?.firstName ? (
+            {user?.email ? (
               <UserMenu />
             ) : (
               <li className="nav-item">
