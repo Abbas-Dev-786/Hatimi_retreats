@@ -25,6 +25,14 @@ const ProtectedRoute = () => {
     }
   }, [isError, error, dispatch, navigate]);
 
+  useEffect(() => {
+    if (user?.role === "user") {
+      dispatch(logout());
+      navigate("/login");
+      toast.error("You are Not Allowed to access this route");
+    }
+  }, [user, dispatch, navigate]);
+
   return !user?.email ? <Navigate to="/login" /> : <Outlet />;
 };
 
