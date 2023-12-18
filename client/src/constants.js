@@ -5,7 +5,7 @@ const address = "test address";
 
 const facebookHandle = "test";
 const twitterHandle = "test";
-const InstagramHandle = "test";
+const InstagramHandle = "https://www.instagram.com/hatimiretreats/";
 const linkedinHandle = "test";
 
 const mapZoomLevel = 17;

@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Users } from "react-feather";
+import { Instagram, Users } from "react-feather";
 import {
   ITS_URL,
   InstagramHandle,
   customerCareNumber,
   email,
-  facebookHandle,
 } from "../../constants";
 import { useSelector } from "react-redux";
 
@@ -72,33 +71,12 @@ const Footer = () => {
                 <div className="social-icon">
                   <ul>
                     <li>
-                      <Link className="facebook" to={facebookHandle}>
-                        <i>
-                          <Facebook size="18px" />
-                        </i>
-                      </Link>
-                    </li>
-                    {/* <li>
-                      <Link className="twitter" to={twitterHandle}>
-                        <i>
-                          <Twitter size="18px" />
-                        </i>
-                      </Link>
-                    </li> */}
-                    <li>
                       <Link className="instagram" to={InstagramHandle}>
                         <i>
                           <Instagram size="18px" />
                         </i>
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link className="linked-in" to={linkedinHandle}>
-                        <i>
-                          <Linkedin size="18px" />
-                        </i>
-                      </Link>
-                    </li> */}
                   </ul>
                 </div>
               </div>
