@@ -50,7 +50,7 @@ const Courtlist = () => {
                     </div>
                     <div
                       className="table-responsive"
-                      style={{ height: `${data?.length * 70}px` }}
+                      style={{ height: `${data?.length * 140}px` }}
                     >
                       {!data?.length && !isLoading && (
                         <p className="text-center">No Courts Available</p>
