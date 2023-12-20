@@ -1,3 +1,4 @@
+import { COORDS, address } from "../../constants";
 import MapBox from "../common/MapBox";
 
 const GoogleMap = () => {
@@ -5,10 +6,7 @@ const GoogleMap = () => {
     <div className="row">
       <div className="col-12">
         <div className="google-maps">
-          <MapBox
-            coordinates={[22.7055, 75.812]}
-            address="70 Bright St New York, USA"
-          />
+          <MapBox coordinates={COORDS} address={address} />
         </div>
       </div>
     </div>

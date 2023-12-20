@@ -26,8 +26,7 @@ const Location = () => {
         <div className="accordion-body">
           <div className="google-maps">
             <MapBox
-              // coordinates={courtData?.location?.coordinates}
-              coordinates={[22.7055, 75.812]}
+              coordinates={courtData?.location?.coordinates}
               address={courtData?.address}
             />
           </div>

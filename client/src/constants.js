@@ -1,7 +1,8 @@
 const email = "support@hatimiproperties.com";
 const phoneNumber = "+91 75063 05353";
 const customerCareNumber = "+91 75063 05353";
-const address = "test address";
+const address = "Badri Mahal, Dhobi Talao, Badam Wadi, Fort, Mumbai";
+const COORDS = [18.941523, 72.834633];
 
 const facebookHandle = "test";
 const twitterHandle = "test";
@@ -27,4 +28,5 @@ export {
   mapZoomLevel,
   IMAGE_URL,
   ITS_URL,
+  COORDS,
 };

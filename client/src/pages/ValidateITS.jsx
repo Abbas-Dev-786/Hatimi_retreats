@@ -12,7 +12,7 @@ const ValidateITS = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: loginUser,
     onError: () => {
       toast.error("Login Failed");
@@ -42,7 +42,7 @@ const ValidateITS = () => {
         zIndex: -1,
       }}
     >
-      {isLoading && (
+      {isPending && (
         <>
           <Spinner />
           <h5 className="text-white text-center mt-2">Logging You in ......</h5>

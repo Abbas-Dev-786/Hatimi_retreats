@@ -1,5 +1,6 @@
 import { ArrowRight } from "react-feather";
 import { Link } from "react-router-dom";
+import { ITS_URL } from "../../constants";
 
 const cardsData = [
   {
@@ -7,7 +8,7 @@ const cardsData = [
     title: "Login",
     desc: "Quick and Easy login with your its and password",
     btnText: "Login Now",
-    link: "https://www.its52.com/",
+    link: ITS_URL,
   },
   {
     icon: "/img/icons/work-icon2.svg",

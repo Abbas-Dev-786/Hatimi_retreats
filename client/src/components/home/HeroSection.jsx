@@ -35,21 +35,12 @@ const HeroSection = () => {
 
   return (
     <section className="hero-section">
-      {/* <div className="banner-cock-one">
-        <img
-          src="/img/icons/banner-cock1.png"
-          alt="Banner"
-          width="50px"
-          style={{ opacity: 0.3 }}
-        />
-      </div> */}
       <div className="banner-shapes">
         <div className="banner-dot-one">
           <span></span>
         </div>
         <div className="banner-cock-two">
           <img src="/img/bg/ball.png" alt="Banner" />
-          {/* <span></span> */}
         </div>
         <div className="banner-dot-two">
           <span></span>
@@ -78,9 +69,8 @@ const HeroSection = () => {
                           options={cityData?.map((obj) => obj._id) || []}
                           placeholder="Search for City"
                           onChange={(e) => setCity(e.value)}
-                          // value={cityData?.[0]?._id}
                           controlClassName="select-hero"
-                          className="text-capitalize"
+                          className="text-capitalize rounded-5"
                         />
                       </div>
                     </div>
@@ -91,7 +81,6 @@ const HeroSection = () => {
                           options={sportsData?.map((obj) => obj._id) || []}
                           placeholder="Search for Sports"
                           onChange={(e) => setSport(e.value)}
-                          // value={sportsData?.[0]?._id}
                           controlClassName="select-hero"
                           className="text-capitalize"
                         />
@@ -99,7 +88,9 @@ const HeroSection = () => {
                     </div>
                     <div className="search-btn" onClick={handleFormSubmit}>
                       <button className="btn" type="submit">
-                        <Search />
+                        <i>
+                          <Search />
+                        </i>
                         <span className="search-text">Search</span>
                       </button>
                     </div>
