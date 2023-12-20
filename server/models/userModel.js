@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const mongoosePaginate = require("mongoose-paginate-v2");
+const AppError = require("./../utils/AppError");
 
 const ROLES = ["admin", "user"];
 

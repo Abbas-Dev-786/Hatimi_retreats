@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const AppError = require("./../utils/AppError");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const courtSchema = new mongoose.Schema(
@@ -81,7 +82,7 @@ const courtSchema = new mongoose.Schema(
     coverImage: {
       type: String,
       trim: true,
-      // required: [true, "Court must have a coverImage."],
+      required: [true, "Court must have a coverImage."],
     },
     amenities: {
       type: [mongoose.Schema.Types.ObjectId],
@@ -89,13 +90,13 @@ const courtSchema = new mongoose.Schema(
     },
     images: {
       type: [String],
-      // validate: {
-      //   validator: function (images) {
-      //     return images.length >= 1;
-      //   },
-      //   message: () => `Please upload atleast one image of the court`,
-      // },
-      // required: [true, "Court must have images."],
+      validate: {
+        validator: function (images) {
+          return images.length >= 1;
+        },
+        message: () => `Please upload atleast one image of the court`,
+      },
+      required: [true, "Court must have images."],
     },
     ratingsAverage: {
       type: Number,

@@ -163,7 +163,7 @@ module.exports.getAllSportsWithinCity = catchAsync(async (req, res, next) => {
 // set location coords Middleware
 module.exports.setCoords = (req, res, next) => {
   if (req.body.location) {
-    req.body.location = { coordinates: req.body?.location };
+    req.body.location = { coordinates: req.body?.location, type: "Point" };
   }
 
   next();
