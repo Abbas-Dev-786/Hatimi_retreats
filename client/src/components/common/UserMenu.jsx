@@ -30,11 +30,11 @@ const UserMenu = () => {
           alt="user-img"
           style={{ height: "44px", width: "44px", borderRadius: "50%" }}
         />
-        {/* <p>
-          {user.firstName} {user?.lastName}
-        </p> */}
       </div>
-      <ul className="dropdown-menu dropdown-menu-end">
+      <ul className="dropdown-menu dropdown-menu-end w-50">
+        <li>
+          <p className="dropdown-item disabled text-wrap">{user?.fullName}</p>
+        </li>
         <li>
           <button
             className="dropdown-item"
