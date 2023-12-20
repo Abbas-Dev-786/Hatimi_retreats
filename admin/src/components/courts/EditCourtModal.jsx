@@ -144,7 +144,7 @@ const EditCourtModal = () => {
                           <div className="form-icon customDatePickerWidth">
                             <DatePicker
                               className="form-control timepicker w-100"
-                              placeholderText="Enter Date"
+                              placeholderText="Enter Opening Time"
                               selected={openingTime}
                               onChange={(newDate) => setOpeningTime(newDate)}
                               dateFormat="h:mm aa"
@@ -169,7 +169,7 @@ const EditCourtModal = () => {
                           <div className="form-icon customDatePickerWidth">
                             <DatePicker
                               className="form-control timepicker w-100"
-                              placeholderText="Enter Date"
+                              placeholderText="Enter Closing Time"
                               dateFormat="h:mm aa"
                               selected={closingTime}
                               onChange={(newDate) => setClosingTime(newDate)}
