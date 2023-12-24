@@ -13,7 +13,7 @@ const PaymentDetails = () => {
   const [isChecked, setChecked] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { courtData, bookingData, additionalGuests, totalGuests } = useSelector(
+  const { courtData, bookingData, additionalGuests } = useSelector(
     (state) => state.checkout
   );
 
@@ -58,7 +58,7 @@ const PaymentDetails = () => {
       ...bookingData,
       id: courtData?._id,
       price: totalCharge,
-      totalGuests,
+      totalGuests: bookingData.guests,
     });
   };
 
