@@ -36,7 +36,7 @@ module.exports.updateBooking = catchAsync(async (req, res, next) => {
 
   if (req.body.status) {
     const url = "https://sports.hatimiproperties.com/bookings";
-    await new Email(req.user, url).sendNewBooking(
+    await new Email(req.user, url).sendBookingStatus(
       req.court.name,
       req.body.startTime,
       req.body.endTime,

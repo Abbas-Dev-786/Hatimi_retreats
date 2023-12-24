@@ -48,11 +48,6 @@ class Email {
       );
       error.name = "EmailSendingError";
 
-      this.user.emailVerifyToken = undefined;
-      this.user.passwordResetToken = undefined;
-      this.user.passwordResetExpires = undefined;
-      await this.user.save({ validateBeforeSave: false });
-
       throw error;
     }
   }
@@ -76,7 +71,7 @@ class Email {
     await this.send(subject, text, html);
   }
 
-  async sendNewBooking(court, startTime, endTime, status) {
+  async sendBookingStatus(court, startTime, endTime, status) {
     const subject = `Hey your booking has been ${status}`;
     const text = `
     ${this.name} you have made a request of ${court} from ${new Date(
