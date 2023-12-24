@@ -23,7 +23,7 @@ module.exports.createBooking = catchAsync(async (req, res, next) => {
 
 // update booking => All
 module.exports.updateBooking = catchAsync(async (req, res, next) => {
-  const updatedDoc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+  const updatedDoc = await Booking.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
     new: true,
   });
