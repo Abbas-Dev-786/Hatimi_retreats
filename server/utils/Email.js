@@ -53,7 +53,7 @@ class Email {
   }
 
   async sendNewBooking(court, startTime, endTime) {
-    this.to = "abbasbhp787@gmail.com";
+    this.to = "support@hatimiproperties.com";
     const subject = `Hey There is a new Booking`;
     const text = `
     ${this.name} has made a request of ${court} from ${new Date(
