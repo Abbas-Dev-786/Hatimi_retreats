@@ -13,11 +13,36 @@ module.exports.createBooking = catchAsync(async (req, res, next) => {
   res.status(201).json({ status: "success", data: booking });
 
   //send email
-  await new Email(req.user).sendNewBooking(
+  const url = "https://sports.hatimiproperties.com/admin/dashboard/requests";
+  await new Email(req.user, url).sendNewBooking(
     req.court.name,
     req.body.startTime,
     req.body.endTime
   );
+});
+
+// update booking => All
+module.exports.updateBooking = catchAsync(async (req, res, next) => {
+  const updatedDoc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    runValidators: true,
+    new: true,
+  });
+
+  if (!updatedDoc) {
+    return next(new AppError("Document does not exists", 404));
+  }
+
+  res.status(200).json({ status: "success", data: updatedDoc });
+
+  if (req.body.status) {
+    const url = "https://sports.hatimiproperties.com/bookings";
+    await new Email(req.user, url).sendNewBooking(
+      req.court.name,
+      req.body.startTime,
+      req.body.endTime,
+      updatedDoc.status
+    );
+  }
 });
 
 // get booking => All
@@ -25,9 +50,6 @@ module.exports.getBooking = factory.getDoc(Booking);
 
 // get All bookings => All
 module.exports.getAllBookings = factory.getAllDocs(Booking);
-
-// update booking => All
-module.exports.updateBooking = factory.updateDoc(Booking);
 
 // delete booking => All
 module.exports.deleteBooking = factory.deleteDoc(Booking);
@@ -95,7 +117,7 @@ module.exports.checkOverLappingBookings = catchAsync(async (req, res, next) => {
   if (bookedSlots.length) {
     return next(new AppError("Slot is already booked", 400));
   }
-  
+
   req.court = await Court.findById(req.params.courtId);
   next();
 });

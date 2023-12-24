@@ -3,10 +3,10 @@ const nodemailer = require("nodemailer");
 class Email {
   constructor(user, url = "") {
     this.user = user;
-    this.to = "admin@gmail.com";
+    this.to = user.email;
     this.from = `Hatimi Retreats <${process.env.EMAIL_FROM}>`;
     this.url = url;
-    this.name = `${user?.firstName} ${user?.lastName}`;
+    this.name = user.fullName;
   }
 
   newTransport() {
@@ -58,7 +58,8 @@ class Email {
   }
 
   async sendNewBooking(court, startTime, endTime) {
-    const subject = `Hey There is new Booking`;
+    this.to = "abbasbhp787@gmail.com";
+    const subject = `Hey There is a new Booking`;
     const text = `
     ${this.name} has made a request of ${court} from ${new Date(
       startTime
@@ -69,7 +70,25 @@ class Email {
 
     <br>
 
-    Please Review the request
+    <a href=${this.url}><button>Please Review the request</button></a>
+    </p>`;
+
+    await this.send(subject, text, html);
+  }
+
+  async sendNewBooking(court, startTime, endTime, status) {
+    const subject = `Hey your booking has been ${status}`;
+    const text = `
+    ${this.name} you have made a request of ${court} from ${new Date(
+      startTime
+    ).toLocaleString()} to ${new Date(endTime).toLocaleString()}.
+      has been ${status}`;
+    const html = `<p>
+    ${text}
+
+    <br>
+
+    <a href=${this.url}><button>View your booking</button></a>
     </p>`;
 
     await this.send(subject, text, html);
