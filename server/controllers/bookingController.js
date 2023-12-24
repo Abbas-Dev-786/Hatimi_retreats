@@ -40,7 +40,7 @@ module.exports.updateBooking = catchAsync(async (req, res, next) => {
       req.court.name,
       req.body.startTime,
       req.body.endTime,
-      updatedDoc.status
+      req.body.status
     );
   }
 });

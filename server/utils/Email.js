@@ -81,7 +81,7 @@ class Email {
     const text = `
     ${this.name} you have made a request of ${court} from ${new Date(
       startTime
-    ).toLocaleString()} to ${new Date(endTime).toLocaleString()}.
+    ).toLocaleString()} to ${new Date(endTime).toLocaleString()}. which
       has been ${status}`;
     const html = `<p>
     ${text}
