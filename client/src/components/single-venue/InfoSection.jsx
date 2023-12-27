@@ -86,7 +86,7 @@ const InfoSection = () => {
                   <div className="venue-type">
                     <img
                       className="img-fluid"
-                      src="/img/icons/venue-type.svg"
+                      src="/img/venue.png"
                       alt="Icon"
                     />
                   </div>
@@ -101,7 +101,7 @@ const InfoSection = () => {
                   <div>
                     <img
                       className="img-fluid"
-                      src="/img/profiles/avatar-01.jpg"
+                      src="/img/logo-black.png"
                       alt="Icon"
                     />
                   </div>
